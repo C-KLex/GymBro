@@ -15,13 +15,13 @@ struct MainView: View {
         NavigationView {
             TabView {
                 // ChartViews module
-                Text("chart")
+                MainChartView()
                     .tabItem {
                         Label("Chart", systemImage: "chart.xyaxis.line")
                     }
                     
                 // HistoryView module
-                Text("History")
+                IntroHistoryView()
                     .tabItem {
                         Label("History", systemImage: "book")
                     }
@@ -34,13 +34,13 @@ struct MainView: View {
                     }
                 
                 // InfoViews module
-                Text("info")
+                MainInfoView()
                     .tabItem {
                         Label("Info", systemImage: "person.fill")
                     }
                 
                 // SettingViews module
-                Text("Setting")
+                MainSettingView()
                     .tabItem {
                         Label("Setting", systemImage: "gear")
                     }
