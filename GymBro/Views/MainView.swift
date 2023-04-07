@@ -12,7 +12,40 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            TabView {
+                // ChartViews module
+                Text("chart")
+                    .tabItem {
+                        Label("Chart", systemImage: "chart.xyaxis.line")
+                    }
+                    
+                // HistoryView module
+                Text("History")
+                    .tabItem {
+                        Label("History", systemImage: "book")
+                    }
+                
+                
+                // RoutineViews module
+                NewRoutineView()
+                    .tabItem {
+                        Label("Routine", systemImage: "dumbbell")
+                    }
+                
+                // InfoViews module
+                Text("info")
+                    .tabItem {
+                        Label("Info", systemImage: "person.fill")
+                    }
+                
+                // SettingViews module
+                Text("Setting")
+                    .tabItem {
+                        Label("Setting", systemImage: "gear")
+                    }
+            }
+        }
     }
 }
 
