@@ -9,13 +9,48 @@
 import SwiftUI
 
 struct NewRoutineView: View {
+    
+    // MARK: BODY
+    
     var body: some View {
-        Text("NEW ROUTINE")
+        VStack{
+            NavigationLink {
+                Text("RoutineSelectionView")
+            } label: {
+                newRoutineButton
+            }
+        }
     }
+    
+    
 }
+
+
+// MARK: PREVIEW
 
 struct NewRoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        NewRoutineView()
+        NavigationView {
+            NewRoutineView()
+        }
     }
+}
+
+
+// MARK: COMPONENT
+
+extension NewRoutineView {
+    var newRoutineButton: some View {
+        HStack{
+            Image(systemName: "plus")
+            Text("New Routine")
+                .font(.headline)
+                .fontWeight(.bold)
+        }
+        .padding()
+        .background(Color.gray)
+        .foregroundColor(.white)
+        .cornerRadius(10)
+    }
+    
 }

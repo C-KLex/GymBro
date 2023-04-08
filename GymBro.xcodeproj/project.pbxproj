@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C15E13B29E10F2100D6568B /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C15E13A29E10F2100D6568B /* MainSettingView.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
-		8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */; };
 		8C1D7DD729E0C555009C18B3 /* MainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD629E0C555009C18B3 /* MainInfoView.swift */; };
 		8C1D7DD929E0C563009C18B3 /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD829E0C563009C18B3 /* IntroHistoryView.swift */; };
 		8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F367E29DBA0DF00ED087B /* MainView.swift */; };
@@ -45,10 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/MainChartView.swift; sourceTree = SOURCE_ROOT; };
-		8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainSettingView.swift; path = GymBro/MainSettingView.swift; sourceTree = SOURCE_ROOT; };
+		8C15E13A29E10F2100D6568B /* MainSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettingView.swift; sourceTree = "<group>"; };
+		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
 		8C1D7DD629E0C555009C18B3 /* MainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView.swift; sourceTree = "<group>"; };
-		8C1D7DD829E0C563009C18B3 /* IntroHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroHistoryView.swift; path = GymBro/Views/InfoViews/IntroHistoryView.swift; sourceTree = SOURCE_ROOT; };
+		8C1D7DD829E0C563009C18B3 /* IntroHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroHistoryView.swift; path = GymBro/Views/HistoryViews/IntroHistoryView.swift; sourceTree = SOURCE_ROOT; };
 		8C8F367E29DBA0DF00ED087B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVIew.swift; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		8C8F368429DBA18E00ED087B /* SettingViews */ = {
 			isa = PBXGroup;
 			children = (
-				8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */,
+				8C15E13A29E10F2100D6568B /* MainSettingView.swift */,
 			);
 			path = SettingViews;
 			sourceTree = "<group>";
@@ -358,8 +358,8 @@
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
 				8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */,
-				8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */,
 				8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */,
+				8C15E13B29E10F2100D6568B /* MainSettingView.swift in Sources */,
 				8C1D7DD929E0C563009C18B3 /* IntroHistoryView.swift in Sources */,
 				8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */,
 				8C8F369E29DBABE200ED087B /* RoutineViewModel.swift in Sources */,
