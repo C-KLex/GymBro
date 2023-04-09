@@ -10,41 +10,66 @@
 
 import SwiftUI
 
+enum Tab {
+    case Chart
+    case History
+    case Routine
+    case Info
+    case Setting
+}
+
 struct MainView: View {
+    
+    @State private var selectedTab: Tab = .Routine
+    
     var body: some View {
         NavigationView {
-            TabView {
-                // ChartViews module
-                MainChartView()
-                    .tabItem {
-                        Label("Chart", systemImage: "chart.xyaxis.line")
-                    }
-                    
-                // HistoryView module
-                IntroHistoryView()
-                    .tabItem {
-                        Label("History", systemImage: "book")
-                    }
-                
-                
-                // RoutineViews module
-                NewRoutineView()
-                    .tabItem {
-                        Label("Routine", systemImage: "dumbbell")
-                    }
-                
-                // InfoViews module
-                MainInfoView()
-                    .tabItem {
-                        Label("Info", systemImage: "person.fill")
-                    }
-                
-                // SettingViews module
-                MainSettingView()
-                    .tabItem {
-                        Label("Setting", systemImage: "gear")
-                    }
-            }
+            FiveTabView(selectedTab: selectedTab)
+        }
+    }
+}
+
+struct FiveTabView: View {
+    
+    @State var selectedTab: Tab
+    
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            // ChartViews module
+            MainChartView()
+                .tabItem {
+                    Label("Chart", systemImage: "chart.xyaxis.line")
+                }
+                .tag(Tab.Chart)
+            
+            // HistoryView module
+            IntroHistoryView()
+                .tabItem {
+                    Label("History", systemImage: "book")
+                }
+                .tag(Tab.History)
+            
+            
+            // RoutineViews module
+            NewRoutineView()
+                .tabItem {
+                    Label("Routine", systemImage: "dumbbell")
+                }
+                .tag(Tab.Routine)
+            
+            // InfoViews module
+            MainInfoView()
+                .tabItem {
+                    Label("Info", systemImage: "person.fill")
+                }
+                .tag(Tab.Info)
+            
+            // SettingViews module
+            MainSettingView()
+                .tabItem {
+                    Label("Setting", systemImage: "gear")
+                }
+                .tag(Tab.Setting)
         }
     }
 }
