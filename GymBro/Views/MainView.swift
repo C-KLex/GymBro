@@ -24,9 +24,16 @@ struct MainView: View {
     // MARK: BODY
     
     var body: some View {
-        NavigationView {
-            FiveTabView(selectedTab: selectedTab)
-        }
+        FiveTabView(selectedTab: selectedTab)
+    }
+}
+
+
+// MARK: PREVIEW
+
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
     }
 }
 
@@ -50,53 +57,55 @@ enum Tab {
 /// 1. How to extend the showing View from only one View to multiple view in one tab
 /// - Warning: I will keep the view in the MainView for a while for a better arrangement!
 struct FiveTabView: View {
-    
+
     /// Tab controler
     ///
     /// A required parameter when init FiveTabView
     @State var selectedTab: Tab
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
-            
-            MainChartView()
-                .tabItem {
-                    Label("Chart", systemImage: "chart.xyaxis.line")
-                }
-                .tag(Tab.Chart)
-            
-            IntroHistoryView()
-                .tabItem {
-                    Label("History", systemImage: "book")
-                }
-                .tag(Tab.History)
-            
-            NewRoutineView()
-                .tabItem {
-                    Label("Routine", systemImage: "dumbbell")
-                }
-                .tag(Tab.Routine)
-            
-            MainInfoView()
-                .tabItem {
-                    Label("Info", systemImage: "person.fill")
-                }
-                .tag(Tab.Info)
-            
-            MainSettingView()
-                .tabItem {
-                    Label("Setting", systemImage: "gear")
-                }
-                .tag(Tab.Setting)
+
+            NavigationView {
+                MainChartView()
+            }
+            .tabItem {
+                Label("Chart", systemImage: "chart.xyaxis.line")
+            }
+            .tag(Tab.Chart)
+
+            NavigationView {
+                IntroHistoryView()
+            }
+            .tabItem {
+                Label("Histroy", systemImage: "book")
+            }
+            .tag(Tab.History)
+
+            NavigationView {
+                NewRoutineView()
+            }
+            .tabItem {
+                Label("Routine", systemImage: "dumbbell")
+            }
+            .tag(Tab.Routine)
+
+            NavigationView {
+                MainInfoView()
+            }
+            .tabItem {
+                Label("Info", systemImage: "person.fill")
+            }
+            .tag(Tab.Info)
+
+            NavigationView {
+                MainSettingView()
+            }
+            .tabItem {
+                Label("Setting", systemImage: "gear")
+            }
+            .tag(Tab.Setting)
+
         }
-    }
-}
-
-
-// MARK: PREVIEW
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }
