@@ -9,13 +9,48 @@
 import SwiftUI
 
 struct RoutineSelectionVIew: View {
+    
+    @State var routines: [String] = [
+        "Leg Day",
+        "Breast Day",
+        "Back Day",
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical, showsIndicators: true, content: {
+            VStack {
+                Spacer()
+                ForEach(routines, id: \.self) { routine in
+                    RoutineItemView(routine: routine)
+                        .padding(.all, 5)
+                }
+                Button(action: addButtonPressed, label: {
+                    Text("Add Routine")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .frame(width: 350, height: 70)
+                        .background(Color.accentColor)
+                        .cornerRadius(15)
+                })
+            }
+        })
+        .navigationBarBackButtonHidden(false)
+        .navigationTitle("Workout Days")
+        .navigationBarItems(
+            //leading: BackButton()
+            trailing: EditButton()
+        )
+    }
+    
+    func addButtonPressed() {
+        
     }
 }
 
 struct RoutineSelectionVIew_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineSelectionVIew()
+        NavigationView {
+            RoutineSelectionVIew()
+        }
     }
 }
