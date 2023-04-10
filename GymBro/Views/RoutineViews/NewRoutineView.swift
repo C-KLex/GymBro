@@ -10,19 +10,23 @@ import SwiftUI
 
 struct NewRoutineView: View {
     
+    @State var newRoutineButtonColor = Color.black
+    
+    
     // MARK: BODY
     
     var body: some View {
-        VStack{
-            NavigationLink {
-                Text("RoutineSelectionView")
-            } label: {
-                newRoutineButton
-            }
+        VStack {
+            NavigationLink(
+                destination: {
+                    RoutineSelectionVIew()
+                },
+                label: {
+                    newRoutineButton
+                }
+            )
         }
     }
-    
-    
 }
 
 
@@ -48,9 +52,8 @@ extension NewRoutineView {
                 .fontWeight(.bold)
         }
         .padding()
-        .background(Color.gray)
+        .background(newRoutineButtonColor)
         .foregroundColor(.white)
         .cornerRadius(10)
     }
-    
 }
