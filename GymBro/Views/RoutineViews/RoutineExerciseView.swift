@@ -11,7 +11,8 @@ import SwiftUI
 
 struct RoutineExerciseView: View {
     var body: some View {
-        Text("This is i need to work on page")
+        Text("This is i need to work on page  ajoiefjoaie aioefjoaijwef")
+        
     }
 }
 
