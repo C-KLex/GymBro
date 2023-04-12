@@ -449,6 +449,21 @@ Follow the guidelines when using github operations.
 5. Write meaningful description in commit message
 6. Follow the documentation guidelines
 
+The full process of uploading your code looks like the following:
+1. Commit your changes on your local machine and make sure it's working well
+2. Pull the latest version of branch you're doing pr (eg. version1)
+3. Merge version1 and your branch in your local machine and make sure there are no conflict.
+4. Push your branch to github repo
+5. Write your pull request and assign reviewers
+
+An Example of the commands:
+```
+git checkout version1
+git pull origin version1
+git checkout cfork
+git merge version1
+git push
+```
 
 ## ✒Example Script without Documentation
 
