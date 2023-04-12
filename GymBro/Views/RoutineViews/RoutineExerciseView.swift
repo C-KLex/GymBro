@@ -10,11 +10,46 @@
 import SwiftUI
 
 struct RoutineExerciseView: View {
+    
+    
+    // MARK: PROPERTY
+    
+    @State var routineDay: String = "Chest Day"
+    @State var showSheet: Bool = false
+    
+
+    // MARK: BODY
+    
     var body: some View {
-        Text("This is i need to work on page  ajoiefjoaie aioefjoaijwef")
+        
+        NavigationView {
+            VStack {
+                List {
+                    Button("+ Add Exercise", action: {
+                        showSheet.toggle()
+                    })
+                    .sheet(isPresented: $showSheet, content: {
+                        AddExerciseButton()
+                    })
+                    
+                }   // End of List
+                .navigationTitle(routineDay)
+                .navigationBarItems(
+                    leading: EditButton(),
+                    trailing:
+
+                        // Back to Main view
+                        NavigationLink("Finish", destination: MainView())) 
+                
+            }   // End of VStack
+
+        }   // End of ZStack
         
     }
 }
+
+
+// MARK: PREVIEW
 
 struct RoutineView_Previews: PreviewProvider {
     static var previews: some View {
