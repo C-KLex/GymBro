@@ -8,9 +8,16 @@
 
 import SwiftUI
 
+/// The very first view of Routine Module
+///
+/// Open a new routine if there is no current running routin
 struct NewRoutineView: View {
     
-    @State var newRoutineButtonColor = Color.black
+    
+    // MARK: PROPERTY
+    
+    /// newRoutineButton color
+    @State var newRoutineButtonColor = Color.gray
     
     
     // MARK: BODY
@@ -44,6 +51,8 @@ struct NewRoutineView_Previews: PreviewProvider {
 // MARK: COMPONENT
 
 extension NewRoutineView {
+    
+    /// newRoutineButton
     var newRoutineButton: some View {
         HStack{
             Image(systemName: "plus")
