@@ -1,2 +1,1 @@
-// avoid damaging the project file when merging the branch
-*.pbxproj binary merge=union
+*.pbxproj merge=union
