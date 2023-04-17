@@ -11,7 +11,6 @@ import SwiftUI
 /// View after NewRoutineView
 ///
 /// This is a page show up after clicking "new routine" button in NewRoutineVIew. Customer will able to select their desire routnie and  add a new blank reoutine in this page. By clicking any one of the routine button, it will link to the correspond RoutineExerciseView.
-/// 
 struct RoutineSelectionVIew: View {
     
     
@@ -93,7 +92,9 @@ struct RoutineSelectionVIew: View {
 
 struct RoutineSelectionVIew_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineSelectionVIew()
+        NavigationView {
+            RoutineSelectionVIew()
+        }
     }
 }
 
