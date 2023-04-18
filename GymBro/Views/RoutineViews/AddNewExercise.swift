@@ -56,7 +56,10 @@ struct AddNewExercise: View {
 
     }
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> e2ea1d7870b12b97ba0d5e46b5f336878a13c264
     // MARK: METHOD
     
     func saveButtonPressed() {
