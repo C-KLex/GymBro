@@ -451,11 +451,12 @@ Follow the guidelines when using github operations.
 6. Follow the documentation guidelines
 
 The full process of uploading your code looks like the following:
-1. Commit your changes on your local machine and make sure it's working well
-2. Pull the latest version of branch you're doing pr (eg. version1)
-3. Merge version1 and your branch in your local machine and make sure there are no conflict.
-4. Push your branch to github repo
-5. Write your pull request and assign reviewers
+1. Create a new branch from current version (eg. version1) on your local machine
+2. Make some changes on the branch and make sure it's working well
+3. Pull the latest version of branch you're doing pr (eg. version1)
+4. Merge version1 and your branch in your local machine and make sure there are no conflict.
+5. Push your branch to github repo
+6. Write your pull request and assign reviewers
 
 An Example of the commands:
 ```
