@@ -122,7 +122,9 @@ extension RoutineSelectionVIew {
                         )
                 })
             .sheet(isPresented: $addRoutine, content: {
-                RoutineSelectionView_AddRoutineSheet()
+                NavigationView {
+                    RoutineSelectionView_AddRoutineSheet()
+                }
             })
             Spacer()
         }

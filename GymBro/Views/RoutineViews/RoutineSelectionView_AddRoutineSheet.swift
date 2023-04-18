@@ -23,21 +23,19 @@ struct RoutineSelectionView_AddRoutineSheet: View {
     // MARK: BODY
     
     var body: some View {
-        NavigationView {
-            VStack {
-                TextField("Type your new routine", text:$textFieldText)
-                    .padding(.horizontal)
-                    .frame(height: 55)
-                    .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
+        VStack {
+            TextField("Type your new routine", text:$textFieldText)
+                .padding(.horizontal)
+                .frame(height: 55)
+                .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                         .cornerRadius(10)
                     
                     // Check extenstion for the detail implementation
-                saveTextButton
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("Add a Routine")
+            saveTextButton
+            Spacer()
         }
+        .padding()
+        .navigationTitle("Add a Routine")
     }
     
     
@@ -55,7 +53,9 @@ struct RoutineSelectionView_AddRoutineSheet: View {
 
 struct AddRoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineSelectionView_AddRoutineSheet()
+        NavigationView {
+            RoutineSelectionView_AddRoutineSheet()
+        }
     }
 }
 
