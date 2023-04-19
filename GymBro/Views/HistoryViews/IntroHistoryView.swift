@@ -108,7 +108,6 @@ class RoutineRowViewModel: ObservableObject {
     func editItem(element: RoutineSummaryModel) {
         print("edit \(element.id)")
     }
-    
 }
 
 

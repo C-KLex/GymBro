@@ -87,7 +87,7 @@ struct IntroHistoryView_ListRow_Previews: PreviewProvider {
             // Parent View
             /*
              The subview will change the parent view directly,
-             so I call the parent view
+             so I call the parent view 
              */
             IntroHistoryView()
         }
