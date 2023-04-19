@@ -150,7 +150,7 @@ struct IntroHistoryView_ListRow: View {
         .background(
             NavigationLink(
                 destination: RoutineDetailView(),
-                label: { EmptyView()}
+                label: { EmptyView() }
             )
             .opacity(0)
         )
