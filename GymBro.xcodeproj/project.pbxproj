@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
+		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
 		8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */; };
 		8C640B1729E3607B0021EFBB /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C640B1629E3607B0021EFBB /* IntroHistoryView.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
+		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
 		8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainSettingView.swift; path = GymBro/Views/SettingViews/MainSettingView.swift; sourceTree = SOURCE_ROOT; };
 		8C640B1629E3607B0021EFBB /* IntroHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */,
 				8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */,
 				8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */,
+				485935BA29E6254F009ECB2E /* AddExerciseButton.swift */,
+				485935BE29E706CC009ECB2E /* AddNewExercise.swift */,
 				8CEB5B1529E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift */,
 			);
 			path = RoutineViews;
@@ -359,6 +365,8 @@
 				8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */,
 				8C640B1729E3607B0021EFBB /* IntroHistoryView.swift in Sources */,
 				8CE71E9F29A721D2006EEFE7 /* GymBroApp.swift in Sources */,
+				485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */,
+				485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
