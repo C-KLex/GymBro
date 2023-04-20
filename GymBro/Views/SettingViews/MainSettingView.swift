@@ -17,6 +17,8 @@ struct MainSettingView: View {
     @State var appleHealthIsOn: Bool = false
     @State var timerIsOn: Bool = false
     
+    @State var reportIssue: Bool = false
+    
     var body: some View {
         VStack {
             List {
@@ -68,10 +70,25 @@ struct MainSettingView: View {
                 
                 Section() {
                     Text("Notification")
+                        .overlay(NavigationLink(destination: SettingView_NotificationSettingView(), label: {
+                                            EmptyView()
+                                        }))
                     Text("Help Center")
+                        .overlay(NavigationLink(destination: SettingView_HelpCenterView(), label: {
+                                            EmptyView()
+                                        }))
                     Text("Report Issue")
+                        .overlay(NavigationLink(destination: SettingView_ReportIssueSheet(), label: {
+                                            EmptyView()
+                                        }))
                     Text("Rate this App")
+                        .overlay(NavigationLink(destination: SettingView_RateTheAppView(), label: {
+                                            EmptyView()
+                                        }))
                     Text("Export Data")
+                        .overlay(NavigationLink(destination: SettingView_ExportDataView(), label: {
+                                            EmptyView()
+                                        }))
                 }
             }
             .listStyle(InsetGroupedListStyle())

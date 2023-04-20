@@ -13,6 +13,11 @@
 		8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */; };
 		8C640B1729E3607B0021EFBB /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C640B1629E3607B0021EFBB /* IntroHistoryView.swift */; };
 		8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C640B1829E360F90021EFBB /* MainInfoView.swift */; };
+		8C7C12E029F1BC36004026E8 /* SettingView_NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */; };
+		8C7C12E229F1BC68004026E8 /* SettingView_HelpCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */; };
+		8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */; };
+		8C7C12E629F1BCB9004026E8 /* SettingView_RateTheAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E529F1BCB9004026E8 /* SettingView_RateTheAppView.swift */; };
+		8C7C12E829F1BCCF004026E8 /* SettingView_ExportDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E729F1BCCF004026E8 /* SettingView_ExportDataView.swift */; };
 		8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F367E29DBA0DF00ED087B /* MainView.swift */; };
 		8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */; };
 		8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */; };
@@ -50,6 +55,11 @@
 		8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainSettingView.swift; path = GymBro/Views/SettingViews/MainSettingView.swift; sourceTree = SOURCE_ROOT; };
 		8C640B1629E3607B0021EFBB /* IntroHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
 		8C640B1829E360F90021EFBB /* MainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView.swift; sourceTree = "<group>"; };
+		8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_NotificationSettingView.swift; sourceTree = "<group>"; };
+		8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_HelpCenterView.swift; sourceTree = "<group>"; };
+		8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_ReportIssueSheet.swift; sourceTree = "<group>"; };
+		8C7C12E529F1BCB9004026E8 /* SettingView_RateTheAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_RateTheAppView.swift; sourceTree = "<group>"; };
+		8C7C12E729F1BCCF004026E8 /* SettingView_ExportDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_ExportDataView.swift; sourceTree = "<group>"; };
 		8C8F367E29DBA0DF00ED087B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVIew.swift; sourceTree = "<group>"; };
@@ -151,6 +161,11 @@
 			isa = PBXGroup;
 			children = (
 				8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */,
+				8C7C12E729F1BCCF004026E8 /* SettingView_ExportDataView.swift */,
+				8C7C12E529F1BCB9004026E8 /* SettingView_RateTheAppView.swift */,
+				8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */,
+				8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */,
+				8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */,
 			);
 			path = SettingViews;
 			sourceTree = "<group>";
@@ -355,12 +370,17 @@
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
 				8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */,
 				8CEB5B1629E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift in Sources */,
+				8C7C12E829F1BCCF004026E8 /* SettingView_ExportDataView.swift in Sources */,
 				8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */,
+				8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */,
 				8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */,
 				8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */,
+				8C7C12E629F1BCB9004026E8 /* SettingView_RateTheAppView.swift in Sources */,
 				8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */,
 				8C640B1729E3607B0021EFBB /* IntroHistoryView.swift in Sources */,
 				8CE71E9F29A721D2006EEFE7 /* GymBroApp.swift in Sources */,
+				8C7C12E229F1BC68004026E8 /* SettingView_HelpCenterView.swift in Sources */,
+				8C7C12E029F1BC36004026E8 /* SettingView_NotificationSettingView.swift in Sources */,
 				485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */,
 				485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */,
 			);
