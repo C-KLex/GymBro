@@ -15,16 +15,17 @@ import SwiftUI
 /// The very first view after starting the APP
 struct MainView: View {
     
-    /// The control variable for the FiveTabView
-    ///
-    /// It will change the defualt view of the tab view inside the FiveTabView
-    @State private var selectedTab: Tab = .Routine
+    // control which tab it is right now
+    @ObservedObject var tabController = TabController.instance
     
     
     // MARK: BODY
     
     var body: some View {
-        FiveTabView(selectedTab: selectedTab)
+        
+        VStack {
+            FiveTabView(selectedTab: $tabController.tabIndex)
+        }
     }
 }
 
@@ -40,17 +41,6 @@ struct MainView_Previews: PreviewProvider {
 
 // MARK: COMPONENT
 
-/// the enum type for the Tab of tab bar
-///
-/// - Warning: I will keep this enum Tab in MainView for a while for researching a better arrangement
-enum Tab {
-    case Chart
-    case History
-    case Routine
-    case Info
-    case Setting
-}
-
 /// The tab view for five modules
 ///
 /// Thing to do:
@@ -58,10 +48,10 @@ enum Tab {
 /// - Warning: I will keep the view in the MainView for a while for a better arrangement!
 struct FiveTabView: View {
 
-    /// Tab controler
+    /// Tab controller
     ///
-    /// A required parameter when init FiveTabView
-    @State var selectedTab: Tab
+    /// When using the FiveTabView, you need to assign which default tab it is right now.
+    @Binding var selectedTab: TabController.TabEnum
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -72,7 +62,7 @@ struct FiveTabView: View {
             .tabItem {
                 Label("Chart", systemImage: "chart.xyaxis.line")
             }
-            .tag(Tab.Chart)
+            .tag(TabController.TabEnum.Chart)
 
             NavigationView {
                 IntroHistoryView()
@@ -80,7 +70,7 @@ struct FiveTabView: View {
             .tabItem {
                 Label("Histroy", systemImage: "book")
             }
-            .tag(Tab.History)
+            .tag(TabController.TabEnum.History)
 
             NavigationView {
                 NewRoutineView()
@@ -88,7 +78,7 @@ struct FiveTabView: View {
             .tabItem {
                 Label("Routine", systemImage: "dumbbell")
             }
-            .tag(Tab.Routine)
+            .tag(TabController.TabEnum.Routine)
 
             NavigationView {
                 MainInfoView()
@@ -96,7 +86,7 @@ struct FiveTabView: View {
             .tabItem {
                 Label("Info", systemImage: "person.fill")
             }
-            .tag(Tab.Info)
+            .tag(TabController.TabEnum.Info)
 
             NavigationView {
                 MainSettingView()
@@ -104,7 +94,7 @@ struct FiveTabView: View {
             .tabItem {
                 Label("Setting", systemImage: "gear")
             }
-            .tag(Tab.Setting)
+            .tag(TabController.TabEnum.Setting)
 
         }
     }
