@@ -7,22 +7,38 @@
 
 import SwiftUI
 
+/// Detail for each routine
+///
+/// The view comes after `IntroHistoryView`
 struct RoutineDetailView: View {
     
+    
     // MARK: PROPERTY
-    @ObservedObject var vm = DetailViewModel.instance
+    
+    /// Mock ViewModel Singleton
+    @ObservedObject var vm = RDetailViewModel.instance
+    
     
     // MARK: BODY
     
     var body: some View {
-        VStack {
-            Text("RoutineDetail")
-            Button("Button") {
-                print(vm.data)
-                print(vm.data.exerciseList)
+        List {
+            ForEach(vm.data.exerciseList, id: \.id) { exercise in
+                Section(header: self.headerWithButton(title: exercise.name)) {
+                    Text("Exercise Summary: some stat data for this exercise")
+                    ForEach(exercise.exerciseSetList, id: \.id) { exerciseSet in
+                        RDetailView_SetRow(element: exerciseSet)
+                    }
+                }
             }
         }
-        .navigationTitle("Detail")
+        .listStyle(.sidebar)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(vm.data.name)
+            }
+        }
     }
 }
 
@@ -40,78 +56,104 @@ struct RoutineDetailView_Previews: PreviewProvider {
 
 // MARK: COMPONENT
 
-class DetailViewModel: ObservableObject {
+extension RoutineDetailView {
+
+    /// View for `header` parameter in `Section(header: )`
+    /// - Parameter title: Header's name
+    /// - Returns: A HStack view with name and button leading to `Chart`module.
+    func headerWithButton(title: String) -> some View {
+        HStack(spacing: 10) {
+            Text(title)
+                .font(.headline)
+            Button(
+                action: {
+                    vm.goGraph()
+                },
+                label: {
+                    Image(systemName: "chart.line.uptrend.xyaxis.circle")
+                        .font(.system(size: 20))
+                        .foregroundColor(.blue)
+                }
+            )
+        }
+        
+    }
+}
+
+/// Mock view model
+class RDetailViewModel: ObservableObject {
     
-    @Published var data: RoutineDetail = RoutineDetail(name: "NONE")
+    @Published var data: RoutineModel = RoutineModel(name: "NONE")
     
-    static let instance = DetailViewModel()
+    static let instance = RDetailViewModel()
     
     init() {
         getData()
     }
     
     func getData() {
-        let r = RoutineDetail(name: "Chest")
-        let e1 = Exercise(name: "Barbell Bench")
-        let e2 = Exercise(name: "Dumbell up chest")
-        e1.addExerciseSet(weight: 200, repetition: 10)
-        e1.addExerciseSet(weight: 250, repetition: 8)
-        e1.addExerciseSet(weight: 300, repetition: 6)
-        e1.addExerciseSet(weight: 350, repetition: 4)
-        e2.addExerciseSet(weight: 200, repetition: 5)
-        e2.addExerciseSet(weight: 225, repetition: 5)
-        e2.addExerciseSet(weight: 250, repetition: 5)
-        e2.addExerciseSet(weight: 150, repetition: 5)
-        r.exerciseList.append(e1)
-        r.exerciseList.append(e2)
+        let r = RoutineModel(name: "2/14 Chest 3E 10S 2.5VI")
+        
+        for _ in 0...5 {
+            let e1 = ExerciseModel(name: "Barbell Bench")
+            for _ in 0...2 {
+                e1.addExerciseSet(weight: 200, repetition: 10)
+                e1.addExerciseSet(weight: 250, repetition: 8)
+                e1.addExerciseSet(weight: 300, repetition: 6)
+                e1.addExerciseSet(weight: 350, repetition: 4)
+            }
+            r.exerciseList.append(e1)
+        }
+        
         self.data = r
     }
     
+    func goGraph() {
+        print("go to graph module")
+    }
 }
 
-class RoutineDetail: Identifiable {
+/// Mock Model
+class RoutineModel: Identifiable {
     let id = UUID().uuidString
     let name: String
-    @Published var exerciseList: [Exercise] = []
+    @Published var exerciseList: [ExerciseModel] = []
     
     init(name: String) {
-        self.name = "Chest Day"
-    }
-
-    func addExercise(name: String) {
-        let newExercise: Exercise = Exercise(name: name)
-        self.exerciseList.append(newExercise)
+        self.name = name
     }
 }
 
-class Exercise: Identifiable {
+/// Mock Model
+class ExerciseModel: Identifiable {
     let id = UUID().uuidString
     let name: String
-    var exerciseSetList: [ExerciseSet] = []
+    var exerciseSetList: [ExerciseSetModel] = []
     
     init(name: String) {
         self.name = name
     }
     
     func addExerciseSet(weight: Int, repetition: Int) {
-        let newSet: ExerciseSet = ExerciseSet(weight: weight, repetition: repetition)
+        let newSet: ExerciseSetModel = ExerciseSetModel(weight: weight, repetition: repetition)
         self.exerciseSetList.append(newSet)
     }
     
-    func removeExerciseSet(element: ExerciseSet) {
+    func removeExerciseSet(element: ExerciseSetModel) {
         self.exerciseSetList.removeAll { $0.id == element.id }
     }
 }
 
-class ExerciseSet: Identifiable {
+/// Mock Model
+class ExerciseSetModel: Identifiable {
     let id = UUID().uuidString
-    let unit: String = "lb"
-    var weight: Int = 0
-    var repetition: Int = 0
+    let unit: String
+    let weight: Int
+    let repetition: Int
     
     init(weight: Int, repetition: Int) {
+        self.unit = "lb"
         self.weight = weight
         self.repetition = repetition
     }
 }
-
