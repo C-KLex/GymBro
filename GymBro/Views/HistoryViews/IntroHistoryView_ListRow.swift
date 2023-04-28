@@ -18,13 +18,18 @@ import SwiftUI
 /// ```
 struct IntroHistoryView_ListRow: View {
     
+    
+    // MARK: PROPERTY
+    
     /// init parameter
     @State var element: RoutineSummaryModel
     
     /// Call the mock ViewModel
     @ObservedObject var vm: RoutineRowViewModel = RoutineRowViewModel.instance
     
-    /// Alert controller
+    /// Alert controller (default is `false`)
+    ///
+    /// The controller will turn `true` when delete button is clicked, and turn back to `false` when the alert is dismissed
     @State var showDeleteConfirmationAlert: Bool = false
     
     
@@ -99,7 +104,9 @@ struct IntroHistoryView_ListRow_Previews: PreviewProvider {
 
 
 // MARK: COMPONENT
+
 extension IntroHistoryView_ListRow {
+    
     /// Just an alert.
     ///
     /// Alert pop up when clicking the delete button.
