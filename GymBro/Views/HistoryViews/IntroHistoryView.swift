@@ -11,6 +11,9 @@ import SwiftUI
 /// It consits with a list of history routine record
 struct IntroHistoryView: View {
     
+    
+    // MARK: PROPERTY
+    
     /// Mock ViewModel for fake data
     @ObservedObject var vm = RoutineRowViewModel.instance
     

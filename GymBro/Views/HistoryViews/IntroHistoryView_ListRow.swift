@@ -24,8 +24,8 @@ struct IntroHistoryView_ListRow: View {
     /// Call the mock ViewModel
     @ObservedObject var vm: RoutineRowViewModel = RoutineRowViewModel.instance
     
-    /// Control for the navigationLink
-    @State private var isActive: Bool = false
+    /// Alert controller
+    @State var showDeleteConfirmationAlert: Bool = false
     
     
     // MARK: BODY
@@ -43,7 +43,7 @@ struct IntroHistoryView_ListRow: View {
                 .foregroundColor(.gray)
             
             Spacer()
-            Image(systemName: "chevron.left")
+            Image(systemName: "arrowshape.left")
                 .foregroundColor(.gray)
         }
         .background(
@@ -56,7 +56,7 @@ struct IntroHistoryView_ListRow: View {
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button(
                 action: {
-                    vm.deleteItem(element: element)
+                    showDeleteConfirmationAlert = true
                 },
                 label: {
                     Label("Delete", systemImage: "trash")
@@ -69,10 +69,13 @@ struct IntroHistoryView_ListRow: View {
                     vm.editItem(element: element)
                 },
                 label: {
-                    Label("Edit", systemImage: "restart")
+                    Label("Edit", systemImage: "pencil")
                 }
             )
             .tint(.green)
+        }
+        .alert(isPresented: $showDeleteConfirmationAlert) {
+            self.deleteAlert(element: element)
         }
     }
 }
@@ -91,5 +94,25 @@ struct IntroHistoryView_ListRow_Previews: PreviewProvider {
              */
             IntroHistoryView()
         }
+    }
+}
+
+
+// MARK: COMPONENT
+extension IntroHistoryView_ListRow {
+    /// Just an alert.
+    ///
+    /// Alert pop up when clicking the delete button.
+    /// - Parameter element: RoutineSummaryModel
+    /// - Returns: An alert view.
+    func deleteAlert(element: RoutineSummaryModel) -> Alert{
+        Alert(
+            title: Text("Delete Routine"),
+            message: Text("Are you sure you want to delete this routine? This action cannot be undone."),
+            primaryButton: .destructive(Text("Delete")) {
+                vm.deleteItem(element: element)
+            },
+            secondaryButton: .cancel()
+        )
     }
 }
