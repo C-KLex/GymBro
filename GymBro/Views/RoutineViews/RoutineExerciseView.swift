@@ -14,6 +14,12 @@ struct RoutineExerciseView: View {
     
     // MARK: PROPERTY
     
+    /// Navigation Stack Controller
+    @ObservedObject var navStackController = NavigationStackController.instance
+    
+    /// TabView Controller
+    @ObservedObject var tabController = TabController.instance
+    
     /// Routine day shown as title.
     @State var routineDay: String = "Chest Day"
     
@@ -70,6 +76,8 @@ struct RoutineExerciseView: View {
 
 struct RoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineExerciseView()
+        NavigationView {
+            RoutineExerciseView()
+        }
     }
 }
