@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481058A229FB25CC005B4E56 /* EditSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481058A129FB25CC005B4E56 /* EditSetView.swift */; };
+		481058A429FC6C01005B4E56 /* NoExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481058A329FC6C01005B4E56 /* NoExerciseView.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		481058A129FB25CC005B4E56 /* EditSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSetView.swift; sourceTree = "<group>"; };
+		481058A329FC6C01005B4E56 /* NoExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoExerciseView.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
@@ -141,6 +145,8 @@
 				8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */,
 				8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */,
 				485935BA29E6254F009ECB2E /* AddExerciseButton.swift */,
+				481058A129FB25CC005B4E56 /* EditSetView.swift */,
+				481058A329FC6C01005B4E56 /* NoExerciseView.swift */,
 				485935BE29E706CC009ECB2E /* AddNewExercise.swift */,
 				8CEB5B1529E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift */,
 			);
@@ -352,6 +358,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
+				481058A429FC6C01005B4E56 /* NoExerciseView.swift in Sources */,
+				481058A229FB25CC005B4E56 /* EditSetView.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
 				8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */,
 				8CEB5B1629E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift in Sources */,
