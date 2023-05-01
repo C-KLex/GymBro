@@ -67,7 +67,7 @@ extension RoutineDetailView {
                 .font(.headline)
             Button(
                 action: {
-                    vm.goGraph()
+                    vm.goChartModule()
                 },
                 label: {
                     Image(systemName: "chart.line.uptrend.xyaxis.circle")
@@ -84,6 +84,9 @@ extension RoutineDetailView {
 class RDetailViewModel: ObservableObject {
     
     @Published var data: RoutineModel = RoutineModel(name: "NONE")
+    
+    /// TabController
+    @ObservedObject var tabController = TabController.instance
     
     static let instance = RDetailViewModel()
     
@@ -108,8 +111,8 @@ class RDetailViewModel: ObservableObject {
         self.data = r
     }
     
-    func goGraph() {
-        print("go to graph module")
+    func goChartModule() {
+        tabController.updateTab(tab: .Chart)
     }
 }
 
