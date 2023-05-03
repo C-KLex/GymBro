@@ -14,6 +14,12 @@ struct RoutineExerciseView: View {
     
     // MARK: PROPERTY
     
+    /// Navigation Stack Controller
+    @ObservedObject var navStackController = NavigationStackController.instance
+    
+    /// TabView Controller
+    @ObservedObject var tabController = TabController.instance
+    
     @State var routineDay: String = "Chest Day"
     @State var showSheet: Bool = false
     
@@ -22,7 +28,6 @@ struct RoutineExerciseView: View {
     
     var body: some View {
         
-        NavigationView {
             VStack {
                 List {
                     Button("+ Add Exercise", action: {
@@ -37,13 +42,23 @@ struct RoutineExerciseView: View {
                 .navigationBarItems(
                     leading: EditButton(),
                     trailing:
-                        NavigationLink("Finish", destination: MainView()))  // Back to Main view
-                
-            }   // End of VStack
-
-        }   // End of ZStack
-        
-    }
+                        
+                        // Finish routine button
+                        /*
+                         After finish the routine, it will go to History module, and clean the navigation stack of Routine module
+                         */
+                        Button(
+                            action: {
+                                tabController.updateTab(tab: .History)
+                                navStackController.popToRoot(module: .Routine)
+                            },
+                            label: {
+                                Text("Finish")
+                            }
+                        )
+                )
+            }
+        }
 }
 
 
@@ -51,6 +66,8 @@ struct RoutineExerciseView: View {
 
 struct RoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineExerciseView()
+        NavigationView {
+            RoutineExerciseView()
+        }
     }
 }

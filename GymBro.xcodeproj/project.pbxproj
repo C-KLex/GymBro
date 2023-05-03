@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321DDBD72A0210790067A96E /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DDBD62A0210790067A96E /* RoutineDetailView.swift */; };
+		321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
 		8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */; };
-		8C26358729FB950A009355FE /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26358629FB950A009355FE /* IntroHistoryView.swift */; };
-		8C42DF9B29FC11670017C28D /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DF9A29FC11670017C28D /* RoutineDetailView.swift */; };
 		8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C640B1829E360F90021EFBB /* MainInfoView.swift */; };
 		8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F367E29DBA0DF00ED087B /* MainView.swift */; };
 		8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */; };
 		8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */; };
 		8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */; };
+		8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB90F0129F0E8F8007A58EE /* TabController.swift */; };
+		8CB90F0629F0F5F0007A58EE /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB90F0529F0F5F0007A58EE /* NavigationStackController.swift */; };
 		8CCF96F429F0A90700F86A28 /* IntroHistoryView_ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCF96F329F0A90700F86A28 /* IntroHistoryView_ListRow.swift */; };
 		8CE71E9F29A721D2006EEFE7 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE71E9E29A721D2006EEFE7 /* GymBroApp.swift */; };
 		8CE71EA329A721D3006EEFE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE71EA229A721D3006EEFE7 /* Assets.xcassets */; };
@@ -46,17 +48,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		321DDBD62A0210790067A96E /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
+		321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
 		8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainSettingView.swift; path = GymBro/Views/SettingViews/MainSettingView.swift; sourceTree = SOURCE_ROOT; };
-		8C26358629FB950A009355FE /* IntroHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
-		8C42DF9A29FC11670017C28D /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		8C640B1829E360F90021EFBB /* MainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView.swift; sourceTree = "<group>"; };
 		8C8F367E29DBA0DF00ED087B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVIew.swift; sourceTree = "<group>"; };
 		8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineExerciseView.swift; sourceTree = "<group>"; };
+		8CB90F0129F0E8F8007A58EE /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabController.swift; path = GymBro/ViewModels/TabController.swift; sourceTree = SOURCE_ROOT; };
+		8CB90F0529F0F5F0007A58EE /* NavigationStackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
 		8CCF96F329F0A90700F86A28 /* IntroHistoryView_ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroHistoryView_ListRow.swift; sourceTree = "<group>"; };
 		8CE71E9B29A721D2006EEFE7 /* GymBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE71E9E29A721D2006EEFE7 /* GymBroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
@@ -95,6 +99,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		321DDBD52A0210220067A96E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		8C1D7DD529E0C537009C18B3 /* InfoViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +137,8 @@
 		8C8F367929DBA06D00ED087B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8CB90F0129F0E8F8007A58EE /* TabController.swift */,
+				8CB90F0529F0F5F0007A58EE /* NavigationStackController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -133,9 +146,9 @@
 		8C8F368129DBA14E00ED087B /* HistoryViews */ = {
 			isa = PBXGroup;
 			children = (
-				8C26358629FB950A009355FE /* IntroHistoryView.swift */,
-				8C42DF9A29FC11670017C28D /* RoutineDetailView.swift */,
+				321DDBD62A0210790067A96E /* RoutineDetailView.swift */,
 				8CCF96F329F0A90700F86A28 /* IntroHistoryView_ListRow.swift */,
+				321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */,
 			);
 			path = HistoryViews;
 			sourceTree = "<group>";
@@ -176,6 +189,7 @@
 				8CE71EAE29A721D3006EEFE7 /* GymBroTests */,
 				8CE71EB829A721D3006EEFE7 /* GymBroUITests */,
 				8CE71E9C29A721D2006EEFE7 /* Products */,
+				321DDBD52A0210220067A96E /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -357,17 +371,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */,
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
 				8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */,
 				8CEB5B1629E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift in Sources */,
-				8C42DF9B29FC11670017C28D /* RoutineDetailView.swift in Sources */,
+				321DDBD72A0210790067A96E /* RoutineDetailView.swift in Sources */,
 				8CCF96F429F0A90700F86A28 /* IntroHistoryView_ListRow.swift in Sources */,
 				8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */,
 				8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */,
 				8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */,
+				321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */,
 				8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */,
-				8C26358729FB950A009355FE /* IntroHistoryView.swift in Sources */,
+				8CB90F0629F0F5F0007A58EE /* NavigationStackController.swift in Sources */,
 				8CE71E9F29A721D2006EEFE7 /* GymBroApp.swift in Sources */,
 				485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */,
 				485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */,
