@@ -16,14 +16,14 @@ struct RoutineDetailView: View {
     // MARK: PROPERTY
     
     /// Mock ViewModel Singleton
-    @ObservedObject var vm = RDetailViewModel.instance
+    @ObservedObject var rDetailViewModel = RDetailViewModel.instance
     
     
     // MARK: BODY
     
     var body: some View {
         List {
-            ForEach(vm.data.exerciseList, id: \.id) { exercise in
+            ForEach(rDetailViewModel.data.exerciseList, id: \.id) { exercise in
                 Section(header: self.headerWithButton(title: exercise.name)) {
                     Text("Exercise Summary: some stat data for this exercise")
                     ForEach(exercise.exerciseSetList, id: \.id) { exerciseSet in
@@ -36,7 +36,7 @@ struct RoutineDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(vm.data.name)
+                Text(rDetailViewModel.data.name)
             }
         }
     }
@@ -67,7 +67,7 @@ extension RoutineDetailView {
                 .font(.headline)
             Button(
                 action: {
-                    vm.goChartModule()
+                    rDetailViewModel.goChartModule()
                 },
                 label: {
                     Image(systemName: "chart.line.uptrend.xyaxis.circle")
