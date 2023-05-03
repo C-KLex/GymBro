@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */; };
+		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
+		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8F367E29DBA0DF00ED087B /* MainView.swift */,
+				320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */,
 				8C8F368229DBA16E00ED087B /* RoutineViews */,
 				8C8F368629DBA1CA00ED087B /* ChartViews */,
 				8C8F368429DBA18E00ED087B /* SettingViews */,
@@ -366,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */,
 				8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */,
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
