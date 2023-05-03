@@ -19,12 +19,15 @@ struct NewRoutineView: View {
     /// newRoutineButton color
     @State var newRoutineButtonColor = Color.gray
     
+    @ObservedObject var navStackController = NavigationStackController.instance
+    
     
     // MARK: BODY
     
     var body: some View {
         VStack {
             NavigationLink(
+                isActive: $navStackController.routineNavIsActive,
                 destination: {
                     RoutineSelectionVIew()
                 },
