@@ -10,6 +10,7 @@
 		327C44CF2A003B360026759E /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C44CE2A003B360026759E /* RoutineDetailView.swift */; };
 		327C44D22A003BF30026759E /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C44D02A003BF30026759E /* TabController.swift */; };
 		327C44D32A003BF30026759E /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C44D12A003BF30026759E /* NavigationStackController.swift */; };
+		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
@@ -53,6 +54,7 @@
 		327C44CE2A003B360026759E /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		327C44D02A003BF30026759E /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		327C44D12A003BF30026759E /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
+		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8F367E29DBA0DF00ED087B /* MainView.swift */,
+				320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */,
 				8C8F368229DBA16E00ED087B /* RoutineViews */,
 				8C8F368629DBA1CA00ED087B /* ChartViews */,
 				8C8F368429DBA18E00ED087B /* SettingViews */,
@@ -377,6 +380,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */,
+				8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */,
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
 				327C44D22A003BF30026759E /* TabController.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
