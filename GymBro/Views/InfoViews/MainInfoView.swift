@@ -25,6 +25,12 @@ struct MainInfoView: View {
     @State var weight: Float = 0.0
     @State var height_foot: Int = 0
     @State var height_inch: Int = 0
+    
+    // Goal SectionVariable
+    @State var pulseEffect: Bool = false
+    @State var goalSheetActive: Bool = false
+    @State var newGoalExercise: String = ""
+    @State var newProgress: Int = 0
         
     
     // MARK: BODY
@@ -32,9 +38,8 @@ struct MainInfoView: View {
     var body: some View {
         ScrollView {
             
-            // To make it long enough to show the crolling view
             self.personaSection()
-            self.personaSection()
+            self.goalSection()
             self.personaSection()
         }
         .navigationTitle("Personal Information")
@@ -42,9 +47,102 @@ struct MainInfoView: View {
 }
 
 
+// MARK: VIEWMODEL
+class infoViewModel: ObservableObject {
+    static let instance = infoViewModel()
+}
+
+struct SimpleProgressBar: View {
+    var progress: Double
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle().frame(width: geometry.size.width, height: 10)
+                    .opacity(0.3)
+                    .foregroundColor(.gray)
+                Rectangle().frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width), height: 10)
+                    .foregroundColor(.green)
+            }
+        }
+    }
+}
+
 // MARK: COMPONENT
 
 extension MainInfoView {
+    
+    func progressBar(progress: Double) -> some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .frame(width: geometry.size.width, height: 10)
+                    .opacity(0.3)
+                    .foregroundColor(.gray)
+                    .cornerRadius(20)
+                
+                Rectangle()
+                    .frame(width: min(CGFloat(self.pulseEffect ? progress : progress * 1.05) * geometry.size.width, geometry.size.width), height: 10)
+                    .foregroundColor(Color.blue.opacity(self.pulseEffect ? 1 : 0.8))
+                    .cornerRadius(20)
+                    .onAppear {
+                        withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
+                            self.pulseEffect.toggle()
+                        }
+                    }
+            }
+        }
+    }
+
+    
+    func goalSection() -> some View {
+        VStack {
+            
+            HStack {
+                Text("Goal")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
+                Image(systemName: "plus")
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            goalSheetActive.toggle()
+                        }
+                    }
+                    .sheet(isPresented: $goalSheetActive) {
+                        MainInfoView_GoalSheet(newGoalExercise: $newGoalExercise, newProgress: $newProgress)
+                    }
+            }
+            .padding(.horizontal, 20)
+            
+            VStack {
+                ScrollView {
+                    ForEach(1..<20) { i in
+                        
+                        HStack {
+                            Text("workout")
+                            Spacer()
+                        }
+                        .padding()
+                        .background(Color.gray)
+                        
+                        progressBar(progress: 0.1)
+                        
+                        
+                    }
+                }
+                .padding(.horizontal, 40)
+                .listStyle(.plain)
+                .id("goal_list")
+                
+                
+            }
+            
+            
+            
+            
+        }
+    }
+    
     /// Persona Section View
     ///
     /// Extract the view code from BDOY to make it tidy.
