@@ -33,15 +33,7 @@ struct MainInfoView_PersonaSheet: View {
     var body: some View {
         VStack{
             
-            // Dismiss icon
-            RoundedRectangle(cornerRadius: 4)
-                .fill(.black)
-                .opacity(0.5)
-                .frame(width: 030, height: 4)
-                .padding()
-                .onTapGesture {
-                    presentationMode.wrappedValue.dismiss()
-                }
+            DismissButtonView()
             
             // Gender
             VStack {

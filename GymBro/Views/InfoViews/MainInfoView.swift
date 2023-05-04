@@ -13,11 +13,15 @@ import SwiftUI
 ///
 /// Section it consists:
 /// 1. Percona Section (user basic information)
+/// 2. Goal Section( user exercise weight goal)
 struct MainInfoView: View {
     
     
     // MARK: PROPERTY
     
+    // ViewModel
+    @ObservedObject var goalViewModel = GoalViewModel.instance
+
     // Persona Section Variable
     @State var personaSheetActive: Bool = false
     @State var gender: String = "NA"
@@ -26,21 +30,16 @@ struct MainInfoView: View {
     @State var height_foot: Int = 0
     @State var height_inch: Int = 0
     
-    // Goal SectionVariable
-    @State var pulseEffect: Bool = false
+    // Goal Section Variable
     @State var goalSheetActive: Bool = false
-    @State var newGoalExercise: String = ""
-    @State var newProgress: Int = 0
         
     
     // MARK: BODY
     
     var body: some View {
         ScrollView {
-            
             self.personaSection()
             self.goalSection()
-            self.personaSection()
         }
         .navigationTitle("Personal Information")
     }
@@ -48,29 +47,94 @@ struct MainInfoView: View {
 
 
 // MARK: VIEWMODEL
-class infoViewModel: ObservableObject {
-    static let instance = infoViewModel()
-}
 
-struct SimpleProgressBar: View {
-    var progress: Double
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Rectangle().frame(width: geometry.size.width, height: 10)
-                    .opacity(0.3)
-                    .foregroundColor(.gray)
-                Rectangle().frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width), height: 10)
-                    .foregroundColor(.green)
-            }
-        }
+/// Mock ViewModel  
+class GoalViewModel: ObservableObject {
+    
+    /// Mock data for the goal section
+    /// 
+    /// This is for picking the specific exercise for adding the goal
+    @Published var exercisePool: [ExerciseTopWeightModel] = []
+
+    /// Mock data for the goal section
+    /// 
+    /// The goals for the progress bar to show
+    @Published var goalList: [GoalModel] = []
+    
+    static let instance = GoalViewModel()
+    
+    init() {
+        getData()
+    }
+    
+    /// Mock Data
+    func getData() -> () {
+        let e1 = ExerciseTopWeightModel(exerciseName: "Bar bell bench", topWeight: 120)
+        let e2 = ExerciseTopWeightModel(exerciseName: "Squat", topWeight: 300)
+        let e3 = ExerciseTopWeightModel(exerciseName: "Cable Pull Down", topWeight: 160)
+        self.exercisePool.append(e1)
+        self.exercisePool.append(e2)
+        self.exercisePool.append(e3)
+        
+        let g1 = GoalModel(exerciseName: e1.exerciseName, startWeight: e1.topWeight, achieveWeight: 130, goalWeigth: 140)
+        let g2 = GoalModel(exerciseName: e2.exerciseName, startWeight: e2.topWeight, achieveWeight: 305, goalWeigth: 350)
+        self.goalList.append(g1)
+        self.goalList.append(g2)
+    }
+    
+    /// Count the progress percent for the progress bar  
+    func getGoalProgress(goalModel: GoalModel) -> Double {
+        let divident = Double(goalModel.achieveWeight - goalModel.startWeight)
+        let divisor = Double(goalModel.goalWeight - goalModel.startWeight)
+        let progressRate = divident / divisor
+        return progressRate
+    }
+    
+    /// Add a new goal with the new progress for the specific exercise
+    func addGoal(exerciseName: String, progressWeight: Int) -> () {
+        let startWeight = self.exercisePool.first(where: { $0.exerciseName == exerciseName })?.topWeight ?? -1
+        let goalWeight = startWeight + progressWeight
+        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: goalWeight)
+        self.goalList.append(g)
     }
 }
+
+/// Mock Model
+///
+/// This is the mock model for the addGoal function
+class ExerciseTopWeightModel: Identifiable {
+    let id = UUID().uuidString
+    let exerciseName: String
+    let topWeight: Int
+    init(exerciseName: String, topWeight: Int) {
+        self.exerciseName = exerciseName
+        self.topWeight = topWeight
+    }
+}
+
+/// Mock Model 
+/// 
+/// Mock model for the addGoal function
+class GoalModel: Identifiable {
+    let id = UUID().uuidString
+    let exerciseName: String
+    let startWeight: Int
+    let achieveWeight: Int
+    let goalWeight: Int
+    init(exerciseName: String, startWeight: Int, achieveWeight: Int, goalWeigth: Int) {
+        self.exerciseName = exerciseName
+        self.startWeight = startWeight
+        self.achieveWeight = achieveWeight
+        self.goalWeight = goalWeigth
+    }
+}
+
 
 // MARK: COMPONENT
 
 extension MainInfoView {
     
+    /// The progressBar in goalSection
     func progressBar(progress: Double) -> some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -79,24 +143,23 @@ extension MainInfoView {
                     .opacity(0.3)
                     .foregroundColor(.gray)
                     .cornerRadius(20)
-                
                 Rectangle()
-                    .frame(width: min(CGFloat(self.pulseEffect ? progress : progress * 1.05) * geometry.size.width, geometry.size.width), height: 10)
-                    .foregroundColor(Color.blue.opacity(self.pulseEffect ? 1 : 0.8))
-                    .cornerRadius(20)
-                    .onAppear {
-                        withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
-                            self.pulseEffect.toggle()
-                        }
-                    }
+                    .frame(width: min(CGFloat(progress) * geometry.size.width, geometry.size.width), height: 10)
+                    .foregroundColor(Color.blue)
+                    .opacity(1)
+                    .cornerRadius(20)    
             }
         }
     }
 
-    
+    /// Goal Section View 
+    /// 
+    /// The goal section title with a list of progress bar.
+    /// Hopefully, it can add animation on the progress bar.
     func goalSection() -> some View {
         VStack {
             
+            // Goal Section Title and the sheet for adding goal
             HStack {
                 Text("Goal")
                     .font(.title)
@@ -109,37 +172,35 @@ extension MainInfoView {
                         }
                     }
                     .sheet(isPresented: $goalSheetActive) {
-                        MainInfoView_GoalSheet(newGoalExercise: $newGoalExercise, newProgress: $newProgress)
+                        MainInfoView_GoalSheet()
                     }
             }
             .padding(.horizontal, 20)
             
+            // List of progress bars
             VStack {
                 ScrollView {
-                    ForEach(1..<20) { i in
-                        
-                        HStack {
-                            Text("workout")
-                            Spacer()
+                    ForEach(goalViewModel.goalList, id: \.id) { goalModel in
+
+                        let progressRate = goalViewModel.getGoalProgress(goalModel: goalModel)
+
+                        VStack(spacing: 5) {
+                            HStack {
+                                Text("\(goalModel.exerciseName): %\(Int(progressRate * 100))")
+                                Spacer()
+                                Text("\(goalModel.goalWeight) lb")
+                                    .font(.callout)
+                                    .opacity(0.5)
+                            }
+
+                            progressBar(progress: progressRate)
                         }
-                        .padding()
-                        .background(Color.gray)
-                        
-                        progressBar(progress: 0.1)
-                        
-                        
+                        .padding(.vertical, 1)
                     }
                 }
                 .padding(.horizontal, 40)
                 .listStyle(.plain)
-                .id("goal_list")
-                
-                
             }
-            
-            
-            
-            
         }
     }
     
