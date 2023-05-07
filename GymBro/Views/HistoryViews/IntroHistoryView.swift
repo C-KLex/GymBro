@@ -15,7 +15,7 @@ struct IntroHistoryView: View {
     // MARK: PROPERTY
     
     /// Mock ViewModel for fake data
-    @ObservedObject var vm = RoutineRowViewModel.instance
+    @ObservedObject var routineRowVM = RoutineRowViewModel.instance
     
     
     // MARK: BODY
@@ -24,11 +24,11 @@ struct IntroHistoryView: View {
         VStack {
             List {
                 
-                // vm.routineSummaryData
+                // routineRowVM.routineSummaryData
                 /*
                  It represents the summary data of each routine
                  */
-                ForEach(vm.routineSummaryData, id: \.id) { element in
+                ForEach(routineRowVM.routineSummaryData, id: \.id) { element in
                     IntroHistoryView_ListRow(element: element)
                     
                 }

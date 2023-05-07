@@ -25,7 +25,7 @@ struct IntroHistoryView_ListRow: View {
     @State var element: RoutineSummaryModel
     
     /// Call the mock ViewModel
-    @ObservedObject var vm: RoutineRowViewModel = RoutineRowViewModel.instance
+    @ObservedObject var routineRowVM: RoutineRowViewModel = RoutineRowViewModel.instance
     
     /// Alert controller (default is `false`)
     ///
@@ -71,7 +71,7 @@ struct IntroHistoryView_ListRow: View {
 
             Button(
                 action: {
-                    vm.editItem(element: element)
+                    routineRowVM.editItem(element: element)
                 },
                 label: {
                     Label("Edit", systemImage: "pencil")
@@ -112,12 +112,12 @@ extension IntroHistoryView_ListRow {
     /// Alert pop up when clicking the delete button.
     /// - Parameter element: RoutineSummaryModel
     /// - Returns: An alert view.
-    func deleteAlert(element: RoutineSummaryModel) -> Alert{
+    func deleteAlert(element: RoutineSummaryModel) -> Alert {
         Alert(
             title: Text("Delete Routine"),
             message: Text("Are you sure you want to delete this routine? This action cannot be undone."),
             primaryButton: .destructive(Text("Delete")) {
-                vm.deleteItem(element: element)
+                routineRowVM.deleteItem(element: element)
             },
             secondaryButton: .cancel()
         )
