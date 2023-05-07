@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Page for Infor Module
+/// Page for Info Module
 ///
 /// It provides the user information, and derived training statistics.
 ///
@@ -45,6 +45,7 @@ struct MainInfoView: View {
 // MARK: COMPONENT
 
 extension MainInfoView {
+    
     /// Persona Section View
     ///
     /// Extract the view code from BDOY to make it tidy.

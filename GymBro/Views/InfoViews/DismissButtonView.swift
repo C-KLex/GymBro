@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+/// Dismiss Button for all kind of popup sheets
 struct DismissButtonView: View {
+
     @Environment(\.presentationMode) var presentationMode
+
+
+        // MARK: BODY
+
         var body: some View {
             RoundedRectangle(cornerRadius: 4)
                 .fill(.black)
@@ -20,6 +26,9 @@ struct DismissButtonView: View {
                 }
         }
 }
+
+
+// MARK: PREVIEW
 
 struct DismissButtonView_Previews: PreviewProvider {
     static var previews: some View {
