@@ -32,8 +32,17 @@ struct MainInfoView: View {
     
     // Goal Section Variable
     @State var goalSheetActive: Bool = false
+
+    /// The effect itself
+    /// 
+    /// For withAnimation, animating between true and false  
+    @State var pulseEffect: Bool = false
+    let pulseAnimation = Animation.easeIn(duration: 1).repeatForever(autoreverses: false)
+
+    /// Control the animation between on and off 
+    @State var pulseAnimationIsActive = false
+
         
-    
     // MARK: BODY
     
     var body: some View {
@@ -144,10 +153,25 @@ extension MainInfoView {
                     .foregroundColor(.gray)
                     .cornerRadius(20)
                 Rectangle()
-                    .frame(width: min(CGFloat(progress) * geometry.size.width, geometry.size.width), height: 10)
+                    .frame(width: min(CGFloat(self.pulseEffect ? progress : progress + 0.005) * geometry.size.width, geometry.size.width), height: 10)
                     .foregroundColor(Color.blue)
-                    .opacity(1)
-                    .cornerRadius(20)    
+                    .opacity(self.pulseEffect ? 1 : 0.8)
+                    .brightness(self.pulseEffect ? -0.005 : 0.005)
+                    .cornerRadius(20)
+            }
+            .onAppear {
+                self.pulseAnimationIsActive = true
+            }
+            .onChange(of: pulseAnimationIsActive) { isActive in
+                if !isActive {
+                    withAnimation(.linear(duration: 0)) {
+                        self.pulseEffect = false
+                    }
+                } else {
+                    withAnimation(pulseAnimation) {
+                        self.pulseEffect = true
+                    }
+                }
             }
         }
     }
@@ -168,11 +192,11 @@ extension MainInfoView {
                 Image(systemName: "plus")
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            goalSheetActive.toggle()
+                            self.goalSheetActive.toggle()
                         }
                     }
-                    .sheet(isPresented: $goalSheetActive) {
-                        MainInfoView_GoalSheet()
+                    .sheet(isPresented: self.$goalSheetActive) {
+                        MainInfoView_GoalSheet(pulseAnimationIsActive: self.$pulseAnimationIsActive)
                     }
             }
             .padding(.horizontal, 20)
@@ -193,7 +217,7 @@ extension MainInfoView {
                                     .opacity(0.5)
                             }
 
-                            progressBar(progress: progressRate)
+                            self.progressBar(progress: progressRate)
                         }
                         .padding(.vertical, 1)
                     }
