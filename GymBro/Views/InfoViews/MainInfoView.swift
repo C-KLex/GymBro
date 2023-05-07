@@ -21,20 +21,17 @@ struct MainInfoView: View {
     // Persona Section Variable
     @State var personaSheetActive: Bool = false
     @State var gender: String = "NA"
-    @State var age: Float = 0.0
+    @State var age: Int = 0
     @State var weight: Float = 0.0
-    @State var height_foot: Int = 0
-    @State var height_inch: Int = 0
+    @State var heightFoot: Int = 0
+    @State var heightInch: Int = 0
+    @State var userName: String = ""
         
     
     // MARK: BODY
     
     var body: some View {
         ScrollView {
-            
-            // To make it long enough to show the crolling view
-            self.personaSection()
-            self.personaSection()
             self.personaSection()
         }
         .navigationTitle("Personal Information")
@@ -56,7 +53,7 @@ extension MainInfoView {
             
             // Section headline
             HStack {
-                Text("Persona")
+                Text(self.userName != "" ? self.userName : "Persona")
                     .font(.title)
                     .fontWeight(.bold)
                 Spacer()
@@ -65,7 +62,9 @@ extension MainInfoView {
                         personaSheetActive.toggle()
                     }
                     .sheet(isPresented: $personaSheetActive) {
-                        MainInfoView_PersonaSheet(gender: $gender, age: $age, weight: $weight, foot: $height_foot, inch: $height_inch)
+                        ScrollView {
+                            MainInfoView_PersonaSheet(gender: $gender, age: $age, weight: $weight, foot: $heightFoot, inch: $heightInch, userName: $userName)
+                        }
                     }
                 
             }
@@ -75,41 +74,38 @@ extension MainInfoView {
             VStack {
                 HStack {
                     VStack(alignment: .center, spacing: 10) {
-                        Text("Gender")
                         Text(gender)
                     }
                     .padding()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 75, height: 75)
                     .background(Color.gray.opacity(0.3))
                     .cornerRadius(10)
  
-                    VStack(alignment: .center, spacing: 10) {
-                        Text("Age")
-                        Text("\(Int(age))")
-                            
+                    VStack(alignment: .center, spacing: 0) {
+                        Spacer()
+                        Text("\(age)")
+                        Text("yr")
                     }
-                    .padding()
-                    .frame(width: 150, height: 150)
+                    .padding(9)
+                    .frame(width: 75, height: 75)
                     .background(Color.gray.opacity(0.3))
                     .cornerRadius(10)
-                }
-                
-                HStack {
-                    VStack(alignment: .center, spacing: 10) {
-                        Text("Weight")
-                        Text("\(Int(weight)) lb")
+                    
+                    VStack(alignment: .center, spacing: 0) {
+                        Spacer()
+                        Text("\(Int(weight))")
+                        Text("lb")
                     }
-                    .padding()
-                    .frame(width: 150, height: 150)
+                    .padding(9)
+                    .frame(width: 75, height: 75)
                     .background(Color.gray.opacity(0.3))
                     .cornerRadius(10)
                     
                     VStack(alignment: .center, spacing: 10) {
-                        Text("Height")
-                        Text("\(height_foot) ft \(height_inch) in")
+                        Text("\(heightFoot)'\(heightInch)")
                     }
                     .padding()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 75, height: 75)
                     .background(Color.gray.opacity(0.3))
                     .cornerRadius(10)
                 }
