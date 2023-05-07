@@ -13,7 +13,12 @@ import SwiftUI
 struct MainInfoView_GoalSheet: View {
 
 
-    // MARK: PROPERTY 
+    // MARK: PROPERTY
+    
+    /// init parameter
+    ///
+    /// To control the overall animation boolean status
+    @Binding var pulseAnimationIsActive: Bool 
 
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var goalViewModel = GoalViewModel.instance
@@ -32,66 +37,84 @@ struct MainInfoView_GoalSheet: View {
 
     var body: some View {
         VStack {
-            
-            // Dismiss button
             DismissButtonView()
-            
-            /// Exercise Picking Wheel 
-            HStack {
-                Text("Pick A Exercise")
-                    .font(.headline)
-                
-                Picker("progress", selection: $newGoalExercise) {
-                    ForEach(goalViewModel.exercisePool, id: \.exerciseName) { exerciseTopWeightModel in
-                        Text(exerciseTopWeightModel.exerciseName)
-                    }
-                }
-                .pickerStyle(.wheel)
-            }
-            .padding(.horizontal)
-            
-            /// Progress Picking Wheel
-            HStack(alignment: .center) {
-                Text("New Progress")
-                    .font(.headline)
-                
-                Picker("progress", selection: $newProgress) {
-                    ForEach(newProgressArray, id: \.self) { number in
-                        Text("+ \(number)")
-                    }
-                }
-                .pickerStyle(.wheel)
-            }
-            .padding(.horizontal)
-            
+            self.exerciseWheel()
+            self.progressWheel()
             Spacer()
             
-            // Add Goal Button
-            VStack {
-                Text("Add Goal")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-            }
-            .padding()
-            .background(Color.black)
-            .cornerRadius(20)
-            .onTapGesture {
-                checkEmptyExerciseWheel()
-                checkEmptyProgressWheel()
-                goalViewModel.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
-                presentationMode.wrappedValue.dismiss()
-            }
-            
+            // add goal button
+            /*
+             The process in `.onTapGesture` is important, so it needs to be shown.
+             */
+            self.addGoalButton()
+                .onTapGesture {
+                    self.checkEmptyExerciseWheel()
+                    self.checkEmptyProgressWheel()
+                    goalViewModel.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
+                    self.resetAnimation()
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+
             Spacer()
         }
     }
 }
 
 
-/// MARK: COMPONENT
+// MARK: COMPONENT
 
 extension MainInfoView_GoalSheet {
+    
+    func exerciseWheel() -> some View {
+        HStack {
+            Text("Pick A Exercise")
+                .font(.headline)
+            
+            Picker("progress", selection: self.$newGoalExercise) {
+                ForEach(goalViewModel.exercisePool, id: \.exerciseName) { exerciseTopWeightModel in
+                    Text(exerciseTopWeightModel.exerciseName)
+                }
+            }
+            .pickerStyle(.wheel)
+        }
+        .padding(.horizontal)
+    }
+    
+    func progressWheel() -> some View {
+        HStack(alignment: .center) {
+            Text("New Progress")
+                .font(.headline)
+            
+            Picker("progress", selection: self.$newProgress) {
+                ForEach(self.newProgressArray, id: \.self) { number in
+                    Text("+ \(number)")
+                }
+            }
+            .pickerStyle(.wheel)
+        }
+        .padding(.horizontal)
+    }
+    
+    func addGoalButton() -> some View {
+        VStack {
+            Text("Add Goal")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+        }
+        .padding()
+        .background(Color.black)
+        .cornerRadius(20)
+    }
+    
+    /// Reset all the progressBar animation in `MainInfoView`
+    ///
+    /// Without reseting, the progressBar animation would have multiple pulsing at the same time. Therefore, all the progresBar wouldn't have the same pulsing frequecy.
+    ///
+    /// - Warning: Each progressBar may have slighly different pulsing starting time. (I don't want to fix this at this stage)
+    func resetAnimation() -> () {
+        self.pulseAnimationIsActive = false
+    }
 
     /// Set a default exercise if needed 
     /// 
