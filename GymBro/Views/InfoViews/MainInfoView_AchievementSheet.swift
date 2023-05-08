@@ -10,6 +10,8 @@ import SwiftUI
 struct MainInfoView_AchievementSheet: View {
     
     @ObservedObject var achieveOptVM = AchievementOptionsViewModel.instance
+    
+    // MARK: BODY
     var body: some View {
         VStack {
             DismissButtonView()
@@ -23,12 +25,14 @@ struct MainInfoView_AchievementSheet: View {
             .padding(.horizontal)
             
             List {
-                ForEach(achieveOptVM.options, id: \.id) { optionModel in
+                ForEach(achieveOptVM.optionList, id: \.id) { optionModel in
                     HStack {
                         
                         
-                        self.checkIcon()
+                        self.checkIcon(optionModel: optionModel)
+                            .font(.title2)
                             .onTapGesture {
+                                achieveOptVM.checkOption(option: optionModel)
                             }
                         
                         Text(optionModel.optionName)
@@ -46,43 +50,55 @@ struct MainInfoView_AchievementSheet: View {
     }
 }
 
+
+// MARK: COMPONENT
+
 extension MainInfoView_AchievementSheet{
-    func checkIcon() -> some View {
-        Image(systemName: "checkmark.square.fill").foregroundColor(.green)
-    }
-    
-    func unCheckIcon() -> some View {
-        Image(systemName: "square").foregroundColor(.gray)
+    func checkIcon(optionModel: OptionModel) -> some View {
+        if optionModel.isChecked {
+            return Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+        } else {
+            return Image(systemName: "circle").foregroundColor(.gray)
+        }
     }
 }
 
+
+// MARK: VIEWMODEL
+
 class AchievementOptionsViewModel: ObservableObject {
-    @Published var options: [optionModel] = []
+    @Published var optionList: [OptionModel] = []
     static let instance = AchievementOptionsViewModel()
     init() {
         getData()
     }
     func getData() {
-        let o1 = optionModel(optionName: "aaa")
-        let o2 = optionModel(optionName: "bbb")
-        let o3 = optionModel(optionName: "ccc")
-        self.options.append(o1)
-        self.options.append(o2)
-        self.options.append(o3)
+        let o1 = OptionModel(optionName: "aaa")
+        let o2 = OptionModel(optionName: "bbb")
+        let o3 = OptionModel(optionName: "ccc")
+        self.optionList.append(o1)
+        self.optionList.append(o2)
+        self.optionList.append(o3)
     }
     
+    func checkOption(option: OptionModel) {
+        guard let index = self.optionList.firstIndex(where: { $0.id == option.id }) else { return }
+        let updatedOption = OptionModel(optionName: option.optionName, isChecked: !option.isChecked)
+        self.optionList.remove(at: index)
+        self.optionList.insert(updatedOption, at: index)
+    }
     
     
 }
 
-class optionModel: Identifiable {
+class OptionModel: Identifiable {
     let id = UUID().uuidString
     let optionName: String
     let isChecked: Bool
     
-    init(optionName: String ) {
+    init(optionName: String, isChecked: Bool = false ) {
         self.optionName = optionName
-        self.isChecked = false
+        self.isChecked = isChecked
     }
     
     
