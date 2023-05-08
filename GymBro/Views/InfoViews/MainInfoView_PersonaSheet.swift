@@ -150,10 +150,7 @@ extension MainInfoView_PersonaSheet{
             }
             .frame(width: self.pickerWidth)
         }
-    }
-    
-    
-    
+    }    
 }
 
 // MARK: PREVIEW
