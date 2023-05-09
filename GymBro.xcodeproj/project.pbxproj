@@ -10,7 +10,6 @@
 		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
 		321AB7832A037A0A00F77440 /* MainInfoView_GoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */; };
 		32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */; };
-		32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */; };
 		3295FD8B2A03765E00422E71 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3295FD8A2A03765E00422E71 /* DismissButtonView.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
 		321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
-		32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
 		32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
 		3295FD8A2A03765E00422E71 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };

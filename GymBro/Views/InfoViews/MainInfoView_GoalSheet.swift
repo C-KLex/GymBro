@@ -39,35 +39,10 @@ struct MainInfoView_GoalSheet: View {
             DismissButtonView()
             self.exerciseWheel()
             self.progressWheel()
+            
             Spacer()
             
-            Text("\(newProgress)")
-            Text(newGoalExercise)
-            Text(self.isUpdateGoal.description)
-            
-            if isUpdateGoal {
-                
-                self.updateGoalButton()
-                    .onTapGesture {
-                        self.resetAnimation()
-                        self.presentationMode.wrappedValue.dismiss()
-                        
-                    }
-            } else {
-                
-                // add goal button
-                /*
-                 The process in `.onTapGesture` is important, so it needs to be shown.
-                 */
-                self.addGoalButton()
-                    .onTapGesture {
-                        self.checkEmptyExerciseWheel()
-                        self.checkEmptyProgressWheel()
-                        goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
-                        self.resetAnimation()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-            }
+            self.chooseButton(isUpdateGoal: self.isUpdateGoal)
             
            
 
@@ -81,6 +56,16 @@ struct MainInfoView_GoalSheet: View {
 
 extension MainInfoView_GoalSheet {
     
+    @ViewBuilder
+    func chooseButton(isUpdateGoal: Bool) -> some View{
+        if isUpdateGoal {
+            self.updateGoalButton()
+        } else {
+            self.addGoalButton()
+        }
+    }
+    
+    
     func updateGoalButton() -> some View {
         VStack {
             Text("Update Goal")
@@ -91,6 +76,11 @@ extension MainInfoView_GoalSheet {
         .padding()
         .background(Color.blue)
         .cornerRadius(20)
+        .onTapGesture {
+            self.resetAnimation()
+            self.presentationMode.wrappedValue.dismiss()
+            
+        }
     }
     
     func exerciseWheel() -> some View {
@@ -135,6 +125,13 @@ extension MainInfoView_GoalSheet {
         .padding()
         .background(Color.black)
         .cornerRadius(20)
+        .onTapGesture {
+            self.checkEmptyExerciseWheel()
+            self.checkEmptyProgressWheel()
+            goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
+            self.resetAnimation()
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
     
     /// Reset all the progressBar animation in `MainInfoView`

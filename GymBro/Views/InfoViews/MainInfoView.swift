@@ -30,6 +30,8 @@ struct MainInfoView: View {
     @State var height_foot: Int = 0
     @State var height_inch: Int = 0
     
+    
+    
     // Goal Section Variable
     
     // sheet control
@@ -49,7 +51,7 @@ struct MainInfoView: View {
     @State var pulseAnimationIsActive = false
     
     // alert control
-    @State var showDeleteConfirmationAlert: Bool = false
+    @State var deleteAlertGoal: GoalModel?
     
 
         
@@ -120,8 +122,8 @@ class GoalViewModel: ObservableObject {
     }
     
     func deleteGoal(goal: GoalModel) {
-        print(goal.id)
-//        self.goalList.removeAll(where: { $0.id == goal.id })
+        print("vm \(goal.id)")
+//        self.goalList.removeAll(where: { $0.id == goalId } )
     }
     
     func calculateProgress(goal: GoalModel) -> Int {
@@ -130,7 +132,7 @@ class GoalViewModel: ObservableObject {
     }
     
     func updateGoal(goal: GoalModel) -> () {
-        
+        print(goal.id)
     }
 }
 
@@ -169,15 +171,16 @@ class GoalModel: Identifiable {
 
 extension MainInfoView {
     
-    func deleteAlert(goal: GoalModel) -> Alert {
-        Alert(
-            title: Text("Delete Goal \(goal.id)"),
-            message: Text("Are you sure you want to delete this goal? The action cannot be undone!"),
-            primaryButton: .destructive(Text("Delete")) {
-                goalVM.deleteGoal(goal: goal)
-            },
-            secondaryButton: .cancel()
-        )
+    func deleteAlert(goal: GoalModel) -> Alert{
+            Alert(
+                title: Text("Delete Goal \(goal.id)"),
+                message: Text("Are you sure you want to delete this goal? The action cannot be undone!"),
+                primaryButton: .destructive(Text("Delete")) {
+                    goalVM.deleteGoal(goal: goal)
+                    print("alert \(goal.id)")
+                },
+                secondaryButton: .cancel()
+            )
     }
     
     /// The progressBar in goalSection
@@ -249,9 +252,9 @@ extension MainInfoView {
             // List of progress bars
             VStack {
                 ScrollView {
-                    ForEach(goalVM.goalList, id: \.id) { goalModel in
+                    ForEach(self.goalVM.goalList, id: \.id) { goalModel in
 
-                        let progressRate = goalVM.getGoalProgress(goalModel: goalModel)
+                        let progressRate = self.goalVM.getGoalProgress(goalModel: goalModel)
 
                         HStack {
                             VStack(spacing: 5) {
@@ -293,11 +296,11 @@ extension MainInfoView {
                                 Image(systemName: "trash")
                                     .foregroundColor(.red)
                                     .onTapGesture {
-                                        self.showDeleteConfirmationAlert = true
-                                        goalVM.deleteGoal(goal: goalModel)
+                                        self.deleteAlertGoal = goalModel
+                                        print("tap \(goalModel.id)")
                                     }
-                                    .alert(isPresented: self.$showDeleteConfirmationAlert) {
-                                        self.deleteAlert(goal: goalModel)
+                                    .alert(item: self.$deleteAlertGoal) { goal in
+                                        self.deleteAlert(goal: goal)
                                     }
                             }
                             
