@@ -41,6 +41,7 @@ struct MainInfoView: View {
 
     /// Control the animation between on and off 
     @State var pulseAnimationIsActive = false
+    @State var showDeleteConfirmationAlert: Bool = false
 
         
     // MARK: BODY
@@ -61,12 +62,12 @@ struct MainInfoView: View {
 class GoalViewModel: ObservableObject {
     
     /// Mock data for the goal section
-    /// 
+    ///
     /// This is for picking the specific exercise for adding the goal
     @Published var exercisePool: [ExerciseTopWeightModel] = []
-
+    
     /// Mock data for the goal section
-    /// 
+    ///
     /// The goals for the progress bar to show
     @Published var goalList: [GoalModel] = []
     
@@ -89,11 +90,9 @@ class GoalViewModel: ObservableObject {
         let g2 = GoalModel(exerciseName: e2.exerciseName, startWeight: e2.topWeight, achieveWeight: 305, goalWeigth: 350)
         self.goalList.append(g1)
         self.goalList.append(g2)
-        self.goalList.append(g1)
-        self.goalList.append(g2)
     }
     
-    /// Count the progress percent for the progress bar  
+    /// Count the progress percent for the progress bar
     func getGoalProgress(goalModel: GoalModel) -> Double {
         let divident = Double(goalModel.achieveWeight - goalModel.startWeight)
         let divisor = Double(goalModel.goalWeight - goalModel.startWeight)
@@ -107,6 +106,14 @@ class GoalViewModel: ObservableObject {
         let goalWeight = startWeight + progressWeight
         let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: goalWeight)
         self.goalList.append(g)
+    }
+    
+    func deleteGoal(goal: GoalModel) {
+        self.goalList.removeAll { $0.id == goal.id }
+    }
+    
+    func editGoal(goal: GoalModel) {
+        
     }
 }
 
@@ -144,6 +151,17 @@ class GoalModel: Identifiable {
 // MARK: COMPONENT
 
 extension MainInfoView {
+    
+    func deleteAlert(goal: GoalModel) -> Alert {
+        Alert(
+            title: Text("Delete Goal"),
+            message: Text("Are you sure you want to delete this goal? The action cannot be undone!"),
+            primaryButton: .destructive(Text("Delete")) {
+                goalViewModel.deleteGoal(goal: goal)
+            },
+            secondaryButton: .cancel()
+        )
+    }
     
     /// The progressBar in goalSection
     func progressBar(progress: Double) -> some View {
@@ -210,18 +228,37 @@ extension MainInfoView {
 
                         let progressRate = goalViewModel.getGoalProgress(goalModel: goalModel)
 
-                        VStack(spacing: 5) {
-                            HStack {
-                                Text("\(goalModel.exerciseName): %\(Int(progressRate * 100))")
-                                Spacer()
-                                Text("\(goalModel.goalWeight) lb")
-                                    .font(.callout)
-                                    .opacity(0.5)
-                            }
+                        HStack {
+                            VStack(spacing: 5) {
+                                HStack {
+                                    Text("\(goalModel.exerciseName): %\(Int(progressRate * 100))")
+                                    Spacer()
+                                    Text("\(goalModel.goalWeight) lb")
+                                        .font(.callout)
+                                        .opacity(0.5)
+                                }
 
-                            self.progressBar(progress: progressRate)
+                                self.progressBar(progress: progressRate)
+                            }
+                            .padding(.vertical, 1)
+                            
+                            HStack {
+                                Image(systemName: "square.and.pencil")
+                                    .foregroundColor(.blue)
+                                    .onTapGesture {
+                                        print("edit")
+                                    }
+                                Image(systemName: "trash")
+                                    .foregroundColor(.red)
+                                    .onTapGesture {
+                                        self.showDeleteConfirmationAlert = true
+                                    }
+                                    .alert(isPresented: self.$showDeleteConfirmationAlert) {
+                                        self.deleteAlert(goal: goalModel)
+                                    }
+                            }
+                            
                         }
-                        .padding(.vertical, 1)
                     }
                 }
                 .padding(.horizontal, 40)
