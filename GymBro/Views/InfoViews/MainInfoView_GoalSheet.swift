@@ -15,23 +15,22 @@ struct MainInfoView_GoalSheet: View {
 
     // MARK: PROPERTY
     
-    /// init parameter
-    ///
-    /// To control the overall animation boolean status
+  
     @Binding var pulseAnimationIsActive: Bool 
 
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var goalViewModel = GoalViewModel.instance
+    @Environment(\.presentationMode) private var presentationMode
+    @ObservedObject private var goalVM = GoalViewModel.instance
 
-    /// variable for exercise picking wheel  
-    @State var newGoalExercise: String = ""
 
-    /// variable for progress picking wheel 
-    @State var newProgress: Int = -1
+    @Binding var newGoalExercise: String
 
-    /// content for the progress picking wheel 
+    
+    @Binding var newProgress: Int 
+
+     
     private let newProgressArray = Array(stride(from: 5, to: 100, by: 5))
-
+    
+    @State var isUpdateGoal: Bool
 
     // MARK: BODY 
 
@@ -42,18 +41,35 @@ struct MainInfoView_GoalSheet: View {
             self.progressWheel()
             Spacer()
             
-            // add goal button
-            /*
-             The process in `.onTapGesture` is important, so it needs to be shown.
-             */
-            self.addGoalButton()
-                .onTapGesture {
-                    self.checkEmptyExerciseWheel()
-                    self.checkEmptyProgressWheel()
-                    goalViewModel.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
-                    self.resetAnimation()
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+            Text("\(newProgress)")
+            Text(newGoalExercise)
+            Text(self.isUpdateGoal.description)
+            
+            if isUpdateGoal {
+                
+                self.updateGoalButton()
+                    .onTapGesture {
+                        self.resetAnimation()
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                    }
+            } else {
+                
+                // add goal button
+                /*
+                 The process in `.onTapGesture` is important, so it needs to be shown.
+                 */
+                self.addGoalButton()
+                    .onTapGesture {
+                        self.checkEmptyExerciseWheel()
+                        self.checkEmptyProgressWheel()
+                        goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
+                        self.resetAnimation()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+            }
+            
+           
 
             Spacer()
         }
@@ -65,14 +81,27 @@ struct MainInfoView_GoalSheet: View {
 
 extension MainInfoView_GoalSheet {
     
+    func updateGoalButton() -> some View {
+        VStack {
+            Text("Update Goal")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+        }
+        .padding()
+        .background(Color.blue)
+        .cornerRadius(20)
+    }
+    
     func exerciseWheel() -> some View {
         HStack {
             Text("Pick A Exercise")
                 .font(.headline)
             
             Picker("progress", selection: self.$newGoalExercise) {
-                ForEach(goalViewModel.exercisePool, id: \.exerciseName) { exerciseTopWeightModel in
+                ForEach(goalVM.exercisePool, id: \.exerciseName) { exerciseTopWeightModel in
                     Text(exerciseTopWeightModel.exerciseName)
+                        .tag(exerciseTopWeightModel.exerciseName)
                 }
             }
             .pickerStyle(.wheel)
@@ -88,6 +117,7 @@ extension MainInfoView_GoalSheet {
             Picker("progress", selection: self.$newProgress) {
                 ForEach(self.newProgressArray, id: \.self) { number in
                     Text("+ \(number)")
+                        .tag(number)
                 }
             }
             .pickerStyle(.wheel)
@@ -121,7 +151,7 @@ extension MainInfoView_GoalSheet {
     /// If the wheel is not touched, SwiftUI would not update the binding variable. 
     func checkEmptyExerciseWheel() -> () {
         if self.newGoalExercise == "" {
-            self.newGoalExercise = goalViewModel.exercisePool[0].exerciseName
+            self.newGoalExercise = goalVM.exercisePool[0].exerciseName
         }
     }
     

@@ -20,7 +20,7 @@ struct MainInfoView: View {
     // MARK: PROPERTY
     
     // ViewModel
-    @ObservedObject var goalViewModel = GoalViewModel.instance
+    @ObservedObject var goalVM = GoalViewModel.instance
 
     // Persona Section Variable
     @State var personaSheetActive: Bool = false
@@ -31,8 +31,14 @@ struct MainInfoView: View {
     @State var height_inch: Int = 0
     
     // Goal Section Variable
+    
+    // sheet control
     @State var goalSheetActive: Bool = false
-
+    @State var updateSheetActive: Bool = false
+    @State var isUpdate: Bool = false
+    @State var sheetExerciseName: String = ""
+    @State var sheetProgress: Int = -1
+    
     /// The effect itself
     /// 
     /// For withAnimation, animating between true and false  
@@ -41,7 +47,10 @@ struct MainInfoView: View {
 
     /// Control the animation between on and off 
     @State var pulseAnimationIsActive = false
+    
+    // alert control
     @State var showDeleteConfirmationAlert: Bool = false
+    
 
         
     // MARK: BODY
@@ -86,9 +95,11 @@ class GoalViewModel: ObservableObject {
         self.exercisePool.append(e2)
         self.exercisePool.append(e3)
         
-        let g1 = GoalModel(exerciseName: e1.exerciseName, startWeight: e1.topWeight, achieveWeight: 130, goalWeigth: 140)
-        let g2 = GoalModel(exerciseName: e2.exerciseName, startWeight: e2.topWeight, achieveWeight: 305, goalWeigth: 350)
+        let g1 = GoalModel(exerciseName: self.exercisePool[0].exerciseName, startWeight: self.exercisePool[0].topWeight, achieveWeight: 130, goalWeigth: 140)
+        
         self.goalList.append(g1)
+        
+        let g2 = GoalModel(exerciseName: self.exercisePool[1].exerciseName, startWeight: self.exercisePool[1].topWeight, achieveWeight: 305, goalWeigth: 350)
         self.goalList.append(g2)
     }
     
@@ -109,10 +120,16 @@ class GoalViewModel: ObservableObject {
     }
     
     func deleteGoal(goal: GoalModel) {
-        self.goalList.removeAll { $0.id == goal.id }
+        print(goal.id)
+//        self.goalList.removeAll(where: { $0.id == goal.id })
     }
     
-    func editGoal(goal: GoalModel) {
+    func calculateProgress(goal: GoalModel) -> Int {
+        let progress = goal.goalWeight - goal.startWeight
+        return progress
+    }
+    
+    func updateGoal(goal: GoalModel) -> () {
         
     }
 }
@@ -154,10 +171,10 @@ extension MainInfoView {
     
     func deleteAlert(goal: GoalModel) -> Alert {
         Alert(
-            title: Text("Delete Goal"),
+            title: Text("Delete Goal \(goal.id)"),
             message: Text("Are you sure you want to delete this goal? The action cannot be undone!"),
             primaryButton: .destructive(Text("Delete")) {
-                goalViewModel.deleteGoal(goal: goal)
+                goalVM.deleteGoal(goal: goal)
             },
             secondaryButton: .cancel()
         )
@@ -196,6 +213,9 @@ extension MainInfoView {
         }
     }
 
+    
+    // MARK: GOAL
+    
     /// Goal Section View 
     /// 
     /// The goal section title with a list of progress bar.
@@ -212,11 +232,16 @@ extension MainInfoView {
                 Image(systemName: "plus")
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            self.goalSheetActive.toggle()
+                            self.goalSheetActive = true 
                         }
                     }
                     .sheet(isPresented: self.$goalSheetActive) {
-                        MainInfoView_GoalSheet(pulseAnimationIsActive: self.$pulseAnimationIsActive)
+                        MainInfoView_GoalSheet(
+                            pulseAnimationIsActive: self.$pulseAnimationIsActive,
+                            newGoalExercise: self.$sheetExerciseName,
+                            newProgress: self.$sheetProgress,
+                            isUpdateGoal: false
+                        )
                     }
             }
             .padding(.horizontal, 20)
@@ -224,9 +249,9 @@ extension MainInfoView {
             // List of progress bars
             VStack {
                 ScrollView {
-                    ForEach(goalViewModel.goalList, id: \.id) { goalModel in
+                    ForEach(goalVM.goalList, id: \.id) { goalModel in
 
-                        let progressRate = goalViewModel.getGoalProgress(goalModel: goalModel)
+                        let progressRate = goalVM.getGoalProgress(goalModel: goalModel)
 
                         HStack {
                             VStack(spacing: 5) {
@@ -239,6 +264,7 @@ extension MainInfoView {
                                 }
 
                                 self.progressBar(progress: progressRate)
+                                
                             }
                             .padding(.vertical, 1)
                             
@@ -246,12 +272,29 @@ extension MainInfoView {
                                 Image(systemName: "square.and.pencil")
                                     .foregroundColor(.blue)
                                     .onTapGesture {
-                                        print("edit")
+                                        withAnimation(.spring()) {
+                                            self.updateSheetActive = true
+                                            self.isUpdate = true
+                                            self.sheetExerciseName = goalModel.exerciseName
+                                            self.sheetProgress = goalVM.calculateProgress(goal: goalModel)
+                                        }
                                     }
+                                    .sheet(isPresented: self.$isUpdate) {
+                                        MainInfoView_GoalSheet(
+                                            pulseAnimationIsActive: self.$pulseAnimationIsActive,
+                                            newGoalExercise: self.$sheetExerciseName,
+                                            newProgress: self.$sheetProgress,
+                                            isUpdateGoal: true
+                                        )
+                                        
+                                    }
+                                
+                                
                                 Image(systemName: "trash")
                                     .foregroundColor(.red)
                                     .onTapGesture {
                                         self.showDeleteConfirmationAlert = true
+                                        goalVM.deleteGoal(goal: goalModel)
                                     }
                                     .alert(isPresented: self.$showDeleteConfirmationAlert) {
                                         self.deleteAlert(goal: goalModel)
