@@ -36,23 +36,18 @@ struct MainInfoView: View {
     
     // sheet control
     @State var goalSheetActive: Bool = false
-    @State var updateSheetActive: Bool = false
-    @State var isUpdate: Bool = false
     @State var sheetExerciseName: String = ""
     @State var sheetProgress: Int = -1
-    @State var updateGoalItem: GoalModel?
+
     
     /// The effect itself
     /// 
     /// For withAnimation, animating between true and false  
     @State var pulseEffect: Bool = false
-    let pulseAnimation = Animation.easeIn(duration: 1).repeatForever(autoreverses: false)
 
     /// Control the animation between on and off 
     @State var pulseAnimationIsActive = false
     
-    // alert control
-    @State var deleteAlertGoal: GoalModel?
     
 
         
@@ -188,51 +183,6 @@ class GoalModel: Identifiable {
 
 extension MainInfoView {
     
-    func deleteAlert(goal: GoalModel) -> Alert{
-            Alert(
-                title: Text("Delete Goal"),
-                message: Text("Are you sure you want to delete this goal? The action cannot be undone!"),
-                primaryButton: .destructive(Text("Delete")) {
-                    goalVM.deleteGoal(goal: goal)
-                },
-                secondaryButton: .cancel()
-            )
-    }
-    
-    /// The progressBar in goalSection
-    func progressBar(progress: Double) -> some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .frame(width: geometry.size.width, height: 10)
-                    .opacity(0.3)
-                    .foregroundColor(.gray)
-                    .cornerRadius(20)
-                Rectangle()
-                    .frame(width: min(CGFloat(self.pulseEffect ? progress : progress + 0.005) * geometry.size.width, geometry.size.width), height: 10)
-                    .foregroundColor(Color.blue)
-                    .opacity(self.pulseEffect ? 1 : 0.8)
-                    .brightness(self.pulseEffect ? -0.005 : 0.005)
-                    .cornerRadius(20)
-            }
-            .onAppear {
-                self.pulseAnimationIsActive = true
-            }
-            .onChange(of: pulseAnimationIsActive) { isActive in
-                if !isActive {
-                    withAnimation(.linear(duration: 0)) {
-                        self.pulseEffect = false
-                    }
-                } else {
-                    withAnimation(pulseAnimation) {
-                        self.pulseEffect = true
-                    }
-                }
-            }
-        }
-    }
-
-    
     // MARK: GOAL
     
     /// Goal Section View 
@@ -269,60 +219,13 @@ extension MainInfoView {
             // List of progress bars
             VStack {
                 ScrollView {
-                    ForEach(self.goalVM.goalList, id: \.id) { goalModel in
-
-                        let progressRate = self.goalVM.getGoalProgress(goalModel: goalModel)
-
-                        HStack {
-                            VStack(spacing: 5) {
-                                HStack {
-                                    Text("\(goalModel.exerciseName): %\(Int(progressRate * 100))")
-                                    Spacer()
-                                    Text("\(goalModel.goalWeight) lb")
-                                        .font(.callout)
-                                        .opacity(0.5)
-                                }
-
-                                self.progressBar(progress: progressRate)
-                                
-                            }
-                            .padding(.vertical, 1)
-                            
-                            HStack {
-                                Image(systemName: "square.and.pencil")
-                                    .foregroundColor(.blue)
-                                    .onTapGesture {
-                                        withAnimation(.spring()) {
-                                            self.updateSheetActive = true
-                                            self.isUpdate = true
-                                            self.sheetExerciseName = goalModel.exerciseName
-                                            self.sheetProgress = goalVM.calculateProgress(goal: goalModel)
-                                            self.updateGoalItem = goalModel
-                                        }
-                                    }
-                                    .sheet(item: self.$updateGoalItem) { goal in
-                                        MainInfoView_GoalSheet(
-                                            pulseAnimationIsActive: self.$pulseAnimationIsActive,
-                                            newGoalExercise: self.$sheetExerciseName,
-                                            newProgress: self.$sheetProgress,
-                                            isUpdateGoal: true,
-                                            goal: goal 
-                                        )
-                                        
-                                    }
-                                
-                                
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
-                                    .onTapGesture {
-                                        self.deleteAlertGoal = goalModel
-                                    }
-                                    .alert(item: self.$deleteAlertGoal) { goal in
-                                        self.deleteAlert(goal: goal)
-                                    }
-                            }
-                            
-                        }
+                    ForEach(self.goalVM.goalList, id: \.id) { goal in
+                        MainInfoView_GoalListRow(
+                            goal: goal,
+                            pulseEffect: self.$pulseEffect,
+                            pulseAnimationIsActive: self.$pulseAnimationIsActive,
+                            sheetExerciseName: self.$sheetExerciseName,
+                            sheetProgress: self.$sheetProgress)
                     }
                 }
                 .padding(.horizontal, 40)

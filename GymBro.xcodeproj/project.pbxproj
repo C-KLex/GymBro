@@ -11,6 +11,8 @@
 		321AB7832A037A0A00F77440 /* MainInfoView_GoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */; };
 		32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */; };
 		3295FD8B2A03765E00422E71 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3295FD8A2A03765E00422E71 /* DismissButtonView.swift */; };
+		32C6F6522A0B4324008D7AD1 /* PulseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C6F6512A0B4324008D7AD1 /* PulseProgressBar.swift */; };
+		32C6F6542A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
@@ -56,6 +58,8 @@
 		321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
 		32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
 		3295FD8A2A03765E00422E71 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
+		32C6F6512A0B4324008D7AD1 /* PulseProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseProgressBar.swift; sourceTree = "<group>"; };
+		32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalListRow.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
@@ -111,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				8C640B1829E360F90021EFBB /* MainInfoView.swift */,
+				32C6F6512A0B4324008D7AD1 /* PulseProgressBar.swift */,
+				32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */,
 				321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */,
 				32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */,
 				3295FD8A2A03765E00422E71 /* DismissButtonView.swift */,
@@ -376,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */,
+				32C6F6522A0B4324008D7AD1 /* PulseProgressBar.swift in Sources */,
 				8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */,
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
@@ -393,6 +400,7 @@
 				8CB90F0629F0F5F0007A58EE /* NavigationStackController.swift in Sources */,
 				8C640B1729E3607B0021EFBB /* IntroHistoryView.swift in Sources */,
 				8CE71E9F29A721D2006EEFE7 /* GymBroApp.swift in Sources */,
+				32C6F6542A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift in Sources */,
 				485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */,
 				485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */,
 			);
