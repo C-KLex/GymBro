@@ -33,18 +33,21 @@ struct MainInfoView_GoalSheet: View {
     @State var isUpdateGoal: Bool
     
     @State var showGoalExistAlert: Bool = false
+    
+    @State var goal: GoalModel?
 
     // MARK: BODY 
 
     var body: some View {
         VStack {
             DismissButtonView()
-            self.exerciseWheel()
+            Spacer()
+            self.exercisePickerSection(isUpdateGoal: self.isUpdateGoal)
             self.progressWheel()
             
             Spacer()
             
-            self.chooseButton(isUpdateGoal: self.isUpdateGoal)
+            self.finalButton(isUpdateGoal: self.isUpdateGoal)
             
            
 
@@ -59,7 +62,24 @@ struct MainInfoView_GoalSheet: View {
 extension MainInfoView_GoalSheet {
     
     @ViewBuilder
-    func chooseButton(isUpdateGoal: Bool) -> some View{
+    func exercisePickerSection(isUpdateGoal: Bool) -> some View {
+        if isUpdateGoal {
+            HStack {
+                Text("Exercise: ")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                Text(self.newGoalExercise)
+                    .font(.title)
+            }
+        } else {
+            self.exerciseWheel()
+        }
+        
+        
+    }
+    
+    @ViewBuilder
+    func finalButton(isUpdateGoal: Bool) -> some View{
         if isUpdateGoal {
             self.updateGoalButton()
         } else {
@@ -79,9 +99,12 @@ extension MainInfoView_GoalSheet {
         .background(Color.blue)
         .cornerRadius(20)
         .onTapGesture {
-            self.resetAnimation()
-            self.presentationMode.wrappedValue.dismiss()
-            
+            if let goal = goal {
+                goalVM.updateGoal(goal: goal, newProgress: self.newProgress)
+                self.resetAnimation()
+                self.presentationMode.wrappedValue.dismiss()
+                
+            }
         }
     }
     

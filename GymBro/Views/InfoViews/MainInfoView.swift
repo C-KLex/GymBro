@@ -40,6 +40,7 @@ struct MainInfoView: View {
     @State var isUpdate: Bool = false
     @State var sheetExerciseName: String = ""
     @State var sheetProgress: Int = -1
+    @State var updateGoalItem: GoalModel?
     
     /// The effect itself
     /// 
@@ -120,8 +121,7 @@ class GoalViewModel: ObservableObject {
     /// Add a new goal with the new progress for the specific exercise
     func addGoal(exerciseName: String, progressWeight: Int) -> () {
         let startWeight = self.exercisePool.first(where: { $0.exerciseName == exerciseName })?.topWeight ?? -1
-        let goalWeight = startWeight + progressWeight
-        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: goalWeight)
+        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: self.calculateGoalWeight(startWeight: startWeight, progressWeight: progressWeight))
         self.goalList.append(g)
     }
     
@@ -134,8 +134,22 @@ class GoalViewModel: ObservableObject {
         return progress
     }
     
-    func updateGoal(goal: GoalModel) -> () {
-        print(goal.id)
+    func calculateGoalWeight(startWeight: Int, progressWeight: Int) -> Int {
+        return startWeight + progressWeight
+    }
+    
+    func updateGoal(goal: GoalModel, newProgress: Int) -> () {
+        guard let index = self.goalList.firstIndex(where: { $0.id == goal.id }) else { return }
+        let updatedGoal = GoalModel(
+            exerciseName: goal.exerciseName,
+            startWeight: goal.startWeight,
+            achieveWeight: goal.achieveWeight,
+            goalWeigth: self.calculateGoalWeight(startWeight: goal.startWeight, progressWeight: newProgress)
+        )
+        self.goalList.remove(at: index)
+        self.goalList.insert(updatedGoal, at: index)
+        
+        
     }
 }
 
@@ -245,7 +259,8 @@ extension MainInfoView {
                             pulseAnimationIsActive: self.$pulseAnimationIsActive,
                             newGoalExercise: self.$sheetExerciseName,
                             newProgress: self.$sheetProgress,
-                            isUpdateGoal: false
+                            isUpdateGoal: false,
+                            goal: nil
                         )
                     }
             }
@@ -282,14 +297,16 @@ extension MainInfoView {
                                             self.isUpdate = true
                                             self.sheetExerciseName = goalModel.exerciseName
                                             self.sheetProgress = goalVM.calculateProgress(goal: goalModel)
+                                            self.updateGoalItem = goalModel
                                         }
                                     }
-                                    .sheet(isPresented: self.$isUpdate) {
+                                    .sheet(item: self.$updateGoalItem) { goal in
                                         MainInfoView_GoalSheet(
                                             pulseAnimationIsActive: self.$pulseAnimationIsActive,
                                             newGoalExercise: self.$sheetExerciseName,
                                             newProgress: self.$sheetProgress,
-                                            isUpdateGoal: true
+                                            isUpdateGoal: true,
+                                            goal: goal 
                                         )
                                         
                                     }
