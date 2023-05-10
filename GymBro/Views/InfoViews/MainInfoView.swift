@@ -19,7 +19,7 @@ struct MainInfoView: View {
     
     // MARK: PROPERTY
     
-    // ViewModel
+    // ViewModel //
     @ObservedObject var goalVM = GoalViewModel.instance
 
     // Persona Section Variable
@@ -32,7 +32,7 @@ struct MainInfoView: View {
     
     
     
-    // Goal Section Variable
+    // Goal Section Variable //
     
     // sheet control
     @State var goalSheetActive: Bool = false
@@ -40,8 +40,6 @@ struct MainInfoView: View {
     
     @State var sheetExerciseName: String = ""
     @State var sheetProgress: Int = -1
-
-    
     /// The effect itself
     /// 
     /// For withAnimation, animating between true and false  
@@ -51,11 +49,18 @@ struct MainInfoView: View {
     @State var pulseAnimationIsActive = false
 
 
-    // Achievement Section Variable
+    
+    
+    
+    // Achievement Section Variable //
     @State var achieveSheetActive: Bool = false
+    @ObservedObject var achievementOptVM = AchievementOptionsViewModel.instance
     
     
 
+    
+    
+    
         
     // MARK: BODY
     
@@ -194,6 +199,7 @@ extension MainInfoView {
     // MARK: ACHIEVEMENT
     func achievementSection() -> some View {
         VStack {
+            // achievement title
             HStack {
                 Text("Achievement")
                     .font(.title)
@@ -210,7 +216,18 @@ extension MainInfoView {
                     }
             }
             .padding(.horizontal, 20)
+            
+            // achievement item
+            VStack {
+                ScrollView {
+                    ForEach(achievementOptVM.optionList, id: \.id) { achievementOption in
+                        achievementOption.isChecked ? Text(achievementOption.optionName) : nil
+                    }
+                }
+            }
         }
+        
+        
     }
     
     
