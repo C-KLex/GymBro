@@ -10,10 +10,11 @@ import SwiftUI
 struct MainInfoView_AchievementSheet: View {
     
     @ObservedObject var achieveOptVM = AchievementOptionsViewModel.instance
+    @State var isPopupActive: Bool = false
     
     // MARK: BODY
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 20) {
             DismissButtonView()
             
             HStack {
@@ -24,26 +25,73 @@ struct MainInfoView_AchievementSheet: View {
             }
             .padding(.horizontal)
             
-            List {
-                ForEach(achieveOptVM.optionList, id: \.id) { optionModel in
-                    HStack {
+            
+            
+            
+            
+            
+            VStack(alignment: .leading, spacing: 10) {
+                
+                    ForEach(achieveOptVM.optionList, id: \.id) { optionModel in
                         
                         
-                        self.checkIcon(optionModel: optionModel)
-                            .font(.title2)
-                            .onTapGesture {
-                                achieveOptVM.checkOption(option: optionModel)
+                        
+                        HStack {
+                            
+                            
+                            self.checkIcon(optionModel: optionModel)
+                                .font(.title2)
+                                .onTapGesture {
+                                    withAnimation(Animation.easeIn(duration: 0.1)) {
+                                        achieveOptVM.checkOption(option: optionModel)
+                                    }
+                                }
+                            
+                            
+                            
+                            HStack {
+                                Text(optionModel.optionName)
+                                    .font(.title3)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "questionmark.circle")
+                                    .font(.body)
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        self.isPopupActive = true
+                                    }
+                                
                             }
+                            
+                            
+                            
+                            
+                                
+                            Spacer()
+       
+                        }
+                        .background(Color.pink)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(optionModel.isChecked ? Color.green.opacity(0.2) : Color.gray.opacity(0.1))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(optionModel.isChecked ? Color.green.opacity(0.2) : Color.gray.opacity(0.2), lineWidth: 2)
+
+                                )
+                                
+                        )
                         
-                        Text(optionModel.optionName)
-                            .font(.title2)
                         
                         
-                        Spacer()
+                        
                     }
-                }
             }
-            .listStyle(.plain)
+            .frame(width: 330)
+
+            
             
             Spacer()
         }
@@ -73,12 +121,17 @@ class AchievementOptionsViewModel: ObservableObject {
         getData()
     }
     func getData() {
-        let o1 = OptionModel(optionName: "aaa")
-        let o2 = OptionModel(optionName: "bbb")
-        let o3 = OptionModel(optionName: "ccc")
+        let o1 = OptionModel(optionName: "Routine Complete")
+        let o2 = OptionModel(optionName: "Training Volume")
+        let o3 = OptionModel(optionName: "Goal Achieved")
+        let o4 = OptionModel(optionName: "PR HIT")
+        
+        
         self.optionList.append(o1)
         self.optionList.append(o2)
         self.optionList.append(o3)
+        self.optionList.append(o4)
+        
     }
     
     func checkOption(option: OptionModel) {
