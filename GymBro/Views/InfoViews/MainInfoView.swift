@@ -113,6 +113,10 @@ class GoalViewModel: ObservableObject {
         return progressRate
     }
     
+    func isGoalExist(exerciseName: String) -> Bool {
+        return self.goalList.contains(where: { $0.exerciseName == exerciseName })
+    }
+    
     /// Add a new goal with the new progress for the specific exercise
     func addGoal(exerciseName: String, progressWeight: Int) -> () {
         let startWeight = self.exercisePool.first(where: { $0.exerciseName == exerciseName })?.topWeight ?? -1
@@ -122,8 +126,7 @@ class GoalViewModel: ObservableObject {
     }
     
     func deleteGoal(goal: GoalModel) {
-        print("vm \(goal.id)")
-//        self.goalList.removeAll(where: { $0.id == goalId } )
+        self.goalList.removeAll(where: { $0.id == goal.id } )
     }
     
     func calculateProgress(goal: GoalModel) -> Int {
@@ -173,11 +176,10 @@ extension MainInfoView {
     
     func deleteAlert(goal: GoalModel) -> Alert{
             Alert(
-                title: Text("Delete Goal \(goal.id)"),
+                title: Text("Delete Goal"),
                 message: Text("Are you sure you want to delete this goal? The action cannot be undone!"),
                 primaryButton: .destructive(Text("Delete")) {
                     goalVM.deleteGoal(goal: goal)
-                    print("alert \(goal.id)")
                 },
                 secondaryButton: .cancel()
             )
@@ -297,7 +299,6 @@ extension MainInfoView {
                                     .foregroundColor(.red)
                                     .onTapGesture {
                                         self.deleteAlertGoal = goalModel
-                                        print("tap \(goalModel.id)")
                                     }
                                     .alert(item: self.$deleteAlertGoal) { goal in
                                         self.deleteAlert(goal: goal)

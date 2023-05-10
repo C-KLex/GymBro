@@ -31,6 +31,8 @@ struct MainInfoView_GoalSheet: View {
     private let newProgressArray = Array(stride(from: 5, to: 100, by: 5))
     
     @State var isUpdateGoal: Bool
+    
+    @State var showGoalExistAlert: Bool = false
 
     // MARK: BODY 
 
@@ -128,10 +130,30 @@ extension MainInfoView_GoalSheet {
         .onTapGesture {
             self.checkEmptyExerciseWheel()
             self.checkEmptyProgressWheel()
-            goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
-            self.resetAnimation()
-            self.presentationMode.wrappedValue.dismiss()
+            self.addGoal()
         }
+        .alert(isPresented: self.$showGoalExistAlert) {
+            self.goalExistAlert(exerciseName: self.newGoalExercise)
+        }
+    }
+    
+    
+    func addGoal() {
+        guard !goalVM.isGoalExist(exerciseName: self.newGoalExercise) else {
+            self.showGoalExistAlert = true
+            return
+        }
+        goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
+        self.resetAnimation()
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    func goalExistAlert(exerciseName: String) -> Alert {
+        Alert(
+            title: Text("Error!!!").foregroundColor(.red),
+            message: Text("\(exerciseName) has been added already!"),
+            dismissButton: .default(Text("OK"))
+        )
     }
     
     /// Reset all the progressBar animation in `MainInfoView`
