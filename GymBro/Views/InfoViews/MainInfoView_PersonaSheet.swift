@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Sheet for setting the user data in Persona Section
 ///
-/// Gathering the Gender, Age, Weight, and Height.
+/// Gathering the Gender, Age, Weight, Height, and UserName.
 struct MainInfoView_PersonaSheet: View {
     
     
@@ -19,92 +19,139 @@ struct MainInfoView_PersonaSheet: View {
     
     // Required binding variable from `MainInfoView`
     @Binding var gender: String
-    @Binding var age: Float
+    @Binding var age: Int
     @Binding var weight: Float
     @Binding var foot: Int
     @Binding var inch: Int
+    @Binding var userName: String
+    
+    // For birthday section
+    @State private var birthdate = Date()
+    private let maxDate = Date()
+    private let minDate: Date = {
+            var components = DateComponents()
+            components.year = Calendar.current.component(.year, from: Date()) - 100
+            return Calendar.current.date(from: components)!
+        }()
+    private let pickerWidth: CGFloat = 330.0
     
     /// Two gender for the Picker
-    let genders: [String] = ["Male", "Female"]
+    let genders: [String] = ["♂", "♀"]
     
     
     // MARK: BODY
     
     var body: some View {
-        VStack{
-            
+        VStack(spacing: 10){
             DismissButtonView()
-            
-            // Gender
-            VStack {
-                    Picker("Gender", selection: $gender) {
-                        ForEach(genders, id: \.self) {
-                            Text($0)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-            }
-            .padding()
-            .padding(.horizontal)
-            
-            // Age
-            VStack(alignment: .center) {
-                Text("Age: \(Int(age))")
-                    .font(.title3)
-                
-                Slider(value: $age, in: 0...100, step: 1.0)
-                    .accentColor(.black)
-                    
-            }
-            .padding()
-            .padding(.horizontal)
-            
-            // Weight
-            VStack(alignment: .center) {
-                Text("Weight: \(Int(weight)) lb")
-                    .font(.title3)
-                Slider(value: $weight, in: 50...300, step: 1.0)
-                    .accentColor(.black)
-            }
-            .padding()
-            .padding(.horizontal)
-            
-            // Height
-            VStack(spacing: 0) {
-                Text("Height: \(foot) ft \(inch) in")
-                    .font(.title3)
-                HStack {
-                    Picker("Feet", selection: $foot) {
-                        ForEach(3..<9) { foot in
-                            Text("\(foot) ft")
-                                .tag(foot)
-                        }
-                    }
-                    .pickerStyle(.wheel)
-                    
-                    Picker("Inches", selection: $inch) {
-                        ForEach(0..<12) { inch in
-                            Text("\(inch) in")
-                                .tag(inch)
-                        }
-                    }
-                    .pickerStyle(.wheel)
-                    
-                }
-                .frame(width: 250)
-                .cornerRadius(25)
-            }
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.gray.opacity(0.5), lineWidth: 3)
-            )
-            
+            userNameTextField()
+            genderPicker()
+            birthdayPicker()
+            weightSlider()
+            heightPicker()
             Spacer()
         }
     }
 }
 
+
+// MARK: COMPONENT
+
+extension MainInfoView_PersonaSheet{
+    
+    /// Calculate the age from birthdate.
+    ///
+    /// Update the binding var `age`
+    func updateAge() -> () {
+        let now = Date()
+        let calendar = Calendar.current
+        let ageComponents = calendar.dateComponents([.year], from: birthdate, to: now)
+        self.age = ageComponents.year ?? 0
+    }
+    
+    /// User Name Section
+    func userNameTextField() -> some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("User Name")
+                .font(.title3)
+            
+            TextField("Enter your name...", text: $userName)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: self.pickerWidth)
+        }
+    }
+    
+    /// Gender Section
+    func genderPicker() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+                Text("Gender")
+                    .font(.title3)
+            
+                Picker("Gender", selection: $gender) {
+                    ForEach(genders, id: \.self) {
+                        Text($0)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .frame(width: self.pickerWidth)
+        }
+    }
+    
+    /// Birthday, Age Section
+    func birthdayPicker() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Birthday")
+                .font(.title3)
+            
+            DatePicker("Select your birthdate", selection: self.$birthdate, in: minDate...maxDate, displayedComponents: .date)
+                .datePickerStyle(WheelDatePickerStyle())
+                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .labelsHidden()
+                .onChange(of: birthdate) { _ in
+                    updateAge()
+                }
+                .frame(width: self.pickerWidth)
+        }
+    }
+    
+    /// Weight Section
+    func weightSlider() -> some View {
+        VStack(alignment: .trailing, spacing: 0) {
+            Text("\(Int(weight)) lb")
+                .font(.title3)
+            Slider(value: $weight, in: 50...300, step: 1.0)
+                .accentColor(.black)
+                .frame(width: self.pickerWidth)
+        }
+    }
+    
+    /// Height Section 
+    func heightPicker() -> some View {
+        VStack(alignment: .center, spacing: 0) {
+            Text("\(foot) ft \(inch) in")
+                .font(.title3)
+            
+            HStack {
+                Picker("Feet", selection: $foot) {
+                    ForEach(3..<9) { foot in
+                        Text("\(foot) ft")
+                            .tag(foot)
+                    }
+                }
+                .pickerStyle(.wheel)
+                
+                Picker("Inches", selection: $inch) {
+                    ForEach(0..<12) { inch in
+                        Text("\(inch) in")
+                            .tag(inch)
+                    }
+                }
+                .pickerStyle(.wheel)
+            }
+            .frame(width: self.pickerWidth)
+        }
+    }    
+}
 
 // MARK: PREVIEW
 
