@@ -20,7 +20,7 @@ struct MainInfoView: View {
     // MARK: PROPERTY
     
     // ViewModel
-    @ObservedObject var goalViewModel = GoalViewModel.instance
+    @ObservedObject var goalVM = GoalViewModel.instance
 
     // Persona Section Variable
     @State var personaSheetActive: Bool = false
@@ -30,20 +30,31 @@ struct MainInfoView: View {
     @State var height_foot: Int = 0
     @State var height_inch: Int = 0
     
+    
+    
     // Goal Section Variable
+    
+    // sheet control
     @State var goalSheetActive: Bool = false
     
-    // Achievement Section Variable
-    @State var achieveSheetActive: Bool = false
+    
+    @State var sheetExerciseName: String = ""
+    @State var sheetProgress: Int = -1
 
+    
     /// The effect itself
     /// 
     /// For withAnimation, animating between true and false  
     @State var pulseEffect: Bool = false
-    let pulseAnimation = Animation.easeIn(duration: 1).repeatForever(autoreverses: false)
 
     /// Control the animation between on and off 
     @State var pulseAnimationIsActive = false
+
+
+    // Achievement Section Variable
+    @State var achieveSheetActive: Bool = false
+    
+    
 
         
     // MARK: BODY
@@ -65,12 +76,12 @@ struct MainInfoView: View {
 class GoalViewModel: ObservableObject {
     
     /// Mock data for the goal section
-    /// 
+    ///
     /// This is for picking the specific exercise for adding the goal
     @Published var exercisePool: [ExerciseTopWeightModel] = []
-
+    
     /// Mock data for the goal section
-    /// 
+    ///
     /// The goals for the progress bar to show
     @Published var goalList: [GoalModel] = []
     
@@ -89,15 +100,15 @@ class GoalViewModel: ObservableObject {
         self.exercisePool.append(e2)
         self.exercisePool.append(e3)
         
-        let g1 = GoalModel(exerciseName: e1.exerciseName, startWeight: e1.topWeight, achieveWeight: 130, goalWeigth: 140)
-        let g2 = GoalModel(exerciseName: e2.exerciseName, startWeight: e2.topWeight, achieveWeight: 305, goalWeigth: 350)
+        let g1 = GoalModel(exerciseName: self.exercisePool[0].exerciseName, startWeight: self.exercisePool[0].topWeight, achieveWeight: 130, goalWeigth: 140)
+        
         self.goalList.append(g1)
-        self.goalList.append(g2)
-        self.goalList.append(g1)
+        
+        let g2 = GoalModel(exerciseName: self.exercisePool[1].exerciseName, startWeight: self.exercisePool[1].topWeight, achieveWeight: 305, goalWeigth: 350)
         self.goalList.append(g2)
     }
     
-    /// Count the progress percent for the progress bar  
+    /// Count the progress percent for the progress bar
     func getGoalProgress(goalModel: GoalModel) -> Double {
         let divident = Double(goalModel.achieveWeight - goalModel.startWeight)
         let divisor = Double(goalModel.goalWeight - goalModel.startWeight)
@@ -105,12 +116,42 @@ class GoalViewModel: ObservableObject {
         return progressRate
     }
     
+    func isGoalExist(exerciseName: String) -> Bool {
+        return self.goalList.contains(where: { $0.exerciseName == exerciseName })
+    }
+    
     /// Add a new goal with the new progress for the specific exercise
     func addGoal(exerciseName: String, progressWeight: Int) -> () {
         let startWeight = self.exercisePool.first(where: { $0.exerciseName == exerciseName })?.topWeight ?? -1
-        let goalWeight = startWeight + progressWeight
-        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: goalWeight)
+        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: self.calculateGoalWeight(startWeight: startWeight, progressWeight: progressWeight))
         self.goalList.append(g)
+    }
+    
+    func deleteGoal(goal: GoalModel) {
+        self.goalList.removeAll(where: { $0.id == goal.id } )
+    }
+    
+    func calculateProgress(goal: GoalModel) -> Int {
+        let progress = goal.goalWeight - goal.startWeight
+        return progress
+    }
+    
+    func calculateGoalWeight(startWeight: Int, progressWeight: Int) -> Int {
+        return startWeight + progressWeight
+    }
+    
+    func updateGoal(goal: GoalModel, newProgress: Int) -> () {
+        guard let index = self.goalList.firstIndex(where: { $0.id == goal.id }) else { return }
+        let updatedGoal = GoalModel(
+            exerciseName: goal.exerciseName,
+            startWeight: goal.startWeight,
+            achieveWeight: goal.achieveWeight,
+            goalWeigth: self.calculateGoalWeight(startWeight: goal.startWeight, progressWeight: newProgress)
+        )
+        self.goalList.remove(at: index)
+        self.goalList.insert(updatedGoal, at: index)
+        
+        
     }
 }
 
@@ -172,39 +213,7 @@ extension MainInfoView {
         }
     }
     
-    /// The progressBar in goalSection
-    func progressBar(progress: Double) -> some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .frame(width: geometry.size.width, height: 10)
-                    .opacity(0.3)
-                    .foregroundColor(.gray)
-                    .cornerRadius(20)
-                Rectangle()
-                    .frame(width: min(CGFloat(self.pulseEffect ? progress : progress + 0.005) * geometry.size.width, geometry.size.width), height: 10)
-                    .foregroundColor(Color.blue)
-                    .opacity(self.pulseEffect ? 1 : 0.8)
-                    .brightness(self.pulseEffect ? -0.005 : 0.005)
-                    .cornerRadius(20)
-            }
-            .onAppear {
-                self.pulseAnimationIsActive = true
-            }
-            .onChange(of: pulseAnimationIsActive) { isActive in
-                if !isActive {
-                    withAnimation(.linear(duration: 0)) {
-                        self.pulseEffect = false
-                    }
-                } else {
-                    withAnimation(pulseAnimation) {
-                        self.pulseEffect = true
-                    }
-                }
-            }
-        }
-    }
-
+    
     /// Goal Section View 
     /// 
     /// The goal section title with a list of progress bar.
@@ -221,11 +230,17 @@ extension MainInfoView {
                 Image(systemName: "plus")
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            self.goalSheetActive.toggle()
+                            self.goalSheetActive = true 
                         }
                     }
                     .sheet(isPresented: self.$goalSheetActive) {
-                        MainInfoView_GoalSheet(pulseAnimationIsActive: self.$pulseAnimationIsActive)
+                        MainInfoView_GoalSheet(
+                            pulseAnimationIsActive: self.$pulseAnimationIsActive,
+                            newGoalExercise: self.$sheetExerciseName,
+                            newProgress: self.$sheetProgress,
+                            isUpdateGoal: false,
+                            goal: nil
+                        )
                     }
             }
             .padding(.horizontal, 20)
@@ -233,22 +248,13 @@ extension MainInfoView {
             // List of progress bars
             VStack {
                 ScrollView {
-                    ForEach(goalViewModel.goalList, id: \.id) { goalModel in
-
-                        let progressRate = goalViewModel.getGoalProgress(goalModel: goalModel)
-
-                        VStack(spacing: 5) {
-                            HStack {
-                                Text("\(goalModel.exerciseName): %\(Int(progressRate * 100))")
-                                Spacer()
-                                Text("\(goalModel.goalWeight) lb")
-                                    .font(.callout)
-                                    .opacity(0.5)
-                            }
-
-                            self.progressBar(progress: progressRate)
-                        }
-                        .padding(.vertical, 1)
+                    ForEach(self.goalVM.goalList, id: \.id) { goal in
+                        MainInfoView_GoalListRow(
+                            goal: goal,
+                            pulseEffect: self.$pulseEffect,
+                            pulseAnimationIsActive: self.$pulseAnimationIsActive,
+                            sheetExerciseName: self.$sheetExerciseName,
+                            sheetProgress: self.$sheetProgress)
                     }
                 }
                 .padding(.horizontal, 40)
