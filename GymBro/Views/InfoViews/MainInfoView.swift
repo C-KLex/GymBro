@@ -214,7 +214,7 @@ extension MainInfoView {
                         }
                     }
                     .sheet(isPresented: self.$achieveSheetActive) {
-                        MainInfoView_AchievementSheet()
+                        MInfoView_AchiSheet()
                     }
             }
             .padding(.horizontal, 20)
