@@ -53,10 +53,15 @@ extension MainInfoView {
             
             // Section headline
             HStack {
+                Image(systemName: "figure.run")
+                    .font(.title)
+                
                 Text(self.userName != "" ? self.userName : "Persona")
                     .font(.title)
                     .fontWeight(.bold)
+                
                 Spacer()
+                
                 Image(systemName: "ellipsis")
                     .onTapGesture {
                         personaSheetActive.toggle()

@@ -72,12 +72,21 @@ extension MainInfoView_PersonaSheet{
     /// User Name Section
     func userNameTextField() -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("User Name")
-                .font(.title3)
+            
+            HStack {
+                Image(systemName: "figure.run")
+                    .font(.title3)
+                    
+                Text("User Name")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+            }
             
             TextField("Enter your name...", text: $userName)
                 .textFieldStyle(.roundedBorder)
+                .font(.title)
                 .frame(width: self.pickerWidth)
+                .foregroundColor(Color.blue)
         }
     }
     
@@ -86,6 +95,7 @@ extension MainInfoView_PersonaSheet{
         VStack(alignment: .leading, spacing: 0) {
                 Text("Gender")
                     .font(.title3)
+                    .fontWeight(.semibold)
             
                 Picker("Gender", selection: $gender) {
                     ForEach(genders, id: \.self) {
@@ -93,7 +103,7 @@ extension MainInfoView_PersonaSheet{
                     }
                 }
                 .pickerStyle(.segmented)
-                .frame(width: self.pickerWidth)
+                .frame(width: self.pickerWidth) 
         }
     }
     
@@ -102,6 +112,7 @@ extension MainInfoView_PersonaSheet{
         VStack(alignment: .leading, spacing: 0) {
             Text("Birthday")
                 .font(.title3)
+                .fontWeight(.semibold)
             
             DatePicker("Select your birthdate", selection: self.$birthdate, in: minDate...maxDate, displayedComponents: .date)
                 .datePickerStyle(WheelDatePickerStyle())
@@ -120,7 +131,7 @@ extension MainInfoView_PersonaSheet{
             Text("\(Int(weight)) lb")
                 .font(.title3)
             Slider(value: $weight, in: 50...300, step: 1.0)
-                .accentColor(.black)
+                .accentColor(.gray)
                 .frame(width: self.pickerWidth)
         }
     }
