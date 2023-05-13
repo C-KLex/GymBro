@@ -7,117 +7,106 @@
 
 import SwiftUI
 
+/// Sheet for picking what training highlights the user want to see
 struct MInfoView_AchiSheet: View {
     
-    @ObservedObject var achieveOptVM = AchievementOptionsViewModel.instance
+    
+    // MARK: PROPERTY
+
+    @ObservedObject var achieveOptVM = AchievementSheetViewModel.instance
+    
+    /// Question Mark Information Popup
     @State var isPopupActive: Bool = false
-    @State var popupOption: OptionModel? = nil
+    @State var popupAchi: AchievementModel? = nil
     
     // MARK: BODY
     var body: some View {
-        
-        
         ZStack {
-            VStack(alignment: .center, spacing: 20) {
-                
-                DismissButtonView()
-                
-                HStack {
-                    Text("What to Show 👀")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    
-                        ForEach(achieveOptVM.optionList, id: \.id) { optionModel in
-                            
-                            
-                            
-                            HStack {
-                                
-                                
-                                self.checkIcon(optionModel: optionModel)
-                                    .font(.title2)
-                                    .onTapGesture {
-                                        withAnimation(Animation.easeIn(duration: 0.1)) {
-                                            achieveOptVM.checkOption(option: optionModel)
-                                        }
-                                    }
-                                
-                                
-                                
-                                HStack {
-                                    Text(optionModel.optionName)
-                                        .font(.title3)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "questionmark.circle")
-                                        .font(.body)
-                                        .foregroundColor(optionModel.isChecked ? Color.green : Color.gray)
-                                        .onTapGesture {
-                                            self.isPopupActive = true
-                                            self.popupOption = optionModel
-                                        }
-                                    
-                                }
-                                
-                                
-                                
-                                
-                                    
-                                Spacer()
-           
-                            }
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(optionModel.isChecked ? Color.green.opacity(0.2) : Color.gray.opacity(0.1))
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(optionModel.isChecked ? Color.green.opacity(0.2) : Color.gray.opacity(0.2), lineWidth: 2)
-
-                                    )
-                                    
-                            )
-                            
-                            
-                            
-                            
-                        }
-                }
-                .frame(width: 330)
-
-                
-                
-                Spacer()
-            }
             
+            // normal sheet view
+            self.achiSheet()
             
-
-            MInfoView_AchiSheet_QPopup(isPresented: self.$isPopupActive, option: self.$popupOption)
-            
+            // If it triggers the quesiton mark popup
+            MInfoView_AchiSheet_QPopup(isPresented: self.$isPopupActive, achievement: self.$popupAchi)
         }
-        
     }
 }
-
-
-
 
 
 // MARK: COMPONENT
 
 extension MInfoView_AchiSheet{
-    func checkIcon(optionModel: OptionModel) -> some View {
+    
+    /// The sheet itself when the quiestion mark information popup is not triggered.
+    ///
+    /// When the question mark is tapped, this sheet wil be blurred and the quesiton popup will be the frontest layer.
+    func achiSheet() -> some View {
+        
+        VStack(alignment: .center, spacing: 20) {
+            
+            DismissButtonView()
+            HStack {
+                Text("What to Show 👀")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            VStack(alignment: .leading, spacing: 10) {
+                    ForEach(achieveOptVM.achievementList, id: \.id) { optionModel in
+                        
+                        HStack {
+                            
+                            HStack {
+                                self.checkIcon(optionModel: optionModel)
+                                    .font(.title2)
+                    
+                                Text(optionModel.optionName)
+                                    .font(.title3)
+                            }
+                            .onTapGesture {
+                                withAnimation(Animation.easeIn(duration: 0.1)) {
+                                    achieveOptVM.checkOption(option: optionModel)
+                                }
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "questionmark.circle")
+                                .font(.body)
+                                .foregroundColor(optionModel.isChecked ? Color.green : Color.gray)
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        self.isPopupActive = true
+                                    }
+                                    self.popupAchi = optionModel
+                                }
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(optionModel.isChecked ? Color.green.opacity(0.2) : Color.gray.opacity(0.1))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(optionModel.isChecked ? Color.green.opacity(0.2) : Color.gray.opacity(0.2), lineWidth: 2)
+                                )
+                        )
+                    }
+            }
+            .frame(width: 330)
+            Spacer()
+        }
+        .blur(radius: self.isPopupActive ? 20 : 0)
+    }
+    
+    @ViewBuilder
+    /// Two different state of the check mark.
+    func checkIcon(optionModel: AchievementModel) -> some View {
         if optionModel.isChecked {
-            return Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+            Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
         } else {
-            return Image(systemName: "circle").foregroundColor(.gray)
+            Image(systemName: "circle").foregroundColor(.gray)
         }
     }
 }
@@ -125,51 +114,58 @@ extension MInfoView_AchiSheet{
 
 // MARK: VIEWMODEL
 
-class AchievementOptionsViewModel: ObservableObject {
-    @Published var optionList: [OptionModel] = []
-    static let instance = AchievementOptionsViewModel()
+/// Mock View Model
+class AchievementSheetViewModel: ObservableObject {
+    
+    @Published var achievementList: [AchievementModel] = []
+    
+    static let instance = AchievementSheetViewModel()
+    
     init() {
         getData()
     }
-    func getData() {
-        let o1 = OptionModel(optionName: "Routine Complete")
-        let o2 = OptionModel(optionName: "Training Volume")
-        let o3 = OptionModel(optionName: "Goal Achieved")
-        let o4 = OptionModel(optionName: "PR HIT")
-        
-        
-        self.optionList.append(o1)
-        self.optionList.append(o2)
-        self.optionList.append(o3)
-        self.optionList.append(o4)
-        
+    
+    func getData() -> () {
+        let o1 = AchievementModel(optionName: "Routine Complete", isChecked: true, tag: .zero)
+        let o2 = AchievementModel(optionName: "Training Volume", isChecked: false, tag: .one)
+        let o3 = AchievementModel(optionName: "Goal Achieved", isChecked: true, tag: .two)
+        let o4 = AchievementModel(optionName: "PR HIT", isChecked: false, tag: .three)
+        self.achievementList.append(o1)
+        self.achievementList.append(o2)
+        self.achievementList.append(o3)
+        self.achievementList.append(o4)
     }
     
-    func checkOption(option: OptionModel) {
-        guard let index = self.optionList.firstIndex(where: { $0.id == option.id }) else { return }
-        let updatedOption = OptionModel(optionName: option.optionName, isChecked: !option.isChecked)
-        self.optionList.remove(at: index)
-        self.optionList.insert(updatedOption, at: index)
+    /// User checks the check mark and change the state of a `AchievementModel`
+    func checkOption(option: AchievementModel) -> () {
+        guard let index = self.achievementList.firstIndex(where: { $0.id == option.id }) else { return }
+        let updatedOption = AchievementModel(optionName: option.optionName, isChecked: !option.isChecked, tag: option.tag)
+        self.achievementList.remove(at: index)
+        self.achievementList.insert(updatedOption, at: index)
     }
-    
-    
 }
 
-class OptionModel: Identifiable {
+/// Mock Model
+class AchievementModel: Identifiable {
+    
     let id = UUID().uuidString
     let optionName: String
     let introduction: String
     let isChecked: Bool
+    let tag: AchiCardRegister.achiCardEnum
     
-    init(optionName: String, introduction: String = "This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content", isChecked: Bool = false ) {
+    init(optionName: String, introduction: String = "This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content", isChecked: Bool = false, tag: AchiCardRegister.achiCardEnum) {
+        
         self.optionName = optionName
         self.introduction = introduction
         self.isChecked = isChecked
+        self.tag = tag
+        
     }
-    
-    
 }
 
+
+// MARK: PREVIEW
 
 struct MainInfoView_AchievementSheet_Previews: PreviewProvider {
     static var previews: some View {

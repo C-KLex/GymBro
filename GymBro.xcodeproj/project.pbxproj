@@ -10,20 +10,26 @@
 		32064E302A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32064E2F2A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift */; };
 		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
 		321AB7832A037A0A00F77440 /* MainInfoView_GoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */; };
-		322D30D82A09597D00102EC7 /* MInfoView_AchiSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322D30D72A09597D00102EC7 /* MInfoView_AchiSheet.swift */; };
 		321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */; };
+		322D30D82A09597D00102EC7 /* MInfoView_AchiSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322D30D72A09597D00102EC7 /* MInfoView_AchiSheet.swift */; };
 		32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */; };
+		32688C172A140132007C5A48 /* AchiCard_RoutineComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C162A140132007C5A48 /* AchiCard_RoutineComplete.swift */; };
+		32688C192A140560007C5A48 /* AchiCard_TrainingVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C182A140560007C5A48 /* AchiCard_TrainingVolume.swift */; };
+		32688C1B2A14056C007C5A48 /* AchiCard_GoalAchieve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C1A2A14056C007C5A48 /* AchiCard_GoalAchieve.swift */; };
+		32688C1D2A140585007C5A48 /* AchiCard_PRHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C1C2A140585007C5A48 /* AchiCard_PRHit.swift */; };
+		32688C1F2A14067A007C5A48 /* AchiCardRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C1E2A14067A007C5A48 /* AchiCardRegister.swift */; };
 		326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */; };
 		3295FD8B2A03765E00422E71 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3295FD8A2A03765E00422E71 /* DismissButtonView.swift */; };
+		329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */; };
+		32BBF9EE2A12E90900B23410 /* MInfoView_AchiCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BBF9ED2A12E90900B23410 /* MInfoView_AchiCard.swift */; };
+		32BBF9F12A12EA4A00B23410 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BBF9EF2A12EA4A00B23410 /* TabController.swift */; };
+		32BBF9F22A12EA4A00B23410 /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BBF9F02A12EA4A00B23410 /* NavigationStackController.swift */; };
 		32C6F6522A0B4324008D7AD1 /* PulseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C6F6512A0B4324008D7AD1 /* PulseProgressBar.swift */; };
 		32C6F6542A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */; };
-		32F3A3602A0BF38100922B9D /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F3A35F2A0BF38100922B9D /* NewRoutineView.swift */; };
-		32F1A5A82A11CBD400671CB9 /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5A62A11CBD400671CB9 /* NavigationStackController.swift */; };
-		32F1A5A92A11CBD400671CB9 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5A72A11CBD400671CB9 /* TabController.swift */; };
 		32F1A5AC2A11CBFA00671CB9 /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AA2A11CBFA00671CB9 /* RoutineDetailView.swift */; };
 		32F1A5AD2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AB2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift */; };
 		32F1A5AF2A11CC6B00671CB9 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AE2A11CC6B00671CB9 /* MainChartView.swift */; };
-		32FA82B12A118FCA009DB25D /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA82B02A118FCA009DB25D /* NewRoutineView.swift */; };
+		32F3A3602A0BF38100922B9D /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F3A35F2A0BF38100922B9D /* NewRoutineView.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */; };
@@ -59,28 +65,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32064E2D2A0C85B9003BACDF /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		32064E2F2A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiSheet_QPopup.swift; sourceTree = "<group>"; };
 		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
 		321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
-		322D30D72A09597D00102EC7 /* MInfoView_AchiSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiSheet.swift; sourceTree = "<group>"; };
-		32064E2D2A0C85B9003BACDF /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
-		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
-		321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
 		321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
+		322D30D72A09597D00102EC7 /* MInfoView_AchiSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiSheet.swift; sourceTree = "<group>"; };
 		32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
+		32688C162A140132007C5A48 /* AchiCard_RoutineComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCard_RoutineComplete.swift; sourceTree = "<group>"; };
+		32688C182A140560007C5A48 /* AchiCard_TrainingVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCard_TrainingVolume.swift; sourceTree = "<group>"; };
+		32688C1A2A14056C007C5A48 /* AchiCard_GoalAchieve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCard_GoalAchieve.swift; sourceTree = "<group>"; };
+		32688C1C2A140585007C5A48 /* AchiCard_PRHit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCard_PRHit.swift; sourceTree = "<group>"; };
+		32688C1E2A14067A007C5A48 /* AchiCardRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCardRegister.swift; sourceTree = "<group>"; };
 		326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDetailView_SetRow.swift; sourceTree = "<group>"; };
-		327C44CE2A003B360026759E /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
-		327C44D02A003BF30026759E /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
-		327C44D12A003BF30026759E /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
 		3295FD8A2A03765E00422E71 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
+		329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCardProperty.swift; sourceTree = "<group>"; };
+		32BBF9ED2A12E90900B23410 /* MInfoView_AchiCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiCard.swift; sourceTree = "<group>"; };
+		32BBF9EF2A12EA4A00B23410 /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		32BBF9F02A12EA4A00B23410 /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
 		32C6F6512A0B4324008D7AD1 /* PulseProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseProgressBar.swift; sourceTree = "<group>"; };
 		32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalListRow.swift; sourceTree = "<group>"; };
-		32F3A35F2A0BF38100922B9D /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
-		32F1A5A62A11CBD400671CB9 /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
-		32F1A5A72A11CBD400671CB9 /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		32F1A5AA2A11CBFA00671CB9 /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		32F1A5AB2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDetailView_ESummaryRow.swift; sourceTree = "<group>"; };
 		32F1A5AE2A11CC6B00671CB9 /* MainChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
+		32F3A35F2A0BF38100922B9D /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		32FA82B02A118FCA009DB25D /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
@@ -130,19 +138,31 @@
 		321DDBD52A0210220067A96E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				327C44D02A003BF30026759E /* TabController.swift */,
-				327C44D12A003BF30026759E /* NavigationStackController.swift */,
-				327C44CE2A003B360026759E /* RoutineDetailView.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		32688C152A1400B7007C5A48 /* AchievementCard */ = {
+			isa = PBXGroup;
+			children = (
+				32688C1E2A14067A007C5A48 /* AchiCardRegister.swift */,
+				329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */,
+				32688C162A140132007C5A48 /* AchiCard_RoutineComplete.swift */,
+				32688C1A2A14056C007C5A48 /* AchiCard_GoalAchieve.swift */,
+				32688C182A140560007C5A48 /* AchiCard_TrainingVolume.swift */,
+				32688C1C2A140585007C5A48 /* AchiCard_PRHit.swift */,
+			);
+			path = AchievementCard;
 			sourceTree = "<group>";
 		};
 		8C1D7DD529E0C537009C18B3 /* InfoViews */ = {
 			isa = PBXGroup;
 			children = (
-				8C640B1829E360F90021EFBB /* MainInfoView.swift */,
+				32688C152A1400B7007C5A48 /* AchievementCard */,
+				32BBF9ED2A12E90900B23410 /* MInfoView_AchiCard.swift */,
 				322D30D72A09597D00102EC7 /* MInfoView_AchiSheet.swift */,
 				32064E2F2A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift */,
+				8C640B1829E360F90021EFBB /* MainInfoView.swift */,
 				32C6F6512A0B4324008D7AD1 /* PulseProgressBar.swift */,
 				32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */,
 				321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */,
@@ -176,8 +196,8 @@
 		8C8F367929DBA06D00ED087B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				32F1A5A62A11CBD400671CB9 /* NavigationStackController.swift */,
-				32F1A5A72A11CBD400671CB9 /* TabController.swift */,
+				32BBF9F02A12EA4A00B23410 /* NavigationStackController.swift */,
+				32BBF9EF2A12EA4A00B23410 /* TabController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -416,8 +436,8 @@
 			files = (
 				32F1A5AF2A11CC6B00671CB9 /* MainChartView.swift in Sources */,
 				326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */,
-				32F1A5A92A11CBD400671CB9 /* TabController.swift in Sources */,
-				32F1A5A82A11CBD400671CB9 /* NavigationStackController.swift in Sources */,
+				329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */,
+				32688C172A140132007C5A48 /* AchiCard_RoutineComplete.swift in Sources */,
 				320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */,
 				32C6F6522A0B4324008D7AD1 /* PulseProgressBar.swift in Sources */,
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
@@ -425,27 +445,28 @@
 				3295FD8B2A03765E00422E71 /* DismissButtonView.swift in Sources */,
 				32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */,
 				322D30D82A09597D00102EC7 /* MInfoView_AchiSheet.swift in Sources */,
-				8C26358529FB7E72009355FE /* RDetailView_ESummaryRow.swift in Sources */,
-				8C26358329FB7B83009355FE /* RDetailView_SetRow.swift in Sources */,
 				8CEB5B1629E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift in Sources */,
+				32688C1F2A14067A007C5A48 /* AchiCardRegister.swift in Sources */,
 				8CCF96F429F0A90700F86A28 /* IntroHistoryView_ListRow.swift in Sources */,
 				321AB7832A037A0A00F77440 /* MainInfoView_GoalSheet.swift in Sources */,
+				32BBF9F22A12EA4A00B23410 /* NavigationStackController.swift in Sources */,
+				32BBF9EE2A12E90900B23410 /* MInfoView_AchiCard.swift in Sources */,
+				32688C1B2A14056C007C5A48 /* AchiCard_GoalAchieve.swift in Sources */,
+				32BBF9F12A12EA4A00B23410 /* TabController.swift in Sources */,
 				8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */,
 				8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */,
 				8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */,
 				32F1A5AC2A11CBFA00671CB9 /* RoutineDetailView.swift in Sources */,
 				321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */,
 				8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */,
-				327C44D32A003BF30026759E /* NavigationStackController.swift in Sources */,
-				327C44CF2A003B360026759E /* RoutineDetailView.swift in Sources */,
+				32688C1D2A140585007C5A48 /* AchiCard_PRHit.swift in Sources */,
 				32F3A3602A0BF38100922B9D /* NewRoutineView.swift in Sources */,
-				8C640B1729E3607B0021EFBB /* IntroHistoryView.swift in Sources */,
-				32FA82B12A118FCA009DB25D /* NewRoutineView.swift in Sources */,
 				8CE71E9F29A721D2006EEFE7 /* GymBroApp.swift in Sources */,
 				32C6F6542A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift in Sources */,
 				485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */,
 				32064E302A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift in Sources */,
 				485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */,
+				32688C192A140560007C5A48 /* AchiCard_TrainingVolume.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

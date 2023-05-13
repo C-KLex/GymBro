@@ -7,75 +7,96 @@
 
 import SwiftUI
 
+/// In the `MInfoView_AchiSheet`, user can click the `quesitonMark` of each `Achievment` to learn the definition of the `Achievement`
 struct MInfoView_AchiSheet_QPopup: View {
     
+    
+    // MARK: PROPERTY
+    
     @Binding var isPresented: Bool
-    @Binding var option: OptionModel?
+    
+    /// The information for a specific `AchievementModel`
+    @Binding var achievement: AchievementModel?
+    
+    
+    // MARK: BODY
     
     var body: some View {
-        
-        
         if isPresented {
-            
             VStack {
                 
-                if let o = self.option {
-                    
+                // unwrap the optional var
+                if let o = self.achievement {
                     VStack(spacing: 0) {
-                        VStack {
-                            Text(o.optionName)
-                                .font(.title2)
-                                .fontWeight(.medium)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                
-                        }
-                        
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(height: 3)
-                            .cornerRadius(10)
-                            .padding(.horizontal, 10)
-                        
-                        VStack(alignment: .leading) {
-                            Text(o.introduction)
-                        }
-                        .padding()
-                        .frame(maxWidth: .infinity)
+                        self.achievementTitle(achi: o)
+                        self.sectionLine()
+                        self.achievementIntroductionView(achi: o)
+                        Spacer()
+                        self.sectionLine()
                     }
                 }
                 
-                Spacer()
-                
-                HStack {
-                    Text("OK")
-                        .font(.title2).foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(25)
-                        .padding()
-                }
-                .onTapGesture {
-                    self.isPresented = false
-                }
-                    
-                    
-                
+                self.okButton()
             }
             .frame(width: 350, height: 450)
             .background(Color("lightGray"))
             .cornerRadius(20)
             .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 5)
-            
-            
         }
-        
-        
-        
-        
     }
 }
+
+
+// MARK: COMPONENT
+
+extension MInfoView_AchiSheet_QPopup {
+    
+    func okButton() -> some View {
+        HStack {
+            Text("OK")
+                .font(.title2).foregroundColor(.white)
+                .frame(width: 300, height: 50)
+                .background(Color.blue)
+                .cornerRadius(25)
+                .padding(.vertical)
+        }
+        .onTapGesture {
+            self.isPresented = false
+        }
+    }
+    
+    func sectionLine() -> some View {
+        
+        Rectangle()
+            .fill(Color.gray.opacity(0.2))
+            .frame(height: 1)
+            .cornerRadius(10)
+    }
+        
+    func achievementTitle(achi: AchievementModel) -> some View {
+        VStack {
+            Text(achi.optionName)
+                .font(.headline)
+                .fontWeight(.medium)
+                .padding()
+                .frame(maxWidth: .infinity)
+        }
+    }
+    
+    func achievementIntroductionView(achi: AchievementModel) -> some View {
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text(achi.introduction)
+                    .font(.body)
+            }
+            .padding()
+            
+            .frame(maxWidth: .infinity)
+        }
+    }
+}
+
+// MARK: PREVIEW
 
 struct MInfoView_AchiSheet_QPopup_Previews: PreviewProvider {
     static var previews: some View {

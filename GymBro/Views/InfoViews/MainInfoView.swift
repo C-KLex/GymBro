@@ -31,40 +31,25 @@ struct MainInfoView: View {
     @State var heightInch: Int = 0
     @State var userName: String = ""
         
-    
-    
-    
     // Goal Section Variable //
-    
     // sheet control
     @State var goalSheetActive: Bool = false
-    
     
     @State var sheetExerciseName: String = ""
     @State var sheetProgress: Int = -1
 
     // Animation Control
-    
     /// The effect itself
     @State var pulseEffect: Bool = false
 
     /// Control the animation between on and off 
     @State var pulseAnimationIsActive = false
-
-
-    
-    
     
     // Achievement Section Variable //
     @State var achieveSheetActive: Bool = false
-    @ObservedObject var achievementOptVM = AchievementOptionsViewModel.instance
+    @ObservedObject var achievementOptVM = AchievementSheetViewModel.instance
     
     
-
-    
-    
-    
-        
     // MARK: BODY
     
     var body: some View {
@@ -206,9 +191,15 @@ class GoalModel: Identifiable {
 extension MainInfoView {
     
     
-    // MARK: ACHIEVEMENT
+    /// Achievement Section View
+    ///
+    /// In the section, it will show several training highlights provided by us.
+    /// The user can picked which to show.
+    ///
+    /// - Warning: Due to the lack to domain knowledge, only four achievemnt options are available now.
     func achievementSection() -> some View {
         VStack {
+            
             // achievement title
             HStack {
                 Text("Achievement")
@@ -230,16 +221,17 @@ extension MainInfoView {
             // achievement item
             VStack {
                 ScrollView {
-                    ForEach(achievementOptVM.optionList, id: \.id) { achievementOption in
-                        achievementOption.isChecked ? Text(achievementOption.optionName) : nil
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                        ForEach(achievementOptVM.achievementList, id: \.id) { achievementOption in
+                            MInfoView_AchiCard(achievement: achievementOption)
+                        }
                     }
+                    .padding(6)
                 }
             }
+            .padding(.horizontal, 40)
         }
-        
-        
     }
-    
     
     /// Goal Section View 
     /// 
