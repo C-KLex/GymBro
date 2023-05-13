@@ -7,12 +7,29 @@
 
 import SwiftUI
 
+/// Progress Bar with Pulsing effect
+///
+/// Need to input the progress rate and two binding variable for animation's usage
 struct PulseProgressBar: View {
     
+    
+    // MARK: PROPERTY
+    
+    /// The progress rate
     @State var progress: Double
+    
+    /// The effect itself, turn on and turn off to create animation
     @Binding var pulseEffect: Bool
+    
+    /// To control the overall animation, this is for reset the animation to prevent multiple `pulseEffect` on one object
     @Binding var pulseAnimationIsActive: Bool
+    
+    /// The animation alias
     let pulseAnimation = Animation.easeIn(duration: 1).repeatForever(autoreverses: false)
+    
+    
+    // MARK: BODY
+    
     var body: some View {
         HStack {
             GeometryReader { geometry in
@@ -30,9 +47,12 @@ struct PulseProgressBar: View {
                         .cornerRadius(20)
                 }
                 .onAppear {
+                    // Start animation when the appear
                     self.pulseAnimationIsActive = true
                 }
                 .onChange(of: pulseAnimationIsActive) { isActive in
+                    
+                    // This block is in charge for any reason which needs to reset the animation, such as add more progress bar
                     if !isActive {
                         withAnimation(.linear(duration: 0)) {
                             self.pulseEffect = false
@@ -47,6 +67,9 @@ struct PulseProgressBar: View {
         }
     }
 }
+
+
+// MARK: PREVIEW
 
 struct PulseProgressBar_Previews: PreviewProvider {
     static var previews: some View {
