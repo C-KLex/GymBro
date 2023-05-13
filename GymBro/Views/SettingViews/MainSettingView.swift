@@ -14,7 +14,7 @@ struct MainSettingView: View {
     
     
     /// The variable that control light mode or daek mode
-    @State var isLightMode: Bool = true
+    @State var isDarkMode: Bool = false
     
     /// The variable that control the weight unit
     @State var isLB: Bool = true
@@ -31,6 +31,8 @@ struct MainSettingView: View {
     /// A variable taht will set timer on after each set is finish, need future improvement
     @State var timerIsOn: Bool = false
     
+    /// A url link to app stroe of GrmBro
+    @State var urlToAppStore =  "itms-apps://itunes.apple.com/developer/id463855590"
     
     // MARK: BODY
     
@@ -40,18 +42,6 @@ struct MainSettingView: View {
                 
                 /// First section is some pickerthat user can choose
                 Section() {
-                    HStack {
-                        Text("Theme")
-                        Spacer()
-                        Picker("theme", selection: $isLightMode) {
-                            Text("Light")
-                                .tag(true)
-                            Text("Dark")
-                                .tag(false)
-                        }
-                        .frame(width: 150)
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
                     HStack {
                         Text("Weight Unit")
                         Spacer()
@@ -80,6 +70,7 @@ struct MainSettingView: View {
                 
                 /// Second section is osme switch
                 Section() {
+                    Toggle("Dark Mode", isOn: $isDarkMode)
                     Toggle("Apple Watch", isOn: $appleWatchIsOn)
                     Toggle("Apple Health", isOn: $appleHealthIsOn)
                     Toggle("Timer", isOn: $timerIsOn)
@@ -103,6 +94,7 @@ struct MainSettingView: View {
                         .overlay(NavigationLink(destination: SettingView_RateTheAppView(), label: {
                                             EmptyView()
                                         }))
+                    
                     Text("Export Data")
                         .overlay(NavigationLink(destination: SettingView_ExportDataView(), label: {
                                             EmptyView()
