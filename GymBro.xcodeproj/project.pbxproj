@@ -11,13 +11,19 @@
 		321DDBD72A0210790067A96E /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DDBD62A0210790067A96E /* RoutineDetailView.swift */; };
 		321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */; };
 		326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */; };
+		32064E2E2A0C85B9003BACDF /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32064E2D2A0C85B9003BACDF /* NewRoutineView.swift */; };
+		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
+		32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */; };
+		327C44CF2A003B360026759E /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C44CE2A003B360026759E /* RoutineDetailView.swift */; };
+		327C44D22A003BF30026759E /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C44D02A003BF30026759E /* TabController.swift */; };
+		327C44D32A003BF30026759E /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C44D12A003BF30026759E /* NavigationStackController.swift */; };
+		3295FD8B2A03765E00422E71 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3295FD8A2A03765E00422E71 /* DismissButtonView.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
 		8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */; };
 		8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */; };
 		8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C640B1829E360F90021EFBB /* MainInfoView.swift */; };
 		8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F367E29DBA0DF00ED087B /* MainView.swift */; };
-		8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */; };
 		8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */; };
 		8C8F369029DBA24300ED087B /* RoutineExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */; };
 		8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB90F0129F0E8F8007A58EE /* TabController.swift */; };
@@ -54,13 +60,19 @@
 		321DDBD62A0210790067A96E /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
 		326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDetailView_SetRow.swift; sourceTree = "<group>"; };
+		32064E2D2A0C85B9003BACDF /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
+		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
+		32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
+		327C44CE2A003B360026759E /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
+		327C44D02A003BF30026759E /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		327C44D12A003BF30026759E /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
+		3295FD8A2A03765E00422E71 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
 		485935BA29E6254F009ECB2E /* AddExerciseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseButton.swift; sourceTree = "<group>"; };
 		485935BE29E706CC009ECB2E /* AddNewExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExercise.swift; sourceTree = "<group>"; };
 		8C1D7DCE29E0C4FC009C18B3 /* MainChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainChartView.swift; path = GymBro/Views/ChartViews/MainChartView.swift; sourceTree = SOURCE_ROOT; };
 		8C1D7DD029E0C50E009C18B3 /* MainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainSettingView.swift; path = GymBro/Views/SettingViews/MainSettingView.swift; sourceTree = SOURCE_ROOT; };
 		8C640B1829E360F90021EFBB /* MainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoView.swift; sourceTree = "<group>"; };
 		8C8F367E29DBA0DF00ED087B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVIew.swift; sourceTree = "<group>"; };
 		8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineExerciseView.swift; sourceTree = "<group>"; };
 		8CB90F0129F0E8F8007A58EE /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabController.swift; path = GymBro/ViewModels/TabController.swift; sourceTree = SOURCE_ROOT; };
@@ -114,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				8C640B1829E360F90021EFBB /* MainInfoView.swift */,
+				32561DAE2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift */,
+				3295FD8A2A03765E00422E71 /* DismissButtonView.swift */,
 			);
 			path = InfoViews;
 			sourceTree = "<group>";
@@ -162,8 +176,8 @@
 		8C8F368229DBA16E00ED087B /* RoutineViews */ = {
 			isa = PBXGroup;
 			children = (
-				8C8F368729DBA1FA00ED087B /* NewRoutineView.swift */,
 				8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */,
+				32064E2D2A0C85B9003BACDF /* NewRoutineView.swift */,
 				8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */,
 				485935BA29E6254F009ECB2E /* AddExerciseButton.swift */,
 				485935BE29E706CC009ECB2E /* AddNewExercise.swift */,
@@ -379,10 +393,16 @@
 			files = (
 				326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */,
 				320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */,
-				8CB90F0229F0E8F8007A58EE /* TabController.swift in Sources */,
 				8C8F368A29DBA20E00ED087B /* RoutineSelectionVIew.swift in Sources */,
 				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
 				8C8F368829DBA1FA00ED087B /* NewRoutineView.swift in Sources */,
+				327C44D22A003BF30026759E /* TabController.swift in Sources */,
+				32064E2E2A0C85B9003BACDF /* NewRoutineView.swift in Sources */,
+				8C1D7DCF29E0C4FC009C18B3 /* MainChartView.swift in Sources */,
+				3295FD8B2A03765E00422E71 /* DismissButtonView.swift in Sources */,
+				32561DAF2A01E2C0008B6196 /* MainInfoView_PersonaSheet.swift in Sources */,
+				8C26358529FB7E72009355FE /* RDetailView_ESummaryRow.swift in Sources */,
+				8C26358329FB7B83009355FE /* RDetailView_SetRow.swift in Sources */,
 				8CEB5B1629E72A8F00738F67 /* RoutineSelectionView_AddRoutineSheet.swift in Sources */,
 				321DDBD72A0210790067A96E /* RoutineDetailView.swift in Sources */,
 				8CCF96F429F0A90700F86A28 /* IntroHistoryView_ListRow.swift in Sources */,
