@@ -7,50 +7,47 @@
 
 import SwiftUI
 
-/// Add Goal sheet 
-/// 
-/// User can pick a specific exercise and a desired goal. Then add it as a new goal.
+/// Goal Edit Sheet
+///
+/// Access the goalModel data in two state, `update` and `add`.
+/// In different state, the sheet will have different layout, most of both's layout are similart, so I don't seperate two states into two sheet for avoiding code duplication.
 struct MainInfoView_GoalSheet: View {
 
 
     // MARK: PROPERTY
     
-  
-    @Binding var pulseAnimationIsActive: Bool 
-
     @Environment(\.presentationMode) private var presentationMode
-    @ObservedObject private var goalVM = GoalViewModel.instance
-
-
-    @Binding var newGoalExercise: String
-
-    
-    @Binding var newProgress: Int 
-
-     
-    private let newProgressArray = Array(stride(from: 5, to: 100, by: 5))
-    
-    @State var isUpdateGoal: Bool
-    
-    @State var showGoalExistAlert: Bool = false
+    @ObservedObject var goalVM = GoalViewModel.instance
     
     @State var goal: GoalModel?
+    @State var isUpdateGoal: Bool
+    @State var showGoalExistAlert: Bool = false
+    
+    @Binding var pulseAnimationIsActive: Bool
+    @Binding var newGoalExercise: String
+    @Binding var newProgress: Int
+
+    /// Data for Progress Picker
+    private let newProgressArray = Array(stride(from: 5, to: 100, by: 5))
+    
+    
+    
 
     // MARK: BODY 
 
     var body: some View {
         VStack {
             DismissButtonView()
+            
             Spacer()
-            self.exercisePickerSection(isUpdateGoal: self.isUpdateGoal)
+            
+            self.exercisePickerDecide(isUpdateGoal: self.isUpdateGoal)
             self.progressWheel()
             
             Spacer()
             
-            self.finalButton(isUpdateGoal: self.isUpdateGoal)
-            
-           
-
+            self.finalButtonDecide(isUpdateGoal: self.isUpdateGoal)
+        
             Spacer()
         }
     }
@@ -61,8 +58,19 @@ struct MainInfoView_GoalSheet: View {
 
 extension MainInfoView_GoalSheet {
     
+    func goalExistAlert(exerciseName: String) -> Alert {
+        Alert(
+            title: Text("Error!!!").foregroundColor(.red),
+            message: Text("\(exerciseName) has been added already!"),
+            dismissButton: .default(Text("OK"))
+        )
+    }
+
     @ViewBuilder
-    func exercisePickerSection(isUpdateGoal: Bool) -> some View {
+    /// Logic for choosing which picker to present between `update` and `add` state
+    /// - Parameter isUpdateGoal: to see it's now `update` or `add`
+    /// - Returns: In `update`, user can't change the exercise for the existing goal. In `add`, user can deside which exercise to add as a new goal
+    func exercisePickerDecide(isUpdateGoal: Bool) -> some View {
         if isUpdateGoal {
             HStack {
                 Text("Exercise: ")
@@ -74,12 +82,13 @@ extension MainInfoView_GoalSheet {
         } else {
             self.exerciseWheel()
         }
-        
-        
     }
     
     @ViewBuilder
-    func finalButton(isUpdateGoal: Bool) -> some View{
+    /// Logic for choosing which button to present between `update` and `add` state
+    /// - Parameter isUpdateGoal: it's now `update` or `add`
+    /// - Returns: `updateGoalButton` or `addGoalButton`
+    func finalButtonDecide(isUpdateGoal: Bool) -> some View{
         if isUpdateGoal {
             self.updateGoalButton()
         } else {
@@ -87,7 +96,47 @@ extension MainInfoView_GoalSheet {
         }
     }
     
+    /// Perform the add goal function
+    ///
+    ///
+    func addGoalButton() -> some View {
+        VStack {
+            Text("Add Goal")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+        }
+        .padding()
+        .background(Color.black)
+        .cornerRadius(20)
+        .onTapGesture {
+            
+            // set default value and check goal's existence before adding goal
+            self.checkEmptyExerciseWheel()
+            self.checkEmptyProgressWheel()
+            guard !goalVM.isGoalExist(exerciseName: self.newGoalExercise) else {
+                self.showGoalExistAlert = true
+                return
+            }
+            
+            // if all set, then add goal
+            self.addGoal()
+        }
+        .alert(isPresented: self.$showGoalExistAlert) {
+            self.goalExistAlert(exerciseName: self.newGoalExercise)
+        }
+    }
     
+    /// addGoal precedure
+    ///
+    /// add goal to the data base, then reset the progress bar animation due to the creation of new progress bar from new goal
+    func addGoal() {
+        goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
+        self.resetAnimation()
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    /// Update the exercise goal progress for the existing goal
     func updateGoalButton() -> some View {
         VStack {
             Text("Update Goal")
@@ -108,6 +157,7 @@ extension MainInfoView_GoalSheet {
         }
     }
     
+    /// exercise picker in the sheet
     func exerciseWheel() -> some View {
         HStack {
             Text("Pick A Exercise")
@@ -124,6 +174,7 @@ extension MainInfoView_GoalSheet {
         .padding(.horizontal)
     }
     
+    /// progress picker in the sheet
     func progressWheel() -> some View {
         HStack(alignment: .center) {
             Text("New Progress")
@@ -138,45 +189,6 @@ extension MainInfoView_GoalSheet {
             .pickerStyle(.wheel)
         }
         .padding(.horizontal)
-    }
-    
-    func addGoalButton() -> some View {
-        VStack {
-            Text("Add Goal")
-                .font(.title2)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-        }
-        .padding()
-        .background(Color.black)
-        .cornerRadius(20)
-        .onTapGesture {
-            self.checkEmptyExerciseWheel()
-            self.checkEmptyProgressWheel()
-            self.addGoal()
-        }
-        .alert(isPresented: self.$showGoalExistAlert) {
-            self.goalExistAlert(exerciseName: self.newGoalExercise)
-        }
-    }
-    
-    
-    func addGoal() {
-        guard !goalVM.isGoalExist(exerciseName: self.newGoalExercise) else {
-            self.showGoalExistAlert = true
-            return
-        }
-        goalVM.addGoal(exerciseName: newGoalExercise, progressWeight: newProgress)
-        self.resetAnimation()
-        self.presentationMode.wrappedValue.dismiss()
-    }
-    
-    func goalExistAlert(exerciseName: String) -> Alert {
-        Alert(
-            title: Text("Error!!!").foregroundColor(.red),
-            message: Text("\(exerciseName) has been added already!"),
-            dismissButton: .default(Text("OK"))
-        )
     }
     
     /// Reset all the progressBar animation in `MainInfoView`

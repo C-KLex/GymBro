@@ -22,7 +22,7 @@ struct MainInfoView: View {
     // ViewModel //
     @ObservedObject var goalVM = GoalViewModel.instance
 
-    // Persona Section Variable
+    // Persona Section Variable //
     @State var personaSheetActive: Bool = false
     @State var gender: String = "NA"
     @State var age: Int = 0
@@ -42,9 +42,10 @@ struct MainInfoView: View {
     
     @State var sheetExerciseName: String = ""
     @State var sheetProgress: Int = -1
+
+    // Animation Control
+    
     /// The effect itself
-    /// 
-    /// For withAnimation, animating between true and false  
     @State var pulseEffect: Bool = false
 
     /// Control the animation between on and off 
@@ -98,6 +99,37 @@ class GoalViewModel: ObservableObject {
         getData()
     }
     
+    /// Count the progress percent for the progress bar
+    /// - Parameter goalModel: give a goalModel with start weight and the achieved weight right now
+    /// - Returns: A double for the progress rate between 0 to 1
+    func getGoalProgress(goalModel: GoalModel) -> Double {
+        let divident = Double(goalModel.achieveWeight - goalModel.startWeight)
+        let divisor = Double(goalModel.goalWeight - goalModel.startWeight)
+        let progressRate = divident / divisor
+        return progressRate
+    }
+    
+    /// Check if the goal exists before adding a new goal
+    /// - Parameter exerciseName: the exercise desired to add as a new goal
+    /// - Returns: Bool
+    func isGoalExist(exerciseName: String) -> Bool {
+        return self.goalList.contains(where: { $0.exerciseName == exerciseName })
+    }
+    
+    /// Calculate the progress for update goal, it's similar to `getGoalProgress`, but it's not the same scenario
+    func calculateProgress(goal: GoalModel) -> Int {
+        let progress = goal.goalWeight - goal.startWeight
+        return progress
+    }
+    
+    /// Calculate the goal weight
+    /// - Parameter startWeight: the base line of the exercise weight
+    /// - Parameter progressWeight: the weight one would like to improve
+    /// - Returns: the goal weight
+    func calculateGoalWeight(startWeight: Int, progressWeight: Int) -> Int {
+        return startWeight + progressWeight
+    }
+    
     /// Mock Data
     func getData() -> () {
         let e1 = ExerciseTopWeightModel(exerciseName: "Bar bell bench", topWeight: 120)
@@ -106,47 +138,13 @@ class GoalViewModel: ObservableObject {
         self.exercisePool.append(e1)
         self.exercisePool.append(e2)
         self.exercisePool.append(e3)
-        
         let g1 = GoalModel(exerciseName: self.exercisePool[0].exerciseName, startWeight: self.exercisePool[0].topWeight, achieveWeight: 130, goalWeigth: 140)
-        
         self.goalList.append(g1)
-        
         let g2 = GoalModel(exerciseName: self.exercisePool[1].exerciseName, startWeight: self.exercisePool[1].topWeight, achieveWeight: 305, goalWeigth: 350)
         self.goalList.append(g2)
     }
     
-    /// Count the progress percent for the progress bar
-    func getGoalProgress(goalModel: GoalModel) -> Double {
-        let divident = Double(goalModel.achieveWeight - goalModel.startWeight)
-        let divisor = Double(goalModel.goalWeight - goalModel.startWeight)
-        let progressRate = divident / divisor
-        return progressRate
-    }
-    
-    func isGoalExist(exerciseName: String) -> Bool {
-        return self.goalList.contains(where: { $0.exerciseName == exerciseName })
-    }
-    
-    /// Add a new goal with the new progress for the specific exercise
-    func addGoal(exerciseName: String, progressWeight: Int) -> () {
-        let startWeight = self.exercisePool.first(where: { $0.exerciseName == exerciseName })?.topWeight ?? -1
-        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: self.calculateGoalWeight(startWeight: startWeight, progressWeight: progressWeight))
-        self.goalList.append(g)
-    }
-    
-    func deleteGoal(goal: GoalModel) {
-        self.goalList.removeAll(where: { $0.id == goal.id } )
-    }
-    
-    func calculateProgress(goal: GoalModel) -> Int {
-        let progress = goal.goalWeight - goal.startWeight
-        return progress
-    }
-    
-    func calculateGoalWeight(startWeight: Int, progressWeight: Int) -> Int {
-        return startWeight + progressWeight
-    }
-    
+    /// update a specific goal to the goalList
     func updateGoal(goal: GoalModel, newProgress: Int) -> () {
         guard let index = self.goalList.firstIndex(where: { $0.id == goal.id }) else { return }
         let updatedGoal = GoalModel(
@@ -157,8 +155,18 @@ class GoalViewModel: ObservableObject {
         )
         self.goalList.remove(at: index)
         self.goalList.insert(updatedGoal, at: index)
-        
-        
+    }
+    
+    /// Add a new GoalModel to the goalList
+    func addGoal(exerciseName: String, progressWeight: Int) -> () {
+        let startWeight = self.exercisePool.first(where: { $0.exerciseName == exerciseName })?.topWeight ?? -1
+        let g = GoalModel(exerciseName: exerciseName, startWeight: startWeight, achieveWeight: startWeight, goalWeigth: self.calculateGoalWeight(startWeight: startWeight, progressWeight: progressWeight))
+        self.goalList.append(g)
+    }
+    
+    /// delete a goal from the goalList
+    func deleteGoal(goal: GoalModel) -> () {
+        self.goalList.removeAll(where: { $0.id == goal.id } )
     }
 }
 
@@ -237,6 +245,7 @@ extension MainInfoView {
     /// 
     /// The goal section title with a list of progress bar.
     /// Hopefully, it can add animation on the progress bar.
+    /// Goal Section Views
     func goalSection() -> some View {
         VStack {
             
@@ -254,11 +263,10 @@ extension MainInfoView {
                     }
                     .sheet(isPresented: self.$goalSheetActive) {
                         MainInfoView_GoalSheet(
+                            isUpdateGoal: false,
                             pulseAnimationIsActive: self.$pulseAnimationIsActive,
                             newGoalExercise: self.$sheetExerciseName,
-                            newProgress: self.$sheetProgress,
-                            isUpdateGoal: false,
-                            goal: nil
+                            newProgress: self.$sheetProgress
                         )
                     }
             }
@@ -273,7 +281,8 @@ extension MainInfoView {
                             pulseEffect: self.$pulseEffect,
                             pulseAnimationIsActive: self.$pulseAnimationIsActive,
                             sheetExerciseName: self.$sheetExerciseName,
-                            sheetProgress: self.$sheetProgress)
+                            sheetProgress: self.$sheetProgress
+                        )
                     }
                 }
                 .padding(.horizontal, 40)
@@ -283,19 +292,20 @@ extension MainInfoView {
     }
     
     /// Persona Section View
-    ///
-    /// Extract the view code from BDOY to make it tidy.
-    ///
-    /// - Returns: the whole Persona Section
     func personaSection() -> some View {
         VStack(alignment: .center, spacing: 5) {
             
             // Section headline
             HStack {
+                Image(systemName: "figure.run")
+                    .font(.title)
+                
                 Text(self.userName != "" ? self.userName : "Persona")
                     .font(.title)
                     .fontWeight(.bold)
+                
                 Spacer()
+                
                 Image(systemName: "ellipsis")
                     .onTapGesture {
                         personaSheetActive.toggle()
