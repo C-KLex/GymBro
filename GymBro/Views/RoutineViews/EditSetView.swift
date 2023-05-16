@@ -29,70 +29,46 @@ struct EditSetView: View {
     // MARK: BODY
     
     var body: some View {
-
-        ZStack {
-            /// First Layer
-            /// Closed picker view (only the exercise shown)
-            if !showPicker {
+            
+        /// Two column pickers view (if click on an exercise in the list)
+        VStack (alignment: .leading, spacing: 4) {
+            Button {
+                showPicker.toggle()
+            } label: {
                 HStack {
                     Text(exercise)
                         .foregroundColor(.black)
                     Spacer()
-                    Image(systemName: "chevron.right")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 10, height: 10)
-                }   // End of HStack
-                .onTapGesture {
-                    withAnimation(Animation.spring().speed(2)) {
-                        showPicker.toggle()
-                    }
+                    showPicker ? Image(systemName: "chevron.down") : Image(systemName: "chevron.right")
                 }
             }
             
-            /// Second Layer (only show if click on the title of exercise)
-            /// Two column pickers view (if click on an exercise in the list)
             if showPicker {
-                VStack (alignment: .leading, spacing: 4) {
-                    Button {
-                        showPicker.toggle()
-                    } label: {
-                        HStack {
-                            Text(exercise)
-                                .foregroundColor(.black)
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 10, height: 10)
-                        }
-                    }
-                    
-                    HStack {
-                        /// Wheel picker for weight, range from 10 to 200 lb
-                        /// Initial weight: 120 lb
-                        Picker("Select Weight", selection: $selectedWeight) {
-                            ForEach(10...200, id: \.self) { weight in
+                HStack {
+                    /// Wheel picker for weight, range from 10 to 200 lb
+                    /// Initial weight: 120 lb
+                    Picker("Select Weight", selection: $selectedWeight) {
+                        ForEach(10...200, id: \.self) { weight in
+                            if weight % 5 == 0 {
                                 Text("\(weight) lb").tag("\(weight)")
                             }
                         }
-                        .pickerStyle(.wheel)
-                        
-                        /// Wheel picker for rep, range from 1 to 15
-                        /// Initial rep: 5
-                        Picker("Select Rep", selection: $selectedRep) {
-                            ForEach(1...15, id: \.self) { rep in
-                                Text("\(rep)").tag("\(rep)")
-                            }
-                        }
-                        .pickerStyle(.wheel)
-                    }   // End of HStack
-                    .padding(.vertical, 2)
-                    .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+                    }
+                    .pickerStyle(.wheel)
                     
-                }   // End of VStack
-            }   // End of if
-        }   // End of ZStack
+                    /// Wheel picker for rep, range from 1 to 15
+                    /// Initial rep: 5
+                    Picker("Select Rep", selection: $selectedRep) {
+                        ForEach(1...15, id: \.self) { rep in
+                            Text("\(rep)").tag("\(rep)")
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                }   // End of HStack
+                .padding(.vertical, 2)
+                .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+            }
+        }   // End of VStack
     }
 }
 
@@ -101,9 +77,12 @@ struct EditSetView: View {
 
 struct EditSetView_Previews: PreviewProvider {
     
-    static var exercise = "Bar Bell Up"
+    //static var exercise = "Bar Bell Up"
     
     static var previews: some View {
-        EditSetView(exercise: exercise)
+        //EditSetView(exercise: exercise)
+        NavigationView {
+            RoutineExerciseView()
+        }
     }
 }
