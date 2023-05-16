@@ -90,10 +90,10 @@ struct MainSettingView: View {
                         .overlay(NavigationLink(destination: SettingView_ReportIssueSheet(), label: {
                                             EmptyView()
                                         }))
-                    Text("Rate this App")
-                        .overlay(NavigationLink(destination: SettingView_RateTheAppView(), label: {
-                                            EmptyView()
-                                        }))
+                    
+                    Link("Rate this App",
+                         destination: .init(string: "https://itunes.apple.com")!)
+                        .foregroundColor(.black)
                     
                     Text("Export Data")
                         .overlay(NavigationLink(destination: SettingView_ExportDataView(), label: {
