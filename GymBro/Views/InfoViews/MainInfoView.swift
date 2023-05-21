@@ -30,6 +30,8 @@ struct MainInfoView: View {
     @State var heightFoot: Int = 0
     @State var heightInch: Int = 0
     @State var userName: String = ""
+    @State var userAvatarAnimation: Bool = false
+    @State var shadowAnimation: Bool = false
         
     // Goal Section Variable //
     // sheet control
@@ -312,45 +314,69 @@ extension MainInfoView {
             .padding(.horizontal, 20)
             
             // The user data grid
-            VStack {
-                HStack {
+            HStack(spacing: 5) {
+                
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)], spacing: 2) {
                     VStack(alignment: .center, spacing: 10) {
                         Text(gender)
                     }
                     .padding()
-                    .frame(width: 75, height: 75)
-                    .background(Color.gray.opacity(0.3))
+                    .frame(width: 75, height: 100)
+                    .background(Color("lightGray"))
                     .cornerRadius(10)
  
                     VStack(alignment: .center, spacing: 0) {
-                        Spacer()
                         Text("\(age)")
                         Text("yr")
                     }
                     .padding(9)
-                    .frame(width: 75, height: 75)
-                    .background(Color.gray.opacity(0.3))
+                    .frame(width: 75, height: 100)
+                    .background(Color("lightGray"))
                     .cornerRadius(10)
                     
                     VStack(alignment: .center, spacing: 0) {
-                        Spacer()
                         Text("\(Int(weight))")
                         Text("lb")
                     }
                     .padding(9)
-                    .frame(width: 75, height: 75)
-                    .background(Color.gray.opacity(0.3))
+                    .frame(width: 75, height: 100)
+                    .background(Color("lightGray"))
                     .cornerRadius(10)
                     
                     VStack(alignment: .center, spacing: 10) {
                         Text("\(heightFoot)'\(heightInch)")
                     }
                     .padding()
-                    .frame(width: 75, height: 75)
-                    .background(Color.gray.opacity(0.3))
+                    .frame(width: 75, height: 100)
+                    .background(Color("lightGray"))
                     .cornerRadius(10)
                 }
+                
+                ZStack {
+                    Image("strongBear")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .rotationEffect(Angle(degrees: self.userAvatarAnimation ? 0 : 1))
+                        .frame(width: self.userAvatarAnimation ? 140 : 141)
+                        .cornerRadius(10)
+                        
+                }
+                .frame(width: 150)
+                .frame(maxHeight: .infinity)
+                .background(Color.white)
+                .cornerRadius(10)
+                .onAppear {
+                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                        self.userAvatarAnimation = true
+                    }
+                    withAnimation(.linear(duration: 1).repeatForever(autoreverses: true)) {
+                        self.shadowAnimation = true
+                    }
+                }
+                .shadow(color: .red, radius: 2, x: self.shadowAnimation ? -2 : 2, y: self.shadowAnimation ? -2 : 2)
             }
+            .padding(.horizontal, 40)
+            
         }
     }
 }

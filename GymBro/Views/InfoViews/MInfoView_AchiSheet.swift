@@ -62,7 +62,7 @@ extension MInfoView_AchiSheet{
                                 self.checkIcon(optionModel: optionModel)
                                     .font(.title2)
                     
-                                Text(optionModel.optionName)
+                                Text(optionModel.achievementName)
                                     .font(.title3)
                             }
                             .onTapGesture {
@@ -126,10 +126,10 @@ class AchievementSheetViewModel: ObservableObject {
     }
     
     func getData() -> () {
-        let o1 = AchievementModel(optionName: "Routine Complete", isChecked: true, tag: .zero)
-        let o2 = AchievementModel(optionName: "Training Volume", isChecked: false, tag: .one)
-        let o3 = AchievementModel(optionName: "Goal Achieved", isChecked: true, tag: .two)
-        let o4 = AchievementModel(optionName: "PR HIT", isChecked: false, tag: .three)
+        let o1 = AchievementModel(achievementName: "Routine Complete", isChecked: true, tag: .zero)
+        let o2 = AchievementModel(achievementName: "Training Volume", isChecked: false, tag: .one)
+        let o3 = AchievementModel(achievementName: "Goal Achieved", isChecked: true, tag: .two)
+        let o4 = AchievementModel(achievementName: "PR HIT", isChecked: false, tag: .three)
         self.achievementList.append(o1)
         self.achievementList.append(o2)
         self.achievementList.append(o3)
@@ -139,7 +139,7 @@ class AchievementSheetViewModel: ObservableObject {
     /// User checks the check mark and change the state of a `AchievementModel`
     func checkOption(option: AchievementModel) -> () {
         guard let index = self.achievementList.firstIndex(where: { $0.id == option.id }) else { return }
-        let updatedOption = AchievementModel(optionName: option.optionName, isChecked: !option.isChecked, tag: option.tag)
+        let updatedOption = AchievementModel(achievementName: option.achievementName, isChecked: !option.isChecked, tag: option.tag)
         self.achievementList.remove(at: index)
         self.achievementList.insert(updatedOption, at: index)
     }
@@ -149,14 +149,14 @@ class AchievementSheetViewModel: ObservableObject {
 class AchievementModel: Identifiable {
     
     let id = UUID().uuidString
-    let optionName: String
+    let achievementName: String
     let introduction: String
     let isChecked: Bool
     let tag: AchiCardRegister.achiCardEnum
     
-    init(optionName: String, introduction: String = "This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content", isChecked: Bool = false, tag: AchiCardRegister.achiCardEnum) {
+    init(achievementName: String, introduction: String = "This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content This is content This is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is contentThis is content", isChecked: Bool = false, tag: AchiCardRegister.achiCardEnum) {
         
-        self.optionName = optionName
+        self.achievementName = achievementName
         self.introduction = introduction
         self.isChecked = isChecked
         self.tag = tag

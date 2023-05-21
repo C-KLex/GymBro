@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32064E302A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32064E2F2A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift */; };
+		3208A7C92A148D290078159C /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3208A7C82A148D290078159C /* MainChartView.swift */; };
 		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
 		321AB7832A037A0A00F77440 /* MainInfoView_GoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */; };
 		321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */; };
@@ -28,7 +29,6 @@
 		32C6F6542A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C6F6532A0B44AF008D7AD1 /* MainInfoView_GoalListRow.swift */; };
 		32F1A5AC2A11CBFA00671CB9 /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AA2A11CBFA00671CB9 /* RoutineDetailView.swift */; };
 		32F1A5AD2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AB2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift */; };
-		32F1A5AF2A11CC6B00671CB9 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AE2A11CC6B00671CB9 /* MainChartView.swift */; };
 		32F3A3602A0BF38100922B9D /* NewRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F3A35F2A0BF38100922B9D /* NewRoutineView.swift */; };
 		485935BB29E6254F009ECB2E /* AddExerciseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BA29E6254F009ECB2E /* AddExerciseButton.swift */; };
 		485935BF29E706CC009ECB2E /* AddNewExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485935BE29E706CC009ECB2E /* AddNewExercise.swift */; };
@@ -67,6 +67,8 @@
 /* Begin PBXFileReference section */
 		32064E2D2A0C85B9003BACDF /* NewRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoutineView.swift; sourceTree = "<group>"; };
 		32064E2F2A0C9BFE003BACDF /* MInfoView_AchiSheet_QPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiSheet_QPopup.swift; sourceTree = "<group>"; };
+		3208A7C62A148CF10078159C /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		3208A7C82A148D290078159C /* MainChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
 		321AB7822A037A0A00F77440 /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
 		321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroHistoryView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		8C8F367E29DBA0DF00ED087B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8C8F368929DBA20E00ED087B /* RoutineSelectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVIew.swift; sourceTree = "<group>"; };
 		8C8F368F29DBA24300ED087B /* RoutineExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineExerciseView.swift; sourceTree = "<group>"; };
+		8CB90F0529F0F5F0007A58EE /* NavigationStackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
 		8CCF96F329F0A90700F86A28 /* IntroHistoryView_ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroHistoryView_ListRow.swift; sourceTree = "<group>"; };
 		8CE71E9B29A721D2006EEFE7 /* GymBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE71E9E29A721D2006EEFE7 /* GymBroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 			children = (
 				32BBF9F02A12EA4A00B23410 /* NavigationStackController.swift */,
 				32BBF9EF2A12EA4A00B23410 /* TabController.swift */,
+				8CB90F0529F0F5F0007A58EE /* NavigationStackController.swift */,
+				3208A7C62A148CF10078159C /* TabController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 		8C8F368629DBA1CA00ED087B /* ChartViews */ = {
 			isa = PBXGroup;
 			children = (
+				3208A7C82A148D290078159C /* MainChartView.swift */,
 				32F1A5AE2A11CC6B00671CB9 /* MainChartView.swift */,
 			);
 			path = ChartViews;
@@ -434,7 +440,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F1A5AF2A11CC6B00671CB9 /* MainChartView.swift in Sources */,
 				326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */,
 				329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */,
 				32688C172A140132007C5A48 /* AchiCard_RoutineComplete.swift in Sources */,
@@ -455,6 +460,7 @@
 				32BBF9F12A12EA4A00B23410 /* TabController.swift in Sources */,
 				8C640B1929E360F90021EFBB /* MainInfoView.swift in Sources */,
 				8C1D7DD129E0C50E009C18B3 /* MainSettingView.swift in Sources */,
+				3208A7C92A148D290078159C /* MainChartView.swift in Sources */,
 				8C8F367F29DBA0DF00ED087B /* MainView.swift in Sources */,
 				32F1A5AC2A11CBFA00671CB9 /* RoutineDetailView.swift in Sources */,
 				321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */,

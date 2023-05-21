@@ -75,7 +75,7 @@ extension MInfoView_AchiSheet_QPopup {
         
     func achievementTitle(achi: AchievementModel) -> some View {
         VStack {
-            Text(achi.optionName)
+            Text(achi.achievementName)
                 .font(.headline)
                 .fontWeight(.medium)
                 .padding()
