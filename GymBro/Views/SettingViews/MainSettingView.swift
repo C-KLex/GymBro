@@ -14,13 +14,13 @@ struct MainSettingView: View {
     
     
     /// The variable that control light mode or daek mode
-    @State var isDarkMode: Bool = false
+    @AppStorage("isDarkMode") private var isDarkMode = false
     
     /// The variable that control the weight unit
-    @State var isLB: Bool = true
+    @AppStorage("isLb") private var isLb = true
     
     /// The variable that conrtrol the height unit
-    @State var isFt: Bool = true
+    @AppStorage("isFt") private var isFt = true
     
     /// A variable that authorized  to apple watch, need furture improvement
     @State var appleWatchIsOn: Bool = false
@@ -41,31 +41,22 @@ struct MainSettingView: View {
             List {
                 
                 /// First section is some pickerthat user can choose
-                Section() {
-                    HStack {
-                        Text("Weight Unit")
-                        Spacer()
-                        Picker("weightunit", selection: $isLB) {
-                            Text("lb")
-                                .tag(true)
-                            Text("kg")
-                                .tag(false)
-                        }
-                        .frame(width: 150)
-                        .pickerStyle(SegmentedPickerStyle())
+                Section("Unit") {
+                    Picker("weightunit", selection: $isLb) {
+                        Text("lb")
+                            .tag(true)
+                        Text("kg")
+                            .tag(false)
                     }
-                    HStack {
-                        Text("Height Unit")
-                        Spacer()
-                        Picker("heightunit", selection: $isFt) {
-                            Text("ft")
-                                .tag(true)
-                            Text("cm")
-                                .tag(false)
-                        }
-                        .frame(width: 150)
-                        .pickerStyle(SegmentedPickerStyle())
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    Picker("heightunit", selection: $isFt) {
+                        Text("ft")
+                            .tag(true)
+                        Text("cm")
+                            .tag(false)
                     }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
                 
                 /// Second section is osme switch
@@ -90,10 +81,11 @@ struct MainSettingView: View {
                         .overlay(NavigationLink(destination: SettingView_ReportIssueSheet(), label: {
                                             EmptyView()
                                         }))
+                        
                     
                     Link("Rate this App",
                          destination: .init(string: "https://itunes.apple.com")!)
-                        .foregroundColor(.black)
+                    .foregroundColor(Color.ForegroundTitle())
                     
                     Text("Export Data")
                         .overlay(NavigationLink(destination: SettingView_ExportDataView(), label: {
@@ -104,6 +96,8 @@ struct MainSettingView: View {
             .listStyle(InsetGroupedListStyle())
         }
         .navigationTitle("Settings")
+        .foregroundColor(Color.ForegroundTitle())
+        .background(Color.Background())
     }
 }
 
@@ -112,8 +106,17 @@ struct MainSettingView: View {
 
 struct MainSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            MainSettingView()
+        Group {
+            NavigationView {
+                MainSettingView()
+            }
+            .colorScheme(.light)
+        }
+        Group {
+            NavigationView {
+                MainSettingView()
+            }
+            .colorScheme(.dark)
         }
     }
 }
