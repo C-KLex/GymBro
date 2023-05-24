@@ -48,7 +48,7 @@ struct RoutineExerciseView: View {
                 /// The list of added exercises
 //                if !listViewModel.items.isEmpty {
                     ForEach(exercises, id: \.self) { exercise in
-                        EditSetView(exercise: exercise)
+                        ShowSetsView(exercise: exercise)
                     }   // End of ForEach
 //                }
             }   // End of List
