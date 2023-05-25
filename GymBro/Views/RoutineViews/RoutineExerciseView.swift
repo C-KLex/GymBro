@@ -20,7 +20,13 @@ struct RoutineExerciseView: View {
     /// TabView Controller
     @ObservedObject var tabController = TabController.instance
     
+    /// Routine day shown as title.
     @State var routineDay: String = "Chest Day"
+    
+    /// Exercises list in today's routine.
+    @State var exercises: [String] = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
+    
+    /// Show the exercise wheel picker if "+ Add Exercise" button is pressed.
     @State var showSheet: Bool = false
     
     
@@ -28,37 +34,31 @@ struct RoutineExerciseView: View {
     
     var body: some View {
         
-            VStack {
-                List {
-                    Button("+ Add Exercise", action: {
-                        showSheet.toggle()
-                    })
-                    .sheet(isPresented: $showSheet, content: {
-                        AddExerciseButton()
-                    })
-                    
-                }   // End of List
-                .navigationTitle(routineDay)
-                .navigationBarItems(
-                    leading: EditButton(),
-                    trailing:
-                        
-                        // Finish routine button
-                        /*
-                         After finish the routine, it will go to History module, and clean the navigation stack of Routine module
-                         */
-                        Button(
-                            action: {
-                                tabController.updateTab(tab: .History)
-                                navStackController.popToRoot(module: .Routine)
-                            },
-                            label: {
-                                Text("Finish")
-                            }
-                        )
-                )
-            }
-        }
+        /// if there is an exercise added, the view will show an "+ Add Exercise" button
+        /// and the list of exercises
+        VStack {
+            List {
+                Button("+ Add Exercise", action: {
+                    showSheet.toggle()
+                })
+                .sheet(isPresented: $showSheet, content: {
+                    AddExerciseButton()
+                })
+                
+                /// The list of added exercises
+//                if !listViewModel.items.isEmpty {
+                    ForEach(exercises, id: \.self) { exercise in
+                        ShowSetsView(exercise: exercise)
+                    }   // End of ForEach
+//                }
+            }   // End of List
+            .navigationTitle(routineDay)
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing:
+                    NavigationLink("Finish", destination: MainView()))  // Back to Main view
+        }   // End of VStack
+    }
 }
 
 
