@@ -2,7 +2,7 @@
 //  AddNewExercise.swift
 //  GymBro
 //
-//  Created by 陳宜葳 on 4/12/23.
+//  Created by Claire on 4/12/23.
 //
 //  This view is a pop-up sheet to add any new exercise to the existed
 //  exercise list.
@@ -15,7 +15,11 @@ struct AddNewExercise: View {
     // MARK: PROPERTY
     
     @State var textFieldText: String = ""
+    
+    /// Direct back to RoutineExerciseView.
     @State var showRoutineView: Bool = false
+    
+    /// The new added exercise that user type
     @Binding var selection: String
     @Environment(\.presentationMode) var presentationMode
     
@@ -27,14 +31,14 @@ struct AddNewExercise: View {
         NavigationView {
             VStack {
                 
-                // Textfield to type your new exercise
+                /// Textfield to type your new exercise
                 TextField("Add your new exercise here!!", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
                 
-                // Press button to save new exercise you type
+                /// Press button to save new exercise you type
                 Button(action: {
                     saveButtonPressed()
                     showRoutineView.toggle()
