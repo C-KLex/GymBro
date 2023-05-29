@@ -13,7 +13,11 @@ struct SettingView_ReportIssueSheet: View {
     // MARK: PROPERTY
     
     @Environment(\.presentationMode) var presentationMode
+    
+    /// A url variable to store issue title
     @State var issueTitle: String  = ""
+    
+    /// A url variable to store issue content
     @State var issueContent: String  = ""
     
     // MARK: BODY
@@ -39,11 +43,7 @@ struct SettingView_ReportIssueSheet: View {
             }
             
             TextEditor(text:$issueContent)
-                //.scrollContentBackground(.hidden)
                 .frame(height: 300)
-                //.onAppear{
-                //    UITextView.appearance().backgroundColor = .clear
-                //}
                 .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                 .cornerRadius(10)
             
@@ -58,13 +58,14 @@ struct SettingView_ReportIssueSheet: View {
     
     // MARK: METHOD
     
-    /// Drop down the RoutineSelectionView_AddRoutineSheet after the save button is pressed
+    /// Drop down the ReportIssueSheet_Previews after the save button is pressed
     ///  - Returns: Void
     func sendButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }
 
+// MARK: PREVIEW
 
 struct SettingView_ReportIssueSheet_Previews: PreviewProvider {
     static var previews: some View {
@@ -74,9 +75,9 @@ struct SettingView_ReportIssueSheet_Previews: PreviewProvider {
 
 extension SettingView_ReportIssueSheet {
     
-    /// Save button in RoutineSelectionView_AddRoutineSheet
+    /// Send text button in RoutineSelectionView_AddRoutineSheet
     ///
-    /// Tapping the button should create a new routine with the typed in string and close RoutineSelectionView_AddRoutineSheet.
+    /// Tapping the button should send data/email back to server.
     var sendTextButton: some View {
         Button(
             action: {
