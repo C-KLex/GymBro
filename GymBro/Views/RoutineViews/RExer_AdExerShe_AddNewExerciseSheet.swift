@@ -14,6 +14,8 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
     
     // MARK: PROPERTY
     
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
+    
     @State var textFieldText: String = ""
     
     /// The new added exercise that user type
@@ -54,7 +56,11 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
                         .cornerRadius(10)
                 }
                 .onTapGesture {
-                    saveButtonPressed()
+                    if textFieldText != "" {
+                        print("Inside")
+                        rExerciseVM.addNewExerciseToPool(exerciseName: textFieldText)
+                    }
+                    presentationMode.wrappedValue.dismiss()
                 }
                
                 Spacer()

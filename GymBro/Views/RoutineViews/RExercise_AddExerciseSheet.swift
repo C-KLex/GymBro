@@ -15,10 +15,10 @@ struct RExercise_AddExerciseSheet: View {
     
     
     // MARK: PROPERTY
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     
     @Environment(\.presentationMode) var presentationMode
     @State var selection: String = "Bar Bell Chest"
-    @State var exercise: [String] = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
     @State var isAddNewExerActive: Bool = false
     
     
@@ -31,8 +31,8 @@ struct RExercise_AddExerciseSheet: View {
             DismissButtonView()
             
             Picker("+ Add Exercise", selection: $selection) {
-                ForEach(exercise, id: \.self) {
-                    Text($0)
+                ForEach(rExerciseVM.exercisePool, id: \.self) { e in
+                    Text(e)
                 }
             }
             .pickerStyle(.wheel)

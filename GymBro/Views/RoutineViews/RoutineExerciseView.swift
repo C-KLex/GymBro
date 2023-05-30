@@ -14,6 +14,8 @@ struct RoutineExerciseView: View {
     
     // MARK: PROPERTY
     
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
+    
     /// Navigation Stack Controller
     @ObservedObject var navStackController = NavigationStackController.instance
     
@@ -22,9 +24,6 @@ struct RoutineExerciseView: View {
     
     /// Routine day shown as title.
     @State var routineDay: String = "Chest Day"
-    
-    /// Exercises list in today's routine.
-    @State var exercises: [String] = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
     
     /// Show the exercise wheel picker if "+ Add Exercise" button is pressed.
     @State var isAddExerciseSheetActive: Bool = false
@@ -45,9 +44,6 @@ struct RoutineExerciseView: View {
                     RExercise_AddExerciseSheet()
                 })
                 
-                ForEach(exercises, id: \.self) { e in
-                    RExercise_SetRow(exercise: e)
-                }
             }
             .navigationTitle(routineDay)
             .navigationBarItems(
@@ -74,6 +70,57 @@ extension RoutineExerciseView {
         )
     }
 }
+
+
+// MARK: VIEWMODEL
+class RoutineExerciseViewModel: ObservableObject {
+    
+    static let instance = RoutineExerciseViewModel()
+    
+    @Published var exercisePool: [String] = []
+    
+    init() {
+        getData()
+    }
+    
+    func getData() {
+        self.exercisePool = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
+    }
+    
+    func addNewExerciseToPool(exerciseName: String) {
+        self.exercisePool.append(exerciseName)
+        for name in self.exercisePool {
+            print(name)
+        }
+    }
+}
+
+class TrainingExerciseModel: Identifiable {
+    let id = UUID().uuidString
+    var setList: [TrainingSetModel] = []
+    let name: String
+    init(name: String) {
+        self.name = name
+    }
+    
+    func addSet(weight: Int, reps: Int) {
+        let newSet = TrainingSetModel(weight: weight, reps: reps)
+        self.setList.append(newSet)
+    }
+}
+
+class TrainingSetModel: Identifiable {
+    let id = UUID().uuidString
+    let weight: Int
+    let reps: Int
+    init(weight: Int, reps: Int) {
+        self.weight = weight
+        self.reps = reps
+    }
+}
+
+
+
 
 
 // MARK: PREVIEW
