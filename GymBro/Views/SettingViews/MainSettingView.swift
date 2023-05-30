@@ -59,7 +59,7 @@ struct MainSettingView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
                 
-                /// Second section is osme switch
+                /// Second section is some switch
                 Section() {
                     Toggle("Dark Mode", isOn: $isDarkMode)
                     Toggle("Apple Watch", isOn: $appleWatchIsOn)
