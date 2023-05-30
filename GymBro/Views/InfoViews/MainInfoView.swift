@@ -19,7 +19,7 @@ struct MainInfoView: View {
     
     // MARK: PROPERTY
     
-    // ViewModel
+    // ViewModel //
     @ObservedObject var goalVM = GoalViewModel.instance
 
     // Persona Section Variable //
@@ -36,16 +36,20 @@ struct MainInfoView: View {
     // Goal Section Variable //
     // sheet control
     @State var goalSheetActive: Bool = false
+    
     @State var sheetExerciseName: String = ""
     @State var sheetProgress: Int = -1
 
     // Animation Control
-    
     /// The effect itself
     @State var pulseEffect: Bool = false
 
     /// Control the animation between on and off 
     @State var pulseAnimationIsActive = false
+    
+    // Achievement Section Variable //
+    @State var achieveSheetActive: Bool = false
+    @ObservedObject var achievementOptVM = AchievementSheetViewModel.instance
     
     
     // MARK: BODY
@@ -54,6 +58,7 @@ struct MainInfoView: View {
         ScrollView {
             self.personaSection()
             self.goalSection()
+            self.achievementSection()
         }
         .navigationTitle("Personal Information")
     }
@@ -187,7 +192,54 @@ class GoalModel: Identifiable {
 
 extension MainInfoView {
     
-    /// Goal Section View
+    
+    /// Achievement Section View
+    ///
+    /// In the section, it will show several training highlights provided by us.
+    /// The user can picked which to show.
+    ///
+    /// - Warning: Due to the lack to domain knowledge, only four achievemnt options are available now.
+    func achievementSection() -> some View {
+        VStack {
+            
+            // achievement title
+            HStack {
+                Text("Achievement")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
+                Image(systemName: "ellipsis")
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            self.achieveSheetActive.toggle()
+                        }
+                    }
+                    .sheet(isPresented: self.$achieveSheetActive) {
+                        MInfoView_AchiSheet()
+                    }
+            }
+            .padding(.horizontal, 20)
+            
+            // achievement item
+            VStack {
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                        ForEach(achievementOptVM.achievementList, id: \.id) { achievementOption in
+                            MInfoView_AchiCard(achievement: achievementOption)
+                        }
+                    }
+                    .padding(6)
+                }
+            }
+            .padding(.horizontal, 40)
+        }
+    }
+    
+    /// Goal Section View 
+    /// 
+    /// The goal section title with a list of progress bar.
+    /// Hopefully, it can add animation on the progress bar.
+    /// Goal Section Views
     func goalSection() -> some View {
         VStack {
             
