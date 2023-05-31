@@ -44,6 +44,11 @@ struct RoutineExerciseView: View {
                     RExercise_AddExerciseSheet()
                 })
                 
+                ForEach(rExerciseVM.inProgressExercise, id: \.id) { e in
+                    RExercise_SetRow(exercise: e.name)
+                }
+                
+                
             }
             .navigationTitle(routineDay)
             .navigationBarItems(
@@ -78,6 +83,7 @@ class RoutineExerciseViewModel: ObservableObject {
     static let instance = RoutineExerciseViewModel()
     
     @Published var exercisePool: [String] = []
+    @Published var inProgressExercise: [TrainingExerciseModel] = []
     
     init() {
         getData()
@@ -85,13 +91,22 @@ class RoutineExerciseViewModel: ObservableObject {
     
     func getData() {
         self.exercisePool = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
+        
+        let e1 = TrainingExerciseModel(name: "Bar Bell Chest")
+        e1.addSet(weight: 160, reps: 10)
+        e1.addSet(weight: 160, reps: 10)
+        e1.addSet(weight: 160, reps: 10)
+        
+        self.inProgressExercise.append(e1)
     }
     
     func addNewExerciseToPool(exerciseName: String) {
         self.exercisePool.append(exerciseName)
-        for name in self.exercisePool {
-            print(name)
-        }
+    }
+    
+    func addInProgressExercise(exerciseName: String) {
+        let new = TrainingExerciseModel(name: exerciseName)
+        self.inProgressExercise.append(new)
     }
 }
 
