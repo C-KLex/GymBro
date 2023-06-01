@@ -45,7 +45,7 @@ struct RoutineExerciseView: View {
                 })
                 
                 ForEach(rExerciseVM.inProgressExercise, id: \.id) { e in
-                    RExercise_SetRow(exercise: e.name)
+                    Rexercise_ExerciseListRow(trainingExercise: e)
                 }
                 
                 
@@ -92,10 +92,10 @@ class RoutineExerciseViewModel: ObservableObject {
     func getData() {
         self.exercisePool = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
         
-        let e1 = TrainingExerciseModel(name: "Bar Bell Chest")
+        var e1 = TrainingExerciseModel(name: "Bar Bell Chest")
+        e1.addSet(weight: 150, reps: 10)
         e1.addSet(weight: 160, reps: 10)
-        e1.addSet(weight: 160, reps: 10)
-        e1.addSet(weight: 160, reps: 10)
+        e1.addSet(weight: 170, reps: 10)
         
         self.inProgressExercise.append(e1)
     }
@@ -107,15 +107,34 @@ class RoutineExerciseViewModel: ObservableObject {
     func addInProgressExercise(exerciseName: String) -> () {
         let new = TrainingExerciseModel(name: exerciseName)
         self.inProgressExercise.append(new)
-        print(exerciseName)
     }
     
     func getFirstExerciseFromPool() -> String {
         return self.exercisePool.first ?? ""
     }
+    
+    func addNewSetToExercise(weight: Int, reps: Int, exercise: TrainingExerciseModel) {
+        guard let index = self.inProgressExercise.firstIndex(where: { $0.id == exercise.id }) else { return }
+        var exercise = exercise
+        
+        print(exercise.setList)
+        
+        exercise.addSet(weight: weight, reps: reps)
+        
+        print(exercise.setList)
+        self.inProgressExercise.remove(at: index)
+        self.inProgressExercise.insert(exercise, at: index)
+        
+        print(self.inProgressExercise)
+    }
+    
+    func updateSet(weight: Int, reps: Int, exercise: TrainingExerciseModel, trainingSet: TrainingSetModel) {
+        
+    }
+       
 }
 
-class TrainingExerciseModel: Identifiable {
+struct TrainingExerciseModel: Identifiable {
     let id = UUID().uuidString
     var setList: [TrainingSetModel] = []
     let name: String
@@ -123,13 +142,13 @@ class TrainingExerciseModel: Identifiable {
         self.name = name
     }
     
-    func addSet(weight: Int, reps: Int) {
+    mutating func addSet(weight: Int, reps: Int) {
         let newSet = TrainingSetModel(weight: weight, reps: reps)
         self.setList.append(newSet)
     }
 }
 
-class TrainingSetModel: Identifiable {
+struct TrainingSetModel: Identifiable {
     let id = UUID().uuidString
     let weight: Int
     let reps: Int

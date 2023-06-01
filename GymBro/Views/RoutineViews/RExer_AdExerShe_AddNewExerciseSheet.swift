@@ -56,10 +56,7 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
                         .cornerRadius(10)
                 }
                 .onTapGesture {
-                    if textFieldText != "" {
-                        print("Inside")
-                        rExerciseVM.addNewExerciseToPool(exerciseName: textFieldText)
-                    }
+                    self.addNewExerciseOrNot(text: self.textFieldText)
                     presentationMode.wrappedValue.dismiss()
                 }
                
@@ -78,6 +75,12 @@ extension RExer_AdExerShe_AddNewExerciseSheet{
         //exerciseViewModel.addExercise(title: textFieldText)
         selection = textFieldText
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func addNewExerciseOrNot(text: String) {
+        if textFieldText != "" {
+            rExerciseVM.addNewExerciseToPool(exerciseName: text)
+        }
     }
 }
 

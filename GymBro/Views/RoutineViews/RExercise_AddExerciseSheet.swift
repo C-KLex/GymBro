@@ -65,7 +65,7 @@ struct RExercise_AddExerciseSheet: View {
                 
                 // Add an existed exercise to the routine list
                 HStack {
-                    Text("Done")
+                    Text("Add")
                         .foregroundColor(.black)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 60)
