@@ -1,5 +1,5 @@
 //
-//  AddNewExercise.swift
+//  RExer_AdExerShe_AddNewExerciseSheet.swift
 //  GymBro
 //
 //  Created by Claire on 4/12/23.
@@ -9,15 +9,12 @@
 
 import SwiftUI
 
-struct AddNewExercise: View {
+struct RExer_AdExerShe_AddNewExerciseSheet: View {
     
     
     // MARK: PROPERTY
     
     @State var textFieldText: String = ""
-    
-    /// Direct back to RoutineExerciseView.
-    @State var showRoutineView: Bool = false
     
     /// The new added exercise that user type
     @Binding var selection: String
@@ -28,41 +25,49 @@ struct AddNewExercise: View {
     
     var body: some View {
         
-        NavigationView {
             VStack {
                 
-                /// Textfield to type your new exercise
+                DismissButtonView()
+
+
+                HStack {
+                    Text("Add New Exercise 📝")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
                 TextField("Add your new exercise here!!", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
                 
-                /// Press button to save new exercise you type
-                Button(action: {
+                HStack {
+                    Text("Save".uppercased())
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .onTapGesture {
                     saveButtonPressed()
-                    showRoutineView.toggle()
-                }, label: {
-                        Text("save".uppercased())
-                            .foregroundColor(.white)
-                            .font(.headline)
-                            .frame(height: 55)
-                            .frame(maxWidth: .infinity)
-                            .background(Color.accentColor)
-                            .cornerRadius(10)
-                })
-
+                }
+               
                 Spacer()
-            }   // End of VStack
-            .navigationTitle("Add New Exercise 📝")
-        }   // End of NavigationView
-        .padding(10)
-
+                
+            }
+            .padding(.horizontal)
     }
-    
-    
-    // MARK: METHOD
-    
+}
+
+
+// MARK: COMPONENT
+
+extension RExer_AdExerShe_AddNewExerciseSheet{
     func saveButtonPressed() {
         //exerciseViewModel.addExercise(title: textFieldText)
         selection = textFieldText
@@ -70,14 +75,12 @@ struct AddNewExercise: View {
     }
 }
 
-
 // MARK: PREVIEW
 
 struct AddNewExercise_Previews: PreviewProvider {
-    
-    @State static var selection = "Barbell Chest"
-    
     static var previews: some View {
-        AddNewExercise(selection: $selection)
+        NavigationView {
+            RExercise_AddExerciseSheet(isAddNewExerActive: true)
+        }
     }
 }
