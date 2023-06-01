@@ -18,7 +18,7 @@ struct RExercise_AddExerciseSheet: View {
     @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     
     @Environment(\.presentationMode) var presentationMode
-    @State var selection: String = "Bar Bell Chest"
+    @State var selection: String = ""
     @State var isAddNewExerActive: Bool = false
     
     
@@ -64,26 +64,42 @@ struct RExercise_AddExerciseSheet: View {
                 )
                 
                 // Add an existed exercise to the routine list
-                Button(
-                    action: {
-                        //exerciseViewModel.addExercise(title: selection)
-                        presentationMode.wrappedValue.dismiss()
-                    },
-                    label: {
-                        Text("Done")
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 60)
-                            .background(Color.gray.opacity(0.4))
-                            .cornerRadius(8)
-                    }
-                )
+                HStack {
+                    Text("Done")
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 60)
+                        .background(Color.gray.opacity(0.4))
+                        .cornerRadius(8)
+                }
                 .padding(.horizontal, 5)
-            }   // End of HStack
+                .onTapGesture {
+                    self.doneButtonAction()
+                }
+                
+                
+            }
             
             Spacer()
             
         }   // End of VStack
+    }
+}
+
+extension RExercise_AddExerciseSheet {
+    func doneButtonAction() -> () {
+        
+        // check if empty
+        if self.selection == "" {
+            let defaultExercise = rExerciseVM.getFirstExerciseFromPool()
+            selection = defaultExercise
+        }
+        
+        // add a new inProgressExercise
+        rExerciseVM.addInProgressExercise(exerciseName:selection)
+        
+        // dismiss
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

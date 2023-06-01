@@ -100,13 +100,18 @@ class RoutineExerciseViewModel: ObservableObject {
         self.inProgressExercise.append(e1)
     }
     
-    func addNewExerciseToPool(exerciseName: String) {
+    func addNewExerciseToPool(exerciseName: String) -> () {
         self.exercisePool.append(exerciseName)
     }
     
-    func addInProgressExercise(exerciseName: String) {
+    func addInProgressExercise(exerciseName: String) -> () {
         let new = TrainingExerciseModel(name: exerciseName)
         self.inProgressExercise.append(new)
+        print(exerciseName)
+    }
+    
+    func getFirstExerciseFromPool() -> String {
+        return self.exercisePool.first ?? ""
     }
 }
 
