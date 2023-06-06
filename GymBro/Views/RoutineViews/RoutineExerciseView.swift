@@ -27,37 +27,51 @@ struct RoutineExerciseView: View {
     @State var exercises: [String] = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
     
     /// Show the exercise wheel picker if "+ Add Exercise" button is pressed.
-    @State var showSheet: Bool = false
+    @State var isAddExerciseSheetActive: Bool = false
     
     
     // MARK: BODY
     
     var body: some View {
         
-        /// if there is an exercise added, the view will show an "+ Add Exercise" button
-        /// and the list of exercises
         VStack {
+            
             List {
+                
                 Button("+ Add Exercise", action: {
-                    showSheet.toggle()
+                    isAddExerciseSheetActive.toggle()
                 })
-                .sheet(isPresented: $showSheet, content: {
-                    AddExerciseButton()
+                .sheet(isPresented: $isAddExerciseSheetActive, content: {
+                    RExercise_AddExerciseSheet()
                 })
                 
-                /// The list of added exercises
-//                if !listViewModel.items.isEmpty {
-                    ForEach(exercises, id: \.self) { exercise in
-                        ShowSetsView(exercise: exercise)
-                    }   // End of ForEach
-//                }
-            }   // End of List
+                ForEach(exercises, id: \.self) { e in
+                    RExercise_SetRow(exercise: e)
+                }
+            }
             .navigationTitle(routineDay)
             .navigationBarItems(
                 leading: EditButton(),
-                trailing:
-                    NavigationLink("Finish", destination: MainView()))  // Back to Main view
-        }   // End of VStack
+                trailing: self.finishButton()
+            )
+        }
+    }
+}
+
+
+// MARK: COMPONENT
+
+extension RoutineExerciseView {
+    func finishButton() -> some View {
+        Button(
+            action: {
+                tabController.updateTab(tab: .History)
+                navStackController.popToRoot(module: .Routine)
+            },
+            label: {
+                Text("Finish")
+            }
+        )
     }
 }
 

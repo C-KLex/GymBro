@@ -1,5 +1,5 @@
 //
-//  ShowSetsView.swift
+//  RExercise_SetRow.swift
 //  GymBro
 //
 //  Created by 陳宜葳 on 5/23/23.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ShowSetsView: View {
+struct RExercise_SetRow: View {
     
     
     // MARK: PROPERTY
@@ -34,19 +34,23 @@ struct ShowSetsView: View {
     var body: some View {
         
         VStack {
-            Button {
-                showSet.toggle()
-            } label: {
+            
+            HStack {
+                Text(exercise)
+                    .foregroundColor(.black)
+                Spacer()
+                
                 HStack {
-                    Text(exercise)
-                        .foregroundColor(.black)
-                    Spacer()
-                    showSet ? Image(systemName: "chevron.down") : Image(systemName: "chevron.right")
+                    self.showSet ? Image(systemName: "chevron.down") : Image(systemName: "chevron.right")
                 }
+                .onTapGesture {
+                    self.showSet.toggle()
+                }
+                    
             }
             
             if showSet {
-                Divider()
+                
                 VStack {
                     ForEach(0..<3) { index in
                         HStack {
@@ -61,18 +65,24 @@ struct ShowSetsView: View {
                                 .background(Color.gray.cornerRadius(10).opacity(0.2))
                         }
                         .padding(.horizontal)
+                        .onTapGesture {
+                            showEditSheet = true
+                        }
                     }
                     
-                    /// If wanna add a new set to the list, click the button
-                    /// and the EditSetView will pop-up.
-                    Button("+ Add Set") {
-                        showEditSheet.toggle()
+                    HStack {
+                        Text("+ Add Set")
                     }
-                    .sheet(isPresented: $showEditSheet) {
-                        EditSetView()
+                    .onTapGesture {
+                        showEditSheet = true
                     }
+                 
+                    
                 }
-                .padding(.vertical, 2)
+                .sheet(isPresented: $showEditSheet) {
+                    RExercise_SetRow_EditSetSheet()
+                }
+                
             }   // End if showSet
         }   // End of VStack
             
@@ -83,10 +93,9 @@ struct ShowSetsView: View {
 // MARK: PREVIEW
 
 struct ShowSetsView_Previews: PreviewProvider {
-    
-    static var exercise = "Bar Bell Up"
-    
     static var previews: some View {
-        ShowSetsView(exercise: exercise)
+        NavigationView {
+            RoutineExerciseView()
+        }
     }
 }
