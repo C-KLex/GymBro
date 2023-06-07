@@ -15,9 +15,11 @@ struct RExercise_AddExerciseSheet: View {
     
     
     // MARK: PROPERTY
-    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     @Environment(\.presentationMode) var presentationMode
+    
+    /// Binding Variable for picker selection
     @State var selection: String = ""
     @State var isAddNewExerActive: Bool = false
     
@@ -25,7 +27,6 @@ struct RExercise_AddExerciseSheet: View {
     // MARK: BODY
     
     var body: some View {
-        
         VStack {
             
             DismissButtonView()
@@ -59,7 +60,7 @@ struct RExercise_AddExerciseSheet: View {
                 .sheet(
                     isPresented: $isAddNewExerActive,
                     content: {
-                        RExer_AdExerShe_AddNewExerciseSheet(selection: $selection)
+                        RExer_AdExerShe_AddNewExerciseSheet()
                     }
                 )
                 
@@ -76,17 +77,15 @@ struct RExercise_AddExerciseSheet: View {
                 .onTapGesture {
                     self.doneButtonAction()
                 }
-                
-                
             }
             
             Spacer()
-            
         }   // End of VStack
     }
 }
 
 extension RExercise_AddExerciseSheet {
+    
     func doneButtonAction() -> () {
         
         // check if empty

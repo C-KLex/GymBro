@@ -7,28 +7,29 @@
 
 import SwiftUI
 
+/// Update a set of a exercise
 struct RExercise_SetRow_UpdateSetSheet: View {
 
     // MARK: PROPERTY
     
+    // Binding Variable for Picker
     @Binding var selectedWeight: Int
     @Binding var selectedRep: Int
+    
+    /// Updated Exercise Model
     @State var trainingExercise: TrainingExerciseModel
+    
+    /// Updated Set Model
     @State var trainingSet: TrainingSetModel
     
     @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     @Environment(\.presentationMode) var presentationMode
 
-    
-    
-    
+
     // MARK: BODY
     
     var body: some View {
-            
-        
         VStack {
-            
             DismissButtonView()
             
             HStack {
@@ -63,7 +64,6 @@ struct RExercise_SetRow_UpdateSetSheet: View {
             }
             
             Spacer()
-
         }
     }
 }

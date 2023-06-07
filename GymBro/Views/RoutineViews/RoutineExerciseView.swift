@@ -9,6 +9,7 @@
 
 import SwiftUI
 
+/// Writing down the training detail
 struct RoutineExerciseView: View {
     
     
@@ -28,10 +29,14 @@ struct RoutineExerciseView: View {
     /// Show the exercise wheel picker if "+ Add Exercise" button is pressed.
     @State var isAddExerciseSheetActive: Bool = false
     
-    
+    /// Set detail row controller
     @State var showSet: Bool = false
+    
+    // sheet controller
     @State var showAddSetSheet: Bool = false
     @State var showUpdateSetSheet: Bool = false
+    
+    // binding variable for picker
     @State var selectedWeight: Int = 120
     @State var selectedReps: Int = 5
     
@@ -39,11 +44,8 @@ struct RoutineExerciseView: View {
     // MARK: BODY
     
     var body: some View {
-        
         VStack {
-            
             List {
-                
                 Button("+ Add Exercise", action: {
                     isAddExerciseSheetActive.toggle()
                 })
@@ -54,8 +56,6 @@ struct RoutineExerciseView: View {
                 ForEach(rExerciseVM.inProgressExercise, id: \.id) { e in
                     self.exerciseListRow(trainingExercise: e)
                 }
-                
-                
             }
             .navigationTitle(routineDay)
             .navigationBarItems(
@@ -71,15 +71,15 @@ struct RoutineExerciseView: View {
 
 extension RoutineExerciseView {
     
-
-    
+    /// Exercise row
+    ///
+    /// Provide each in progress exercise and show detail of each set
     func exerciseListRow(trainingExercise: TrainingExerciseModel) -> some View {
-        
         VStack {
-            
             HStack {
                 Text(trainingExercise.name)
                     .foregroundColor(.black)
+                
                 Spacer()
                 
                 HStack {
@@ -88,21 +88,19 @@ extension RoutineExerciseView {
                 .onTapGesture {
                     self.showSet.toggle()
                 }
-                    
             }
             
             if self.showSet {
-                
                 self.exerciseListRow_SetRow(trainingExercise: trainingExercise)
-
             }   // End if showSet
-            
         }
     }
     
+    /// Set row
+    ///
+    /// The set of the exercise
     func exerciseListRow_SetRow(trainingExercise: TrainingExerciseModel) -> some View {
         VStack(spacing: 5) {
-            
             ForEach(trainingExercise.setList, id: \.id) { s in
                 HStack {
                     Text("\(s.weight) lb")
@@ -142,6 +140,7 @@ extension RoutineExerciseView {
         }
     }
     
+    /// The Finish routine button on the top left conrner of the view
     func finishButton() -> some View {
         Button(
             action: {
@@ -154,6 +153,7 @@ extension RoutineExerciseView {
         )
     }
     
+    /// Update the binding variable for the picker
     func updateWeightReps(weight: Int, reps: Int) -> () {
         self.selectedWeight = weight
         self.selectedReps = reps
@@ -162,18 +162,23 @@ extension RoutineExerciseView {
 
 
 // MARK: VIEWMODEL
+
+/// Mock VM
 class RoutineExerciseViewModel: ObservableObject {
     
     static let instance = RoutineExerciseViewModel()
     
+    /// The exercise one can choose
     @Published var exercisePool: [String] = []
+    
+    /// The in progress exercise in the ongoing routine
     @Published var inProgressExercise: [TrainingExerciseModel] = []
     
     init() {
         getData()
     }
     
-    func getData() {
+    func getData() -> (){
         self.exercisePool = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
         
         var e1 = TrainingExerciseModel(name: "Bar Bell Chest")
@@ -193,17 +198,19 @@ class RoutineExerciseViewModel: ObservableObject {
         self.inProgressExercise.append(new)
     }
     
+    /// return the first member from the available exercise
+    ///
+    /// Provide the default value for the exercise picker
     func getFirstExerciseFromPool() -> String {
         return self.exercisePool.first ?? ""
     }
     
-    func addNewSetToExercise(weight: Int, reps: Int, exercise: TrainingExerciseModel) {
+    func addNewSetToExercise(weight: Int, reps: Int, exercise: TrainingExerciseModel) -> () {
         guard let index = self.inProgressExercise.firstIndex(where: { $0.id == exercise.id }) else { return }
         var exercise = exercise
         exercise.addSet(weight: weight, reps: reps)
         self.inProgressExercise.remove(at: index)
         self.inProgressExercise.insert(exercise, at: index)
-        
     }
     
     func updateSet(weight: Int, reps: Int, exercise: TrainingExerciseModel, trainingSet: TrainingSetModel) {
@@ -225,6 +232,7 @@ struct TrainingExerciseModel: Identifiable {
     let id = UUID().uuidString
     var setList: [TrainingSetModel] = []
     let name: String
+    
     init(name: String) {
         self.name = name
     }
@@ -239,14 +247,12 @@ struct TrainingSetModel: Identifiable {
     let id = UUID().uuidString
     let weight: Int
     let reps: Int
+    
     init(weight: Int, reps: Int) {
         self.weight = weight
         self.reps = reps
     }
 }
-
-
-
 
 
 // MARK: PREVIEW
