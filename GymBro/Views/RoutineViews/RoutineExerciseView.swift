@@ -29,6 +29,13 @@ struct RoutineExerciseView: View {
     @State var isAddExerciseSheetActive: Bool = false
     
     
+    @State var showSet: Bool = false
+    @State var showAddSetSheet: Bool = false
+    @State var showUpdateSetSheet: Bool = false
+    @State var selectedWeight: Int = 120
+    @State var selectedReps: Int = 5
+    
+    
     // MARK: BODY
     
     var body: some View {
@@ -45,7 +52,7 @@ struct RoutineExerciseView: View {
                 })
                 
                 ForEach(rExerciseVM.inProgressExercise, id: \.id) { e in
-                    Rexercise_ExerciseListRow(trainingExercise: e)
+                    self.exerciseListRow(trainingExercise: e)
                 }
                 
                 
@@ -63,6 +70,78 @@ struct RoutineExerciseView: View {
 // MARK: COMPONENT
 
 extension RoutineExerciseView {
+    
+
+    
+    func exerciseListRow(trainingExercise: TrainingExerciseModel) -> some View {
+        
+        VStack {
+            
+            HStack {
+                Text(trainingExercise.name)
+                    .foregroundColor(.black)
+                Spacer()
+                
+                HStack {
+                    self.showSet ? Image(systemName: "chevron.down") : Image(systemName: "chevron.right")
+                }
+                .onTapGesture {
+                    self.showSet.toggle()
+                }
+                    
+            }
+            
+            if self.showSet {
+                
+                self.exerciseListRow_SetRow(trainingExercise: trainingExercise)
+
+            }   // End if showSet
+            
+        }
+    }
+    
+    func exerciseListRow_SetRow(trainingExercise: TrainingExerciseModel) -> some View {
+        VStack(spacing: 5) {
+            
+            ForEach(trainingExercise.setList, id: \.id) { s in
+                HStack {
+                    Text("\(s.weight) lb")
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .frame(width: 90)
+                        .background(Color.gray.cornerRadius(10).opacity(0.2))
+                    
+                    Spacer()
+                    
+                    Text("\(s.reps) reps")
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .frame(width: 90)
+                        .background(Color.gray.cornerRadius(10).opacity(0.2))
+                }
+                .padding(.horizontal)
+                .onTapGesture {
+                    self.updateWeightReps(weight: s.weight, reps: s.reps)
+                    self.showUpdateSetSheet = true
+                }
+                .sheet(isPresented: self.$showUpdateSetSheet) {
+                    RExercise_SetRow_UpdateSetSheet(selectedWeight: self.$selectedWeight, selectedRep: self.$selectedReps, trainingExercise: trainingExercise, trainingSet: s)
+                }
+                
+            }
+            
+            HStack {
+                Text("+ Add Set")
+            }
+            .onTapGesture {
+                self.showAddSetSheet = true
+            }
+            .sheet(isPresented: $showAddSetSheet) {
+                RExercise_SetRow_AddSetSheet(selectedWeight: self.$selectedWeight, selectedRep: self.$selectedReps, trainingExercise: trainingExercise)
+            }
+        }
+    }
+    
     func finishButton() -> some View {
         Button(
             action: {
@@ -73,6 +152,11 @@ extension RoutineExerciseView {
                 Text("Finish")
             }
         )
+    }
+    
+    func updateWeightReps(weight: Int, reps: Int) -> () {
+        self.selectedWeight = weight
+        self.selectedReps = reps
     }
 }
 
@@ -116,20 +200,23 @@ class RoutineExerciseViewModel: ObservableObject {
     func addNewSetToExercise(weight: Int, reps: Int, exercise: TrainingExerciseModel) {
         guard let index = self.inProgressExercise.firstIndex(where: { $0.id == exercise.id }) else { return }
         var exercise = exercise
-        
-        print(exercise.setList)
-        
         exercise.addSet(weight: weight, reps: reps)
-        
-        print(exercise.setList)
         self.inProgressExercise.remove(at: index)
         self.inProgressExercise.insert(exercise, at: index)
         
-        print(self.inProgressExercise)
     }
     
     func updateSet(weight: Int, reps: Int, exercise: TrainingExerciseModel, trainingSet: TrainingSetModel) {
+        guard let exerciseIndex = self.inProgressExercise.firstIndex(where: { $0.id == exercise.id }) else { return }
+        guard let setIndex = exercise.setList.firstIndex(where: { $0.id  == trainingSet.id }) else { return }
+        var exercise = exercise
         
+        let newSet = TrainingSetModel(weight: weight, reps: reps)
+        exercise.setList.remove(at: setIndex)
+        exercise.setList.insert(newSet, at: setIndex)
+        
+        self.inProgressExercise.remove(at: exerciseIndex)
+        self.inProgressExercise.insert(exercise, at: exerciseIndex)
     }
        
 }
