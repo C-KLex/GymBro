@@ -172,11 +172,11 @@
 		8C8F368129DBA14E00ED087B /* HistoryViews */ = {
 			isa = PBXGroup;
 			children = (
+				321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */,
 				8CCF96F329F0A90700F86A28 /* IntroHistoryView_ListRow.swift */,
 				32F1A5AB2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift */,
 				32F1A5AA2A11CBFA00671CB9 /* RoutineDetailView.swift */,
 				326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */,
-				321DDBD82A0210BB0067A96E /* IntroHistoryView.swift */,
 			);
 			path = HistoryViews;
 			sourceTree = "<group>";

@@ -53,8 +53,11 @@ struct RoutineExerciseView: View {
                     RExercise_AddExerciseSheet()
                 })
                 
+                
                 ForEach(rExerciseVM.inProgressExercise, id: \.id) { e in
-                    self.exerciseListRow(trainingExercise: e)
+                    Section(header: self.sectionHeader(title: e.name)) {
+                        self.exerciseListRow_SetRow(trainingExercise: e)
+                    }
                 }
             }
             .navigationTitle(routineDay)
@@ -71,30 +74,15 @@ struct RoutineExerciseView: View {
 
 extension RoutineExerciseView {
     
-    /// Exercise row
-    ///
-    /// Provide each in progress exercise and show detail of each set
-    func exerciseListRow(trainingExercise: TrainingExerciseModel) -> some View {
+    /// Section Header
+    func sectionHeader(title: String) -> some View {
         VStack {
-            HStack {
-                Text(trainingExercise.name)
-                    .foregroundColor(.black)
-                
-                Spacer()
-                
-                HStack {
-                    self.showSet ? Image(systemName: "chevron.down") : Image(systemName: "chevron.right")
-                }
-                .onTapGesture {
-                    self.showSet.toggle()
-                }
-            }
-            
-            if self.showSet {
-                self.exerciseListRow_SetRow(trainingExercise: trainingExercise)
-            }   // End if showSet
+            Text(title.capitalized)
+                .font(.headline)
+                .foregroundColor(.black)
         }
     }
+    
     
     /// Set row
     ///
