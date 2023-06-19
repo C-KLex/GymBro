@@ -38,35 +38,68 @@ struct MainChartView: View {
                           (exercise: "Squat", data: squat)
         ]
         
+        @State var exercises: [String] = [
+            "benchPress",
+            "squat"
+        ]
+        
         VStack {
-            Chart {
-                ForEach(chartData, id: \.exercise) { series in
-                    ForEach(series.data) { item in
-                        LineMark(
-                            x: .value("Date", item.date),
-                            y: .value("Weight", item.weight)
-                        )
+            GroupBox() {
+            //GroupBox ( "Line Chart - Weight Growing") {
+                Chart {
+                    ForEach(chartData, id: \.exercise) { series in
+                        ForEach(series.data) { item in
+                            LineMark(
+                                x: .value("Date", item.date),
+                                y: .value("Weight", item.weight)
+                            )
+                            .foregroundStyle(by: .value("Exercise", series.exercise))
+                            .symbol(by: .value("Exercise", series.exercise))
+                        }
+                        
                     }
-                    .foregroundStyle(by: .value("Exercise", series.exercise))
-                    .symbol(by: .value("Exercise", series.exercise))
+                }
+                .frame(height: 300)
+                .chartXAxis {
+                    AxisMarks(values: .stride(by: .month)) { value in
+                        AxisGridLine()
+                        AxisValueLabel(format: .dateTime.month(.defaultDigits))
+                    }
+                }
+
+                 
+                
+            }
+            .groupBoxStyle(YellowGroupBoxStyle())
+            .padding()
+            
+            Spacer()
+            
+            List {
+                ForEach(exercises, id:\.self) { exercise in
+                    HStack {
+                        Image(systemName: "circle")
+                        Text(exercise)
+                    }
                 }
             }
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .month)) { value in
-                    AxisGridLine()
-                    AxisValueLabel(format: .dateTime.month(.defaultDigits))
-                }
-            }
-            /*
-            .chartPlotStyle { plotArea in
-                plotArea
-                    .background(.blue.opacity(0.1))
-            }
-             */
-        
         }
-        .padding()
+        .navigationTitle("Charts")
         
+    }
+}
+
+struct YellowGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.content
+            .padding(.top, 30)
+            .padding(20)
+            .background(Color.LightGray())
+            .cornerRadius(20)
+            .overlay(
+                configuration.label.padding(10),
+                alignment: .topLeading
+            )
     }
 }
 
@@ -83,6 +116,8 @@ struct weightData: Identifiable {
 
 struct MainChartView_Previews: PreviewProvider {
     static var previews: some View {
-        MainChartView()
+        NavigationView {
+            MainChartView()
+        }
     }
 }
