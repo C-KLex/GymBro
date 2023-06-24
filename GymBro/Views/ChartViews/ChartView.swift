@@ -38,11 +38,6 @@ struct ChartView: View {
     
     var body: some View {
         VStack {
-            
-            ForEach(chartData, id: \.self) { series in
-                Text(String(1233))
-            }
-            
             GroupBox() {
                 //GroupBox ( "Line Chart - Weight Growing") {
                 Chart {
@@ -81,44 +76,6 @@ struct ChartView: View {
             }
         }
         .navigationTitle("Charts")
-    }
-}
-
-struct WhiteGroupBoxStyle: GroupBoxStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.content
-            .padding(.top, 30)
-            .padding(20)
-            .background(Color.LightGray())
-            .cornerRadius(20)
-            .overlay(
-                configuration.label.padding(10),
-                alignment: .topLeading
-            )
-    }
-}
-
-struct weightData: Identifiable {
-    let id = UUID()
-    let date: Date
-    let weight: Double
-
-    init(year: Int, month: Int, day: Int, weight: Double) {
-        self.date = Calendar.current.date(from: .init(year: year, month: month, day: day)) ?? Date()
-        self.weight = weight
-    }
-}
-
-struct exerciseData: Identifiable {
-    let id = UUID()
-    let exerciseName: String
-    let data = [weightData(year: <#Int#>, month: <#Int#>, day: <#Int#>, weight: <#Double#>)]
-    let pick: Bool
-    
-    init(exerciseName: String, data: [weightData], pick: Bool) {
-        self.exerciseName = exerciseName
-        self.data = data
-        self.pick = pick
     }
 }
 

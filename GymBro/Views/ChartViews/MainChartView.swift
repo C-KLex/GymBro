@@ -32,35 +32,23 @@ struct MainChartView: View {
                        weightData(year:2023, month:2, day: 3, weight: 225),
                        weightData(year:2023, month:2, day: 7, weight: 230)]
     
-    
-    
-    var chartData:[(exerciseName: String, data: [weightData], pick: Bool)] = []
-    
-    init() {
-        chartData.append((exerciseName: "Bench Press", data: benchPress, pick: true))
-        chartData.append((exerciseName: "Squat", data: squat, pick: false))
-    }
-    
-    @State var exercises: [String] = [
-        "benchPress",
-        "squat"
-    ]
+    let chartData = [
+        (exerciseName: "Bench Press", data: benchPress, pick: true),
+        (exerciseName: "Squats", data: squat, pick: true)]
     
     var body: some View {
-        
         VStack {
-            /*
             GroupBox() {
-            //GroupBox ( "Line Chart - Weight Growing") {
+                //GroupBox ( "Line Chart - Weight Growing") {
                 Chart {
-                    ForEach(chartData, id: \.exercise) { series in
+                    ForEach(chartData, id: \.exerciseName) { series in
                         ForEach(series.data) { item in
                             LineMark(
                                 x: .value("Date", item.date),
                                 y: .value("Weight", item.weight)
                             )
-                            .foregroundStyle(by: .value("Exercise", series.exercise))
-                            .symbol(by: .value("Exercise", series.exercise))
+                            .foregroundStyle(by: .value("Exercise", series.exerciseName))
+                            .symbol(by: .value("Exercise", series.exerciseName))
                         }
                         
                     }
@@ -72,36 +60,47 @@ struct MainChartView: View {
                         AxisValueLabel(format: .dateTime.month(.defaultDigits))
                     }
                 }
-
-                 
-                
             }
             .groupBoxStyle(WhiteGroupBoxStyle())
             .padding()
-            */
+            
             Spacer()
-            /*
-            List {
-                ForEach(exercises, id:\.self) { exercise in
-                    HStack {
-                        Image(systemName: exercise.choose ? "smallcircle.fill.circle" : "circle")
-                        Text(exercise)
-                    }
-                }
-            }
             
             List {
-                ForEach(chartData, id:\.self) { exercise in
+                ForEach(chartData, id:\.exerciseName) { exercise in
                     HStack {
                         Image(systemName: exercise.pick ? "smallcircle.fill.circle" : "circle")
                         Text(exercise.exerciseName)
                     }
                 }
             }
-             */
         }
         .navigationTitle("Charts")
-        
+    }
+}
+
+struct WhiteGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.content
+            .padding(.top, 30)
+            .padding(20)
+            .background(Color.LightGray())
+            .cornerRadius(20)
+            .overlay(
+                configuration.label.padding(10),
+                alignment: .topLeading
+            )
+    }
+}
+
+struct weightData: Identifiable {
+    let id = UUID()
+    let date: Date
+    let weight: Double
+
+    init(year: Int, month: Int, day: Int, weight: Double) {
+        self.date = Calendar.current.date(from: .init(year: year, month: month, day: day)) ?? Date()
+        self.weight = weight
     }
 }
 
