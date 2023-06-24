@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		320749EE2A27032C00974276 /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320749EC2A27032C00974276 /* NavigationStackController.swift */; };
-		320749EF2A27032C00974276 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320749ED2A27032C00974276 /* TabController.swift */; };
 		32074A132A2703DC00974276 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074A122A2703DC00974276 /* MainView.swift */; };
 		32074A152A27042100974276 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074A142A27042100974276 /* GymBroApp.swift */; };
 		320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */; };
@@ -31,14 +29,16 @@
 		3272E72D2A468FBE00A4776F /* PulseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7242A468FBE00A4776F /* PulseProgressBar.swift */; };
 		3272E72E2A468FBE00A4776F /* MainInfoView_GoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7252A468FBE00A4776F /* MainInfoView_GoalSheet.swift */; };
 		3272E72F2A468FBE00A4776F /* MainInfoView_GoalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7262A468FBE00A4776F /* MainInfoView_GoalListRow.swift */; };
-		3272E7302A468FBE00A4776F /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7272A468FBE00A4776F /* DismissButtonView.swift */; };
 		3272E7312A468FBE00A4776F /* MInfoView_AchiCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7282A468FBE00A4776F /* MInfoView_AchiCard.swift */; };
 		3272E7322A468FBE00A4776F /* MainInfoView_PersonaSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7292A468FBE00A4776F /* MainInfoView_PersonaSheet.swift */; };
 		3272E7332A468FBE00A4776F /* MainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E72A2A468FBE00A4776F /* MainInfoView.swift */; };
 		3272E7342A468FBE00A4776F /* MInfoView_AchiSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E72B2A468FBE00A4776F /* MInfoView_AchiSheet.swift */; };
 		3272E7352A468FBE00A4776F /* MInfoView_AchiSheet_QPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E72C2A468FBE00A4776F /* MInfoView_AchiSheet_QPopup.swift */; };
+		3272E74B2A4697F300A4776F /* NavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7492A4697F300A4776F /* NavigationStackController.swift */; };
+		3272E74C2A4697F300A4776F /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E74A2A4697F300A4776F /* TabController.swift */; };
+		3272E7582A4698DF00A4776F /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7562A4698DF00A4776F /* DismissButtonView.swift */; };
+		3272E7592A4698DF00A4776F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7572A4698DF00A4776F /* Extensions.swift */; };
 		329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */; };
-		32D856052A1D778A00A1C9BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D856042A1D778A00A1C9BE /* Extensions.swift */; };
 		32F188A12A259A5C00546070 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F188A02A259A5C00546070 /* MainChartView.swift */; };
 		32F1A5AC2A11CBFA00671CB9 /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AA2A11CBFA00671CB9 /* RoutineDetailView.swift */; };
 		32F1A5AD2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1A5AB2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift */; };
@@ -73,8 +73,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		320749EC2A27032C00974276 /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
-		320749ED2A27032C00974276 /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		32074A122A2703DC00974276 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		32074A142A27042100974276 /* GymBroApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymBroApp.swift; sourceTree = "<group>"; };
 		320E928E2A0030020074B9E1 /* MainView_FiveTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_FiveTab.swift; sourceTree = "<group>"; };
@@ -97,14 +95,16 @@
 		3272E7242A468FBE00A4776F /* PulseProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseProgressBar.swift; sourceTree = "<group>"; };
 		3272E7252A468FBE00A4776F /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
 		3272E7262A468FBE00A4776F /* MainInfoView_GoalListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalListRow.swift; sourceTree = "<group>"; };
-		3272E7272A468FBE00A4776F /* DismissButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
 		3272E7282A468FBE00A4776F /* MInfoView_AchiCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiCard.swift; sourceTree = "<group>"; };
 		3272E7292A468FBE00A4776F /* MainInfoView_PersonaSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_PersonaSheet.swift; sourceTree = "<group>"; };
 		3272E72A2A468FBE00A4776F /* MainInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView.swift; sourceTree = "<group>"; };
 		3272E72B2A468FBE00A4776F /* MInfoView_AchiSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiSheet.swift; sourceTree = "<group>"; };
 		3272E72C2A468FBE00A4776F /* MInfoView_AchiSheet_QPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MInfoView_AchiSheet_QPopup.swift; sourceTree = "<group>"; };
+		3272E7492A4697F300A4776F /* NavigationStackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStackController.swift; sourceTree = "<group>"; };
+		3272E74A2A4697F300A4776F /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		3272E7562A4698DF00A4776F /* DismissButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
+		3272E7572A4698DF00A4776F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCardProperty.swift; sourceTree = "<group>"; };
-		32D856042A1D778A00A1C9BE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		32F188A02A259A5C00546070 /* MainChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		32F1A5AA2A11CBFA00671CB9 /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		32F1A5AB2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDetailView_ESummaryRow.swift; sourceTree = "<group>"; };
@@ -169,10 +169,34 @@
 			path = AchievementCard;
 			sourceTree = "<group>";
 		};
+		3272E7382A4690FA00A4776F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3272E7492A4697F300A4776F /* NavigationStackController.swift */,
+				3272E74A2A4697F300A4776F /* TabController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3272E7552A46989200A4776F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3272E7572A4698DF00A4776F /* Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		32A2FEE02A47EC13002768D0 /* ViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3272E7562A4698DF00A4776F /* DismissButtonView.swift */,
+			);
+			path = ViewComponent;
+			sourceTree = "<group>";
+		};
 		8C1D7DD529E0C537009C18B3 /* InfoViews */ = {
 			isa = PBXGroup;
 			children = (
-				3272E7272A468FBE00A4776F /* DismissButtonView.swift */,
 				3272E7262A468FBE00A4776F /* MainInfoView_GoalListRow.swift */,
 				3272E7252A468FBE00A4776F /* MainInfoView_GoalSheet.swift */,
 				3272E7292A468FBE00A4776F /* MainInfoView_PersonaSheet.swift */,
@@ -210,8 +234,6 @@
 		8C8F367929DBA06D00ED087B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				320749EC2A27032C00974276 /* NavigationStackController.swift */,
-				320749ED2A27032C00974276 /* TabController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -289,12 +311,14 @@
 			isa = PBXGroup;
 			children = (
 				32074A142A27042100974276 /* GymBroApp.swift */,
+				32A2FEE02A47EC13002768D0 /* ViewComponent */,
+				3272E7552A46989200A4776F /* Extension */,
+				3272E7382A4690FA00A4776F /* Controller */,
 				8C8F367929DBA06D00ED087B /* ViewModels */,
 				8C8F367729DBA04E00ED087B /* Models */,
 				8C8F367629DBA04400ED087B /* Views */,
 				8CE71EA229A721D3006EEFE7 /* Assets.xcassets */,
 				8CE71EA429A721D3006EEFE7 /* Preview Content */,
-				32D856042A1D778A00A1C9BE /* Extensions.swift */,
 			);
 			path = GymBro;
 			sourceTree = "<group>";
@@ -455,10 +479,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3272E72F2A468FBE00A4776F /* MainInfoView_GoalListRow.swift in Sources */,
-				3272E7302A468FBE00A4776F /* DismissButtonView.swift in Sources */,
 				326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */,
+				3272E74B2A4697F300A4776F /* NavigationStackController.swift in Sources */,
 				329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */,
 				3272E71E2A468F7200A4776F /* RoutineSelectionView_AddRoutineSheet.swift in Sources */,
+				3272E7582A4698DF00A4776F /* DismissButtonView.swift in Sources */,
 				3272E7312A468FBE00A4776F /* MInfoView_AchiCard.swift in Sources */,
 				3272E71F2A468F7200A4776F /* RoutineSelectionVIew.swift in Sources */,
 				32688C172A140132007C5A48 /* AchiCard_RoutineComplete.swift in Sources */,
@@ -467,23 +492,22 @@
 				320E928F2A0030020074B9E1 /* MainView_FiveTab.swift in Sources */,
 				3272E7212A468F7200A4776F /* RExercise_SetRow_AddSetSheet.swift in Sources */,
 				32F1A5AD2A11CBFA00671CB9 /* RDetailView_ESummaryRow.swift in Sources */,
-				32D856052A1D778A00A1C9BE /* Extensions.swift in Sources */,
+				3272E74C2A4697F300A4776F /* TabController.swift in Sources */,
 				8C7C12E829F1BCCF004026E8 /* SettingView_ExportDataView.swift in Sources */,
 				3272E7202A468F7200A4776F /* RExercise_SetRow_UpdateSetSheet.swift in Sources */,
 				32074A132A2703DC00974276 /* MainView.swift in Sources */,
 				325CA9772A3015F400E24DE8 /* MainSettingView.swift in Sources */,
-				320749EF2A27032C00974276 /* TabController.swift in Sources */,
 				32074A152A27042100974276 /* GymBroApp.swift in Sources */,
 				32688C1F2A14067A007C5A48 /* AchiCardRegister.swift in Sources */,
 				8CCF96F429F0A90700F86A28 /* IntroHistoryView_ListRow.swift in Sources */,
 				3272E71D2A468F7200A4776F /* RExercise_AddExerciseSheet.swift in Sources */,
 				32688C1B2A14056C007C5A48 /* AchiCard_GoalAchieve.swift in Sources */,
+				3272E7592A4698DF00A4776F /* Extensions.swift in Sources */,
 				8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */,
 				8C7C12E629F1BCB9004026E8 /* SettingView_RateTheAppView.swift in Sources */,
 				3272E7352A468FBE00A4776F /* MInfoView_AchiSheet_QPopup.swift in Sources */,
 				3272E72E2A468FBE00A4776F /* MainInfoView_GoalSheet.swift in Sources */,
 				32F1A5AC2A11CBFA00671CB9 /* RoutineDetailView.swift in Sources */,
-				320749EE2A27032C00974276 /* NavigationStackController.swift in Sources */,
 				321DDBD92A0210BB0067A96E /* IntroHistoryView.swift in Sources */,
 				3272E72D2A468FBE00A4776F /* PulseProgressBar.swift in Sources */,
 				3272E71C2A468F7200A4776F /* RoutineExerciseView.swift in Sources */,
