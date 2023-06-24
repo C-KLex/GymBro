@@ -25,7 +25,7 @@ struct IntroHistoryView_ListRow: View {
     @State var element: RoutineSummaryModel
     
     /// Call the mock ViewModel
-    @ObservedObject var routineRowVM: RoutineRowViewModel = RoutineRowViewModel.instance
+    @ObservedObject var introHistoryVM = IntroHistoryVM.instance
     
     /// Alert controller (default is `false`)
     ///
@@ -71,7 +71,7 @@ struct IntroHistoryView_ListRow: View {
 
             Button(
                 action: {
-                    routineRowVM.editItem(element: element)
+                    introHistoryVM.editRoutine(element: element)
                 },
                 label: {
                     Label("Edit", systemImage: "pencil")
@@ -117,7 +117,7 @@ extension IntroHistoryView_ListRow {
             title: Text("Delete Routine"),
             message: Text("Are you sure you want to delete this routine? This action cannot be undone."),
             primaryButton: .destructive(Text("Delete")) {
-                routineRowVM.deleteItem(element: element)
+                introHistoryVM.deleteRoutine(element: element)
             },
             secondaryButton: .cancel()
         )
