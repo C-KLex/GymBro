@@ -37,7 +37,6 @@
 		32688C1D2A140585007C5A48 /* AchiCard_PRHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C1C2A140585007C5A48 /* AchiCard_PRHit.swift */; };
 		32688C1F2A14067A007C5A48 /* AchiCardRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C1E2A14067A007C5A48 /* AchiCardRegister.swift */; };
 		326EAF182A0A0F8B006791EC /* RDetailView_SetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */; };
-		328298E22A4388260072DDC2 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328298E12A4388260072DDC2 /* ChartView.swift */; };
 		329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */; };
 		32D856052A1D778A00A1C9BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D856042A1D778A00A1C9BE /* Extensions.swift */; };
 		32F188A12A259A5C00546070 /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F188A02A259A5C00546070 /* MainChartView.swift */; };
@@ -103,7 +102,6 @@
 		32688C1C2A140585007C5A48 /* AchiCard_PRHit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCard_PRHit.swift; sourceTree = "<group>"; };
 		32688C1E2A14067A007C5A48 /* AchiCardRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCardRegister.swift; sourceTree = "<group>"; };
 		326EAF172A0A0F8B006791EC /* RDetailView_SetRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDetailView_SetRow.swift; sourceTree = "<group>"; };
-		328298E12A4388260072DDC2 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCardProperty.swift; sourceTree = "<group>"; };
 		32D856042A1D778A00A1C9BE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		32F188A02A259A5C00546070 /* MainChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				32F188A02A259A5C00546070 /* MainChartView.swift */,
-				328298E12A4388260072DDC2 /* ChartView.swift */,
 			);
 			path = ChartViews;
 			sourceTree = "<group>";
@@ -494,7 +491,6 @@
 				32688C1D2A140585007C5A48 /* AchiCard_PRHit.swift in Sources */,
 				8C7C12E229F1BC68004026E8 /* SettingView_HelpCenterView.swift in Sources */,
 				8C7C12E029F1BC36004026E8 /* SettingView_NotificationSettingView.swift in Sources */,
-				328298E22A4388260072DDC2 /* ChartView.swift in Sources */,
 				32688C192A140560007C5A48 /* AchiCard_TrainingVolume.swift in Sources */,
 				32074A0E2A27036B00974276 /* RExercise_SetRow.swift in Sources */,
 			);
