@@ -22,6 +22,7 @@ struct RExercise_AddExerciseSheet: View {
     /// Binding Variable for picker selection
     @State var selection: String = ""
     @State var isAddNewExerActive: Bool = false
+    @State var isExerciseAlertActive: Bool = false 
     
     
     // MARK: BODY
@@ -75,8 +76,13 @@ struct RExercise_AddExerciseSheet: View {
                 }
                 .padding(.horizontal, 5)
                 .onTapGesture {
-                    self.doneButtonAction()
+                    self.addButtonAction()
                 }
+                .alert(isPresented: self.$isExerciseAlertActive) {
+                    self.exerciseAlert(exerciseName: self.selection)
+                }
+                
+                
             }
             
             Spacer()
@@ -84,14 +90,31 @@ struct RExercise_AddExerciseSheet: View {
     }
 }
 
+
+// MARK: COMPONENT
+
 extension RExercise_AddExerciseSheet {
     
-    func doneButtonAction() -> () {
+    func exerciseAlert(exerciseName: String) -> Alert {
+        Alert(
+            title: Text("Error!!!").foregroundColor(.red),
+            message: Text("\(exerciseName) is in progress already!"),
+            dismissButton: .default(Text("OK"))
+        )
+    }
+    
+    func addButtonAction() -> () {
         
         // check if empty
         if self.selection == "" {
             let defaultExercise = rExerciseVM.getFirstExerciseFromPool()
             selection = defaultExercise
+        }
+        
+        // check duplicate exercise or not
+        if rExerciseVM.newExerciseExist(exerciseName: selection) {
+            self.isExerciseAlertActive = true
+            return
         }
         
         // add a new inProgressExercise
