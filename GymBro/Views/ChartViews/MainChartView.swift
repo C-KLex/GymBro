@@ -10,6 +10,10 @@ import Charts
 
 struct MainChartView: View {
     
+    
+    // MARK: PROPERTY
+    
+    /// The mock data of bench press
     let benchPress: [weightData] = [
         weightData(year:2023, month:1, day: 1, weight: 100),
         weightData(year:2023, month:1, day: 5, weight: 105),
@@ -23,6 +27,7 @@ struct MainChartView: View {
         weightData(year:2023, month:2, day: 6, weight: 140)
     ]
     
+    /// The mock data of squat
     let squat: [weightData] = [
         weightData(year:2023, month:1, day: 2, weight: 200),
         weightData(year:2023, month:1, day: 6, weight: 205),
@@ -36,8 +41,10 @@ struct MainChartView: View {
         weightData(year:2023, month:2, day: 7, weight: 230)
     ]
     
+    /// The chart data that contains all of the current exercise data, which is a list of tuples. Each tuple includes exercise name, mock data and pick. The chart will show the line only if the vairable pick equals true
     let chartData: [(exerciseName: String, data: [weightData], pick: Bool)]
-        
+    
+    /// Init chartData by init()
     init() {
         chartData = [
             (exerciseName: "Bench Press", data: benchPress, pick: true),
@@ -45,10 +52,12 @@ struct MainChartView: View {
         ]
     }
     
+    
+    // MARK: BODY
+    
     var body: some View {
         VStack {
             GroupBox() {
-                //GroupBox ( "Line Chart - Weight Growing") {
                 Chart {
                     ForEach(chartData, id: \.exerciseName) { series in
                         ForEach(series.data) { item in
@@ -75,6 +84,7 @@ struct MainChartView: View {
             
             Spacer()
             
+            /// A list that user can pick and show desire exercises
             List {
                 ForEach(chartData, id:\.exerciseName) { exercise in
                     HStack {
@@ -88,6 +98,10 @@ struct MainChartView: View {
     }
 }
 
+
+// MARK: COMPONENT
+
+/// The appearance settings of the chart
 struct WhiteGroupBoxStyle: GroupBoxStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.content
@@ -102,6 +116,7 @@ struct WhiteGroupBoxStyle: GroupBoxStyle {
     }
 }
 
+/// The structure of exercise, might be different in the future
 struct weightData: Identifiable {
     let id = UUID()
     let date: Date
@@ -113,6 +128,8 @@ struct weightData: Identifiable {
     }
 }
 
+
+// MARK: PREVIEW
 
 struct MainChartView_Previews: PreviewProvider {
     static var previews: some View {
