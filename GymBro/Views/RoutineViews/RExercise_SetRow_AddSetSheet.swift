@@ -1,5 +1,5 @@
 //
-//  RExercise_SetRow_EditSetSheet.swift
+//  RExercise_SetRow_AddSetSheet.swift
 //  GymBro
 //
 //  Created by Claire on 4/27/23.
@@ -8,32 +8,31 @@
 
 import SwiftUI
 
-struct RExercise_SetRow_EditSetSheet: View {
+/// Add new set for the exercise
+struct RExercise_SetRow_AddSetSheet: View {
     
     
     // MARK: PROPERTY
     
-    /// Weight to be selected. Set default as 120 lb.
-    @State var selectedWeight: Int = 120
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     
-    /// Rep to be selected. Set default as 5.
-    @State var selectedRep: Int = 5
+    // Binding Variable for The Pickers
+    @Binding var selectedWeight: Int
+    @Binding var selectedRep: Int
     
-    /// Show wheel pickers when click the title of exercises.
-    @State var showPicker: Bool = false
+    /// The Exercise which the set is added to
+    @State var trainingExercise: TrainingExerciseModel
     
+    @Environment(\.presentationMode) var presentationMode
+
     
     // MARK: BODY
     
     var body: some View {
-            
-        
         VStack {
-            
             DismissButtonView()
             
             HStack {
-                
                 Picker("Select Weight", selection: $selectedWeight) {
                     ForEach(10...200, id: \.self) { weight in
                         if weight % 5 == 0 {
@@ -52,6 +51,17 @@ struct RExercise_SetRow_EditSetSheet: View {
             }
             .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
             
+            HStack {
+                Text("+ Add Set")
+                    .padding()
+                    .padding(.horizontal, 5)
+                    .background(Color.gray.cornerRadius(10).opacity(0.2))
+            }
+            .onTapGesture {
+                rExerciseVM.addNewSetToExercise(weight: self.selectedWeight, reps: self.selectedRep, exercise: self.trainingExercise)
+                presentationMode.wrappedValue.dismiss()
+            }
+            
             Spacer()
         }
     }
@@ -61,8 +71,7 @@ struct RExercise_SetRow_EditSetSheet: View {
 // MARK: PREVIEW
 
 struct EditSetView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        RExercise_SetRow(exercise: "", showSet: true, showEditSheet: true)
+        RoutineExerciseView()
     }
 }

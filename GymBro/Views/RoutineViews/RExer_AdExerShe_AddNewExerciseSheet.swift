@@ -14,21 +14,19 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
     
     // MARK: PROPERTY
     
-    @State var textFieldText: String = ""
-    
-    /// The new added exercise that user type
-    @Binding var selection: String
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     @Environment(\.presentationMode) var presentationMode
     
+    /// Binding variable for textField
+    @State var textFieldText: String = ""
+
     
     // MARK: BODY
     
     var body: some View {
-        
             VStack {
                 
                 DismissButtonView()
-
 
                 HStack {
                     Text("Add New Exercise 📝")
@@ -54,11 +52,11 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
                         .cornerRadius(10)
                 }
                 .onTapGesture {
-                    saveButtonPressed()
+                    self.addNewExerciseOrNot(text: self.textFieldText)
+                    presentationMode.wrappedValue.dismiss()
                 }
                
                 Spacer()
-                
             }
             .padding(.horizontal)
     }
@@ -68,10 +66,11 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
 // MARK: COMPONENT
 
 extension RExer_AdExerShe_AddNewExerciseSheet{
-    func saveButtonPressed() {
-        //exerciseViewModel.addExercise(title: textFieldText)
-        selection = textFieldText
-        presentationMode.wrappedValue.dismiss()
+    
+    func addNewExerciseOrNot(text: String) -> () {
+        if textFieldText != "" {
+            rExerciseVM.addNewExerciseToPool(exerciseName: text)
+        }
     }
 }
 

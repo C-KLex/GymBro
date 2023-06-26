@@ -16,23 +16,24 @@ struct RExercise_AddExerciseSheet: View {
     
     // MARK: PROPERTY
     
+    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
     @Environment(\.presentationMode) var presentationMode
-    @State var selection: String = "Bar Bell Chest"
-    @State var exercise: [String] = ["Bar Bell Chest", "Bar Bell Up", "Cable Mid", "Cable Low"]
+    
+    /// Binding Variable for picker selection
+    @State var selection: String = ""
     @State var isAddNewExerActive: Bool = false
     
     
     // MARK: BODY
     
     var body: some View {
-        
         VStack {
             
             DismissButtonView()
             
             Picker("+ Add Exercise", selection: $selection) {
-                ForEach(exercise, id: \.self) {
-                    Text($0)
+                ForEach(rExerciseVM.exercisePool, id: \.self) { e in
+                    Text(e)
                 }
             }
             .pickerStyle(.wheel)
@@ -59,31 +60,45 @@ struct RExercise_AddExerciseSheet: View {
                 .sheet(
                     isPresented: $isAddNewExerActive,
                     content: {
-                        RExer_AdExerShe_AddNewExerciseSheet(selection: $selection)
+                        RExer_AdExerShe_AddNewExerciseSheet()
                     }
                 )
                 
                 // Add an existed exercise to the routine list
-                Button(
-                    action: {
-                        //exerciseViewModel.addExercise(title: selection)
-                        presentationMode.wrappedValue.dismiss()
-                    },
-                    label: {
-                        Text("Done")
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 60)
-                            .background(Color.gray.opacity(0.4))
-                            .cornerRadius(8)
-                    }
-                )
+                HStack {
+                    Text("Add")
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 60)
+                        .background(Color.gray.opacity(0.4))
+                        .cornerRadius(8)
+                }
                 .padding(.horizontal, 5)
-            }   // End of HStack
+                .onTapGesture {
+                    self.doneButtonAction()
+                }
+            }
             
             Spacer()
-            
         }   // End of VStack
+    }
+}
+
+extension RExercise_AddExerciseSheet {
+    
+    func doneButtonAction() -> () {
+        
+        // check if empty
+        if self.selection == "" {
+            let defaultExercise = rExerciseVM.getFirstExerciseFromPool()
+            selection = defaultExercise
+        }
+        
+        // add a new inProgressExercise
+        rExerciseVM.addInProgressExercise(exerciseName:selection)
+        
+        // dismiss
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
