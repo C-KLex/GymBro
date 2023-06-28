@@ -44,6 +44,7 @@
 		32EE7C202A4CEE8000A4E744 /* AchiCardRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C1A2A4CEE8000A4E744 /* AchiCardRegister.swift */; };
 		32EE7C242A4CEEC700A4E744 /* AchiCard_RoutineComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C232A4CEEC700A4E744 /* AchiCard_RoutineComplete.swift */; };
 		32EE7C262A4CEF4300A4E744 /* AchiCardProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C252A4CEF4300A4E744 /* AchiCardProperty.swift */; };
+		32EE7C292A4CEFE500A4E744 /* RoutineDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */; };
 		8C7C12E029F1BC36004026E8 /* SettingView_NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */; };
 		8C7C12E229F1BC68004026E8 /* SettingView_HelpCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */; };
 		8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */; };
@@ -119,6 +120,7 @@
 		32EE7C1A2A4CEE8000A4E744 /* AchiCardRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchiCardRegister.swift; sourceTree = "<group>"; };
 		32EE7C232A4CEEC700A4E744 /* AchiCard_RoutineComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchiCard_RoutineComplete.swift; sourceTree = "<group>"; };
 		32EE7C252A4CEF4300A4E744 /* AchiCardProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchiCardProperty.swift; sourceTree = "<group>"; };
+		32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutineDetailVM.swift; path = GymBro/ViewModel/RoutineDetailVM.swift; sourceTree = SOURCE_ROOT; };
 		8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_NotificationSettingView.swift; sourceTree = "<group>"; };
 		8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_HelpCenterView.swift; sourceTree = "<group>"; };
 		8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_ReportIssueSheet.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		32EE7C0C2A4CED1C00A4E744 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */,
 				32EE7C0D2A4CED4200A4E744 /* IntroHistoryVM.swift */,
 			);
 			path = ViewModel;
@@ -520,6 +523,7 @@
 				32EE7C052A4CECBF00A4E744 /* RoutineExerciseView.swift in Sources */,
 				325CA9772A3015F400E24DE8 /* MainSettingView.swift in Sources */,
 				32EE7C0E2A4CED4200A4E744 /* IntroHistoryVM.swift in Sources */,
+				32EE7C292A4CEFE500A4E744 /* RoutineDetailVM.swift in Sources */,
 				3272E7592A4698DF00A4776F /* Extensions.swift in Sources */,
 				8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */,
 				32EE7C062A4CECBF00A4E744 /* RExercise_SetRow_AddSetSheet.swift in Sources */,
