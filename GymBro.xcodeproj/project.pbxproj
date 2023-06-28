@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		32074A132A2703DC00974276 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074A122A2703DC00974276 /* MainView.swift */; };
-		32074A152A27042100974276 /* GymBroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074A142A27042100974276 /* GymBroApp.swift */; };
 		325CA9772A3015F400E24DE8 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CA9762A3015F400E24DE8 /* MainSettingView.swift */; };
 		32688C172A140132007C5A48 /* AchiCard_RoutineComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C162A140132007C5A48 /* AchiCard_RoutineComplete.swift */; };
 		32688C192A140560007C5A48 /* AchiCard_TrainingVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32688C182A140560007C5A48 /* AchiCard_TrainingVolume.swift */; };
@@ -43,6 +42,7 @@
 		3280D9212A49443500F722EA /* AchiCardRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3280D9202A49443500F722EA /* AchiCardRegister.swift */; };
 		3280D9232A49449A00F722EA /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3280D9222A49449A00F722EA /* MainChartView.swift */; };
 		329FCAE52A154EEA00A5EA98 /* AchiCardProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */; };
+		32EE7C292A4CEFE500A4E744 /* RoutineDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */; };
 		8C7C12E029F1BC36004026E8 /* SettingView_NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */; };
 		8C7C12E229F1BC68004026E8 /* SettingView_HelpCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */; };
 		8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */; };
@@ -109,6 +109,7 @@
 		3280D9202A49443500F722EA /* AchiCardRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchiCardRegister.swift; sourceTree = "<group>"; };
 		3280D9222A49449A00F722EA /* MainChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
 		329FCAE42A154EEA00A5EA98 /* AchiCardProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchiCardProperty.swift; sourceTree = "<group>"; };
+		32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutineDetailVM.swift; path = GymBro/ViewModel/RoutineDetailVM.swift; sourceTree = SOURCE_ROOT; };
 		8C7C12DF29F1BC36004026E8 /* SettingView_NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_NotificationSettingView.swift; sourceTree = "<group>"; };
 		8C7C12E129F1BC68004026E8 /* SettingView_HelpCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_HelpCenterView.swift; sourceTree = "<group>"; };
 		8C7C12E329F1BC86004026E8 /* SettingView_ReportIssueSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView_ReportIssueSheet.swift; sourceTree = "<group>"; };
@@ -234,8 +235,10 @@
 		8C8F367929DBA06D00ED087B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */,
 			);
-			path = ViewModels;
+			name = ViewModels;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8C8F368129DBA14E00ED087B /* HistoryViews */ = {
@@ -494,10 +497,9 @@
 				3280D9212A49443500F722EA /* AchiCardRegister.swift in Sources */,
 				32074A132A2703DC00974276 /* MainView.swift in Sources */,
 				325CA9772A3015F400E24DE8 /* MainSettingView.swift in Sources */,
-				32074A152A27042100974276 /* GymBroApp.swift in Sources */,
 				3280D9032A4943AD00F722EA /* RoutineSelectionVIew.swift in Sources */,
-				32074A152A27042100974276 /* GymBroApp.swift in Sources */,
 				32688C1B2A14056C007C5A48 /* AchiCard_GoalAchieve.swift in Sources */,
+				32EE7C292A4CEFE500A4E744 /* RoutineDetailVM.swift in Sources */,
 				3272E7592A4698DF00A4776F /* Extensions.swift in Sources */,
 				8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */,
 				3280D91E2A49441600F722EA /* RDetailView_SetRow.swift in Sources */,
