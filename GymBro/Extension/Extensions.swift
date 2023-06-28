@@ -16,4 +16,8 @@ extension Color {
     static func Background() -> Color {
         Color("BackGround")
     }
+    
+    static func LightGray() -> Color {
+        Color("LightGray")
+    }
 }

@@ -214,6 +214,9 @@ class RoutineExerciseViewModel: ObservableObject {
         self.inProgressExercise.insert(exercise, at: exerciseIndex)
     }
        
+    func newExerciseExist(exerciseName: String) -> Bool {
+        return self.inProgressExercise.contains(where: { $0.name == exerciseName } )
+    }
 }
 
 struct TrainingExerciseModel: Identifiable {
