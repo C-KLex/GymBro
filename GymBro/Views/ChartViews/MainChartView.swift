@@ -60,15 +60,16 @@ struct MainChartView: View {
             GroupBox() {
                 Chart {
                     ForEach(chartData, id: \.exerciseName) { series in
-                        ForEach(series.data) { item in
-                            LineMark(
-                                x: .value("Date", item.date),
-                                y: .value("Weight", item.weight)
-                            )
-                            .foregroundStyle(by: .value("Exercise", series.exerciseName))
-                            .symbol(by: .value("Exercise", series.exerciseName))
+                        if series.pick {
+                            ForEach(series.data) { item in
+                                LineMark(
+                                    x: .value("Date", item.date),
+                                    y: .value("Weight", item.weight)
+                                )
+                                .foregroundStyle(by: .value("Exercise", series.exerciseName))
+                                .symbol(by: .value("Exercise", series.exerciseName))
+                            }
                         }
-                        
                     }
                 }
                 .frame(height: 300)
