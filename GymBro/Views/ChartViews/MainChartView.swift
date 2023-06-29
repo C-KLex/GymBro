@@ -42,7 +42,7 @@ struct MainChartView: View {
     ]
     
     /// The chart data that contains all of the current exercise data, which is a list of tuples. Each tuple includes exercise name, mock data and pick. The chart will show the line only if the vairable pick equals true
-    let chartData: [(exerciseName: String, data: [weightData], pick: Bool)]
+    @State var chartData: [(exerciseName: String, data: [weightData], pick: Bool)]
     
     /// Init chartData by init()
     init() {
@@ -86,10 +86,13 @@ struct MainChartView: View {
             
             /// A list that user can pick and show desire exercises
             List {
-                ForEach(chartData, id:\.exerciseName) { exercise in
+                ForEach($chartData, id:\.exerciseName) { $exercise in
                     HStack {
                         Image(systemName: exercise.pick ? "smallcircle.fill.circle" : "circle")
                         Text(exercise.exerciseName)
+                    }
+                    .onTapGesture {
+                        exercise.pick.toggle()
                     }
                 }
             }
