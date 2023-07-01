@@ -8,19 +8,18 @@
 import Foundation
 import SwiftUI
 
+/// Viewmodel for `IntroHistoryView`
 class IntroHistoryVM: ObservableObject {
     
-    /// A list of RoutineSummaryModel
     @Published var routineSummaryData: [RoutineSummaryModel] = []
     
-    /// Singleton
     static let instance = IntroHistoryVM()
     
-    private init() {
+    init() {
         getData()
     }
     
-    func getData() {
+    func getData() -> () {
         for i in stride(from: 28, through: 1, by: -1) {
             let row: RoutineSummaryModel = RoutineSummaryModel(date: "02/\(i)", routineName: "chest", totalExercise: 4, totalSet: 4, trainingVolume: 2.5)
             routineSummaryData.append(row)
