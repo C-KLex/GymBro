@@ -16,7 +16,7 @@ struct RExercise_AddExerciseSheet: View {
     
     // MARK: PROPERTY
     
-    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
+    @ObservedObject var rExerciseVM = RoutineExerciseVM.instance
     @Environment(\.presentationMode) var presentationMode
     
     /// Binding Variable for picker selection
