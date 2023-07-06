@@ -14,7 +14,7 @@ struct RExercise_SetRow_AddSetSheet: View {
     
     // MARK: PROPERTY
     
-    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
+    @ObservedObject var rExerciseVM = RoutineExerciseVM.instance
     
     // Binding Variable for The Pickers
     @Binding var selectedWeight: Int

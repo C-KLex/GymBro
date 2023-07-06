@@ -14,7 +14,7 @@ struct RExer_AdExerShe_AddNewExerciseSheet: View {
     
     // MARK: PROPERTY
     
-    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
+    @ObservedObject var rExerciseVM = RoutineExerciseVM.instance
     @Environment(\.presentationMode) var presentationMode
     
     /// Binding variable for textField

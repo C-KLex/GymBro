@@ -22,7 +22,7 @@ struct RExercise_SetRow_UpdateSetSheet: View {
     /// Updated Set Model
     @State var trainingSet: TrainingSetModel
     
-    @ObservedObject var rExerciseVM = RoutineExerciseViewModel.instance
+    @ObservedObject var rExerciseVM = RoutineExerciseVM.instance
     @Environment(\.presentationMode) var presentationMode
 
 
