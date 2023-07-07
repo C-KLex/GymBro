@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32074A132A2703DC00974276 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32074A122A2703DC00974276 /* MainView.swift */; };
 		325CA9772A3015F400E24DE8 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CA9762A3015F400E24DE8 /* MainSettingView.swift */; };
+		326748992A57A19B00EC7BEF /* ChartVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326748982A57A19B00EC7BEF /* ChartVM.swift */; };
 		3272E72D2A468FBE00A4776F /* PulseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7242A468FBE00A4776F /* PulseProgressBar.swift */; };
 		3272E72F2A468FBE00A4776F /* MainInfoView_GoalListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E7262A468FBE00A4776F /* MainInfoView_GoalListRow.swift */; };
 		3272E7332A468FBE00A4776F /* MainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272E72A2A468FBE00A4776F /* MainInfoView.swift */; };
@@ -78,6 +79,7 @@
 /* Begin PBXFileReference section */
 		32074A122A2703DC00974276 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		325CA9762A3015F400E24DE8 /* MainSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettingView.swift; sourceTree = "<group>"; };
+		326748982A57A19B00EC7BEF /* ChartVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVM.swift; sourceTree = "<group>"; };
 		3272E7242A468FBE00A4776F /* PulseProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseProgressBar.swift; sourceTree = "<group>"; };
 		3272E7252A468FBE00A4776F /* MainInfoView_GoalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalSheet.swift; sourceTree = "<group>"; };
 		3272E7262A468FBE00A4776F /* MainInfoView_GoalListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInfoView_GoalListRow.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */,
+				326748982A57A19B00EC7BEF /* ChartVM.swift */,
 				32EE7C0D2A4CED4200A4E744 /* IntroHistoryVM.swift */,
 				3274A8C22A567F5A004C5655 /* RoutineExerciseVM.swift */,
 			);
@@ -527,6 +530,7 @@
 				325CA9772A3015F400E24DE8 /* MainSettingView.swift in Sources */,
 				32EE7C0E2A4CED4200A4E744 /* IntroHistoryVM.swift in Sources */,
 				32EE7C292A4CEFE500A4E744 /* RoutineDetailVM.swift in Sources */,
+				326748992A57A19B00EC7BEF /* ChartVM.swift in Sources */,
 				3272E7592A4698DF00A4776F /* Extensions.swift in Sources */,
 				8C7C12E429F1BC86004026E8 /* SettingView_ReportIssueSheet.swift in Sources */,
 				32EE7C062A4CECBF00A4E744 /* RExercise_SetRow_AddSetSheet.swift in Sources */,
