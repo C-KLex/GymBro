@@ -16,6 +16,7 @@ struct RoutineSelectionView_AddRoutineSheet: View {
     
     // MARK: PROPERTY
     
+    @ObservedObject var routineSelectionVM = RoutineSelectionVM.instance
     @Environment(\.presentationMode) var presentationMode
     @State var textFieldText: String  = ""
     
@@ -31,7 +32,20 @@ struct RoutineSelectionView_AddRoutineSheet: View {
                         .cornerRadius(10)
                     
                     // Check extenstion for the detail implementation
-            saveTextButton
+            
+            HStack {
+                Text("Save".uppercased())
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            .onTapGesture {
+                self.saveButtonPressed(text: self.textFieldText)
+                presentationMode.wrappedValue.dismiss()
+            }
             Spacer()
         }
         .padding()
@@ -43,7 +57,10 @@ struct RoutineSelectionView_AddRoutineSheet: View {
     
     /// Drop down the RoutineSelectionView_AddRoutineSheet after the save button is pressed
     ///  - Returns: Void
-    func saveButtonPressed() {
+    func saveButtonPressed(text: String) {
+        if textFieldText != "" {
+            routineSelectionVM.addNewRoutine(routineName: text)
+        }
         presentationMode.wrappedValue.dismiss()
     }
 }
@@ -59,23 +76,3 @@ struct AddRoutineView_Previews: PreviewProvider {
     }
 }
 
-extension RoutineSelectionView_AddRoutineSheet {
-    
-    /// Save button in RoutineSelectionView_AddRoutineSheet
-    ///
-    /// Tapping the button should create a new routine with the typed in string and close RoutineSelectionView_AddRoutineSheet.
-    var saveTextButton: some View {
-        Button(
-            action: {
-                saveButtonPressed()
-            }, label: {
-                Text("Save")
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.accentColor)
-                    .cornerRadius(10)
-            })
-    }
-}
