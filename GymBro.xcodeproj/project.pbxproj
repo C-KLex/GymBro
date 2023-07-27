@@ -29,6 +29,7 @@
 		3280D91E2A49441600F722EA /* RDetailView_SetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3280D9192A49441600F722EA /* RDetailView_SetRow.swift */; };
 		3280D91F2A49441600F722EA /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3280D91A2A49441600F722EA /* RoutineDetailView.swift */; };
 		3280D9232A49449A00F722EA /* MainChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3280D9222A49449A00F722EA /* MainChartView.swift */; };
+		32E124D42A72FAB900DADDC0 /* RoutineSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E124D32A72FAB900DADDC0 /* RoutineSelectionVM.swift */; };
 		32EE7C012A4CECBF00A4E744 /* RExercise_AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7BF92A4CECBF00A4E744 /* RExercise_AddExerciseSheet.swift */; };
 		32EE7C022A4CECBF00A4E744 /* RExercise_SetRow_UpdateSetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7BFA2A4CECBF00A4E744 /* RExercise_SetRow_UpdateSetSheet.swift */; };
 		32EE7C032A4CECBF00A4E744 /* RoutineSelectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7BFB2A4CECBF00A4E744 /* RoutineSelectionVIew.swift */; };
@@ -107,6 +108,7 @@
 		3280D9192A49441600F722EA /* RDetailView_SetRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDetailView_SetRow.swift; sourceTree = "<group>"; };
 		3280D91A2A49441600F722EA /* RoutineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		3280D9222A49449A00F722EA /* MainChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainChartView.swift; sourceTree = "<group>"; };
+		32E124D32A72FAB900DADDC0 /* RoutineSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVM.swift; sourceTree = "<group>"; };
 		32EE7BF92A4CECBF00A4E744 /* RExercise_AddExerciseSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RExercise_AddExerciseSheet.swift; sourceTree = "<group>"; };
 		32EE7BFA2A4CECBF00A4E744 /* RExercise_SetRow_UpdateSetSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RExercise_SetRow_UpdateSetSheet.swift; sourceTree = "<group>"; };
 		32EE7BFB2A4CECBF00A4E744 /* RoutineSelectionVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineSelectionVIew.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				32EE7C282A4CEFE500A4E744 /* RoutineDetailVM.swift */,
 				326748982A57A19B00EC7BEF /* ChartVM.swift */,
+				32E124D32A72FAB900DADDC0 /* RoutineSelectionVM.swift */,
 				32EE7C0D2A4CED4200A4E744 /* IntroHistoryVM.swift */,
 				3274A8C22A567F5A004C5655 /* RoutineExerciseVM.swift */,
 			);
@@ -514,6 +517,7 @@
 				32EE7C042A4CECBF00A4E744 /* RExer_AdExerShe_AddNewExerciseSheet.swift in Sources */,
 				3272E7332A468FBE00A4776F /* MainInfoView.swift in Sources */,
 				3280D9122A4943C400F722EA /* MInfoView_AchiSheet.swift in Sources */,
+				32E124D42A72FAB900DADDC0 /* RoutineSelectionVM.swift in Sources */,
 				32EE7C012A4CECBF00A4E744 /* RExercise_AddExerciseSheet.swift in Sources */,
 				3272E74B2A4697F300A4776F /* NavigationStackController.swift in Sources */,
 				3280D9142A4943C400F722EA /* MInfoView_AchiCard.swift in Sources */,
