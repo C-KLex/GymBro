@@ -16,12 +16,9 @@ struct RoutineSelectionVIew: View {
     
     // MARK: PROPERTY
     
-    /// An example list of routines
-    @State var routines: [String] = [
-        "Leg Day",
-        "Chest Day",
-        "Back Day",
-    ]
+    /// Mock ViewModel for fake data
+    @ObservedObject var routineSelectionVM = RoutineSelectionVM.instance
+    
     
     /// A variable that determine whether this page should show a pop-up widow for adding a new routine or not
     @State var addRoutine: Bool = false
@@ -33,7 +30,7 @@ struct RoutineSelectionVIew: View {
         List {
             
             // List out all of the current routines
-            ForEach(routines, id: \.self) { routine in
+            ForEach(routineSelectionVM.routinePool, id: \.self) { routine in
                 
                 // Using overlay is one of the method to avoid the arrow at the right side of navigationLink
                 Text(routine)
@@ -52,8 +49,8 @@ struct RoutineSelectionVIew: View {
                                     }))
                     .padding(3)
             }
-            .onDelete(perform: deleteRoutine)
-            .onMove(perform: moveRoutine)
+            .onDelete(perform: routineSelectionVM.deleteRoutine)
+            .onMove(perform: routineSelectionVM.moveRoutine)
             .listRowBackground(Color.clear)
                 
             // Check extenstion for the detail implementation
@@ -72,18 +69,6 @@ struct RoutineSelectionVIew: View {
     ///  - Returns: Void
     func addButtonPressed() {
         addRoutine.toggle()
-    }
-    
-    /// Delete the routine from the routine list
-    ///  - Returns: Voiid
-    func deleteRoutine(indextSet: IndexSet) {
-        routines.remove(atOffsets: indextSet)
-    }
-    
-    /// Move the routine to desire order in the routine list
-    ///  - Returns: Void
-    func moveRoutine(index: IndexSet, newOffSet: Int) {
-        routines.move(fromOffsets: index, toOffset: newOffSet)
     }
 }
 
